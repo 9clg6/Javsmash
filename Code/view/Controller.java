@@ -11,9 +11,4 @@ public class Controller {
 
     @FXML
     private Button PlayButton = new Button();
-
-    @FXML private void initialize(){
-
-    }
-
 }
