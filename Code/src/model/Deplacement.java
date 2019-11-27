@@ -15,6 +15,7 @@ public class Deplacement {
                 case D:
                     cp.setPosX(cp.getHeroPosX()+10);
                     break;
+
                 case Q:
                     cp.setPosX(cp.getHeroPosX()-10);
                     break;
