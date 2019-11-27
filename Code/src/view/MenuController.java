@@ -13,8 +13,8 @@ public class MenuController {
     @FXML
     private void handlePlayButton(ActionEvent e) {
         e.consume();
-        GameController gc = new GameController();
         try {
+            GameController gc = new GameController();
             gc.event();
         } catch (java.lang.Exception j) {
             System.err.println("java Lang Exception");
