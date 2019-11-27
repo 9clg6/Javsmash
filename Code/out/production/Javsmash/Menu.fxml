@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="GridPaneFather" maxHeight="-Infinity" maxWidth="-Infinity"
           minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-          xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller">
+          xmlns="http://javafx.com/javafx/2.2" fx:controller="MenuController">
   <children>
     <StackPane prefHeight="150.0" prefWidth="284.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
       <children>
         <GridPane>
           <children>
-            <Button fx:id="PlayButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0"
+            <Button onAction="#handlePlayButton" fx:id="PlayButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0"
                     text="Statistiques" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
                     GridPane.valignment="TOP"/>
             <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="26.0"

@@ -1,27 +1,42 @@
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class GameController extends Application {
-    public static void main(String[] args) {
-        launch(args);
+import java.io.FileInputStream;
+
+public class GameController {
+    public void start(Stage primaryStage) throws Exception {
+        Pane root = FXMLLoader.load(getClass().getResource("/InGame.fxml"));
+
+
+        Circle hero = new Circle();
+        hero.setCenterX(100);
+        hero.setCenterY(300);
+        hero.setRadius(30);
+        hero.setFill(Color.BLACK);
+
+        try {
+            Image skin = new Image(new FileInputStream(getClass().getResource("skin1.png").toString()));
+            ImageView img = new ImageView(skin);
+
+        } catch (Exception e) {
+            System.err.println("Skin non-chargé");
+        }
+
+
+        root.getChildren().add(hero);
+        primaryStage.setTitle("JavSmash - GAME STARTED");
+        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.show();
     }
 
-    @Override
-    public void start(Stage secondaryStage) throws Exception {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/InGame.fxml"));//java.io.IOException est lancée par la méthode.load
-
-            root.getChildrenUnmodifiable().addAll();
-
-            secondaryStage.setTitle("JAVSMASH - ACTUALLY PLAYING");
-            secondaryStage.setScene(new Scene(root, 300, 275));
-            secondaryStage.show();
-        } catch (java.io.IOException e) {
-            System.out.println("start GameController Window Error | FilePersistence Manager error");
-        }
+    public void event() throws Exception {
+        start(new Stage());
     }
 
 }
