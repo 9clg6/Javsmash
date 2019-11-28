@@ -3,12 +3,12 @@ import javafx.scene.input.KeyEvent;
 
 public class Deplacement {
     private CharacterPosition cp;
-    private Jump jump = new Jump(cp);
-
+    Thread trh;
 
 
     public Deplacement(CharacterPosition cp) {
         this.cp=cp;
+        trh = new Thread(new Jump(cp));
     }
 
     protected void eventOnKeyPressed(KeyEvent keyEvent) throws InterruptedException {
@@ -22,7 +22,9 @@ public class Deplacement {
                     cp.setPosX(cp.getHeroPosX()-10);
                     break;
                 case Z:
-                    new Thread(jump).start();
+                    if (!trh.isAlive()) {
+                        trh.start();
+                    }
                     break;
                 case S:
                     cp.setPosY(cp.getHeroPosY()+10);

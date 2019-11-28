@@ -5,18 +5,23 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class GameController {
+
+    public GameController() throws IOException {
+    }
 
     private void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/InGame.fxml"));
         Scene sc1 = new Scene(root, 1500, 600.0D);
 
-        Personnage character = new Personnage();
+        Personnage character = new Personnage(sc1);
 
         sc1.setOnKeyPressed(new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                Deplacement d=new Deplacement(new CharacterPosition(character));
+                Deplacement d = new Deplacement(new CharacterPosition(character, sc1));
 
                 try {
                     d.eventOnKeyPressed(keyEvent);

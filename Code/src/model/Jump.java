@@ -1,11 +1,7 @@
-import javafx.application.Platform;
-
 import static java.lang.Thread.sleep;
 
 public class Jump implements Runnable {
-    private final double MAX_JUMP = 50;
-    private boolean isJumping = false;
-    private double posY;
+    private final double MAX_JUMP = 15;
 
     private CharacterPosition cp;
 
@@ -13,30 +9,25 @@ public class Jump implements Runnable {
         this.cp = cp;
     }
 
-    public void doJump(boolean jumping) throws InterruptedException {
-        if (jumping) {
+    public void doJump() throws InterruptedException {
+
+        double originY = cp.getHeroPosY();
             for (double i = 0; i < MAX_JUMP; ++i) {
-                posY += i;
-                sleep(100);
-                Platform.runLater(() ->
-                        cp.setPosY(cp.getHeroPosY() - posY));
+                cp.setPosY(cp.getHeroPosY() - i);
+                sleep(20);
             }
-            setJumping(false);
+
+        sleep(35);
+        for (double i = 0; cp.getHeroPosY() < originY; ++i) {
+            cp.setPosY(cp.getHeroPosY() + i);
+            sleep(20);
         }
-    }
-
-    public boolean isJumping() {
-        return isJumping;
-    }
-
-    public void setJumping(boolean jumping) {
-        isJumping = jumping;
     }
 
     @Override
     public void run() {
         try {
-            doJump(isJumping());
+            doJump();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,6 @@
-import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Personnage {
@@ -10,17 +9,17 @@ public class Personnage {
     private ImageView skin = new ImageView(new Image("img/skin1.png"));
     private SkinPosition sp;
 
-    public Personnage() {
+    public Personnage(Scene sc1) {
         this.hero = new Circle(25);
         hero.setOpacity(0);
 
         sp =new SkinPosition(skin);
 
-        hero.setCenterX(100);
-        hero.setCenterY(100);
+        hero.setCenterX(10);
+        hero.setCenterY(sc1.getHeight() - 30);
 
-        skin.setX(100-29);
-        skin.setY(100-29);
+        skin.setX(hero.getCenterX() - 29);
+        skin.setY(hero.getCenterY() - 29);
     }
 
     public Circle getHero() {

@@ -1,8 +1,13 @@
+import javafx.scene.Scene;
+
 public class CharacterPosition implements PositionAbstract {
     private Personnage p;
+    private Scene s1;
 
-    public CharacterPosition(Personnage p) {
+
+    public CharacterPosition(Personnage p, Scene s1) {
         this.p=p;
+        this.s1 = s1;
     }
 
     public void setPosX(double position) {
