@@ -15,8 +15,9 @@ public class Personnage {
 
         sp =new SkinPosition(skin);
 
-        hero.setCenterX(10);
-        hero.setCenterY(sc1.getHeight() - 30);
+        hero.setCenterX(200);
+        hero.setCenterY(sc1.getHeight() - 75);
+
 
         skin.setX(hero.getCenterX() - 29);
         skin.setY(hero.getCenterY() - 29);
