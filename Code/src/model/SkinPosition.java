@@ -8,11 +8,11 @@ public class SkinPosition implements PositionAbstract {
     }
 
     protected void updatePosSkinY(CharacterPosition cp){
-        setPosY(cp.getHeroPosY()-29);
+        setPosY(cp.getHeroPosY());
     }
 
     protected void updatePosSkinX(CharacterPosition cp){
-        setPosX(cp.getHeroPosX()-29);
+        setPosX(cp.getHeroPosX());
     }
 
     @Override

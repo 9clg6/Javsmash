@@ -1,29 +1,33 @@
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 public class Personnage {
 
-    private Circle hero;
-    private ImageView skin = new ImageView(new Image("img/skin1.png"));
+    private static ImageView skin = new ImageView(new Image("img/skin1.png"));
+    private Rectangle hero;
     private SkinPosition sp;
+    private CharacterPosition characterPos;
+
+    private Rectangle hitBoxLeft;
+    private Rectangle hitBoxRight;
+    private Rectangle hitBoxTop;
+    private Rectangle hitBoxBottom;
 
     public Personnage(Scene sc1) {
-        this.hero = new Circle(25);
+        this.hero = new Rectangle(50, 50);
+        sp = new SkinPosition(skin);
+        sp.setPosX(hero.getX());
+        sp.setPosY(hero.getY());
+
         hero.setOpacity(0);
+        characterPos = new CharacterPosition(this, sc1);
+        characterPos.spawnHeroPosition();
 
-        sp =new SkinPosition(skin);
-
-        hero.setCenterX(200);
-        hero.setCenterY(sc1.getHeight() - 75);
-
-
-        skin.setX(hero.getCenterX() - 29);
-        skin.setY(hero.getCenterY() - 29);
     }
 
-    public Circle getHero() {
+    public Rectangle getHero() {
         return hero;
     }
 

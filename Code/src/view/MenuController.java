@@ -8,6 +8,8 @@ public class MenuController {
     private GridPane GridPaneFather;
     @FXML
     private Button PlayButton;
+    @FXML
+    private Button ExitButton;
 
     public MenuController() {
     }
@@ -22,7 +24,16 @@ public class MenuController {
         } catch (Exception var3) {
             System.err.println("java Lang Exception");
         }
+    }
 
+    @FXML
+    private void handleExitButton(ActionEvent e) {
+        e.consume();
+        try {
+            System.exit(0);
+        } catch (Exception exc) {
+            System.err.println("Error in exit");
+        }
     }
 
     @FXML
@@ -30,5 +41,7 @@ public class MenuController {
         this.PlayButton = new Button();
         this.GridPaneFather = new GridPane();
         this.PlayButton.setOnAction(this::handlePlayButton);
+        this.ExitButton = new Button();
+        this.ExitButton.setOnAction(this::handleExitButton);
     }
 }

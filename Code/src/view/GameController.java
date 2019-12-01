@@ -3,44 +3,39 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class GameController {
 
-    public GameController() throws IOException {
+    public GameController() {
     }
 
     private void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/InGame.fxml"));
         Scene sc1 = new Scene(root, 1500, 600.0D);
 
-        Rectangle rect = new Rectangle(sc1.getWidth() - (sc1.getWidth() / 6),20);
-        rect.setX(100);
-        rect.setY(sc1.getHeight() - 50 );
-
-
         Personnage character = new Personnage(sc1);
+        Deplacement d = new Deplacement(new CharacterPosition(character, sc1), sc1);
 
         sc1.setOnKeyPressed(new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                Deplacement d = new Deplacement(new CharacterPosition(character, sc1),sc1);
-
-                try {
-                    d.eventOnKeyPressed(keyEvent);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+                d.timer.start();
+                d.eventOnKeyPressed(keyEvent);
             }
         });
 
-        root.getChildren().addAll(rect,character.getHero(),character.getSkin());
+        sc1.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                d.timer.start();
+                d.eventOnKeyReleased(keyEvent);
+            }
+        });
+
+        root.getChildren().addAll(character.getHero(), character.getSkin());
         primaryStage.setTitle("JavSmash - GAME STARTED");
-        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(false);
         primaryStage.setScene(sc1);
         primaryStage.show();
     }

@@ -10,21 +10,37 @@ public class CharacterPosition implements PositionAbstract {
         this.s1 = s1;
     }
 
+    public void setPositionXY(double posX, double posY) {
+        setPosX(posX);
+        setPosY(posY);
+    }
+
     public void setPosX(double position) {
-        p.getHero().setCenterX(position);
+        if (p.getHero().getX() < 32) {
+            p.getHero().setX(s1.getWidth() - s1.getWidth() + 32);
+        }
+        p.getHero().setX(p.getHero().getX() + position);
         p.getSp().updatePosSkinX(this);
     }
 
     public void setPosY(double position) {
-        p.getHero().setCenterY(position);
-        p.getSp().updatePosSkinY(this);
+        if (!(p.getHero().getY() + position > s1.getHeight() - 50)) {
+            p.getHero().setY(p.getHero().getY() + position);
+            p.getSp().updatePosSkinY(this);
+        }
+
+
+    }
+
+    public void spawnHeroPosition() {
+        setPositionXY(32, 540.5);
     }
 
     protected double getHeroPosY() {
-        return p.getHero().getCenterY();
+        return p.getHero().getY();
     }
 
     protected double getHeroPosX() {
-        return p.getHero().getCenterX();
+        return p.getHero().getX();
     }
 }
