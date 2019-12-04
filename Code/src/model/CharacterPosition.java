@@ -24,7 +24,7 @@ public class CharacterPosition implements PositionAbstract {
     }
 
     public void setPosY(double position) {
-        if (!(p.getHero().getY() + position > s1.getHeight() - 50)) {
+        if (!(p.getHero().getY() + position > s1.getHeight() - 52)) {
             p.getHero().setY(p.getHero().getY() + position);
             p.getSp().updatePosSkinY(this);
         }
