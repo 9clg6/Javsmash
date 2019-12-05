@@ -5,56 +5,57 @@ import javafx.scene.input.KeyEvent;
 public class Deplacement {
 
     private static int MAX_SPEED = -20;
-    private static double gravity = -3;
-    Scene sc;
-    private boolean left, right, jump, onGround = true, isJumping, isFalling;
+    private boolean left, right, jump, ascension, isJumping=false;
+    private double gravity = 5d, speed = 20d;
+    private double posYinit, posYpos;
+
     private CharacterPosition cp;
+    Scene sc;
     AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
-            int dx = 0, dy = 0, velocityY = -5;
+            int dx = 0;
+            double velocityY = 0;
 
             if (left) dx += 2;
             if (right) dx -= 2;
 
-            System.out.println("isFalling = " + isFalling);
-            System.out.println("isJumping = " + isJumping);
-            System.out.println("onGround = " + onGround);
-            System.out.println(cp.getHeroPosY());
 
-            if (jump && onGround) {
-                if (cp.getHeroPosY() == 545.5) {
-                    onGround = true;
-                    isJumping = false;
-                    isFalling = false;
+            if (jump) {
+                if (!isJumping) {
+                    isJumping = true;
+                    posYinit = cp.getHeroPosY();
+                    cp.setPositionXY(dx, velocityY - 5d);
+                    System.out.println("test 1");
                 }
-                if (onGround) {
-                    if (cp.getHeroPosY() > sc.getHeight() - 300) {
-                        dy += velocityY;
-                        isJumping = true;
-                    }
-                }
-                if (cp.getHeroPosY() == 296.5) {
-                    onGround = false;
-                    isJumping = false;
-                    isFalling = true;
-                    dy -= gravity;
-                }
-            } else {
-                dy -= gravity;
             }
-            //else {
-              //  velocityY += gravity;
-            //}
+            System.out.println(isJumping);
+            if(isJumping){
+                if(cp.getHeroPosY() < posYinit+20d){
+                    velocityY = velocityY - (speed-gravity);
+                    speed = speed - 0.5d;
+                    System.out.println("test 2");
+                }
 
-            cp.setPositionXY(dx, dy);
+
+                if ( speed < -11.5){
+                    isJumping = false;
+                    gravity = 5d;
+                    speed = 20d;
+                    System.out.println("test 3");
+                }
+            }
+            cp.setPositionXY(dx, velocityY);
         }
     };
+
+
 
     public Deplacement(CharacterPosition cp, Scene sc1) {
         this.cp = cp;
         sc = sc1;
         posYinit=cp.getHeroPosY();
+        posYpos = posYinit -5;
     }
 
     protected void eventOnKeyPressed(KeyEvent keyEvent) {
