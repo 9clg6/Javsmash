@@ -43,6 +43,9 @@ public class Deplacement {
             } else {
                 dy -= gravity;
             }
+            //else {
+              //  velocityY += gravity;
+            //}
 
             cp.setPositionXY(dx, dy);
         }
@@ -51,6 +54,7 @@ public class Deplacement {
     public Deplacement(CharacterPosition cp, Scene sc1) {
         this.cp = cp;
         sc = sc1;
+        posYinit=cp.getHeroPosY();
     }
 
     protected void eventOnKeyPressed(KeyEvent keyEvent) {
