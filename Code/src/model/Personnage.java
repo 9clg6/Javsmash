@@ -10,11 +10,6 @@ public class Personnage {
     private SkinPosition sp;
     private CharacterPosition characterPos;
 
-    private Rectangle hitBoxLeft;
-    private Rectangle hitBoxRight;
-    private Rectangle hitBoxTop;
-    private Rectangle hitBoxBottom;
-
     public Personnage(Scene sc1) {
         this.hero = new Rectangle(50, 50);
         sp = new SkinPosition(skin);

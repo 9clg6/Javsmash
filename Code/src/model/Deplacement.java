@@ -5,41 +5,46 @@ import javafx.scene.input.KeyEvent;
 public class Deplacement {
 
     private static int MAX_SPEED = -20;
-    private boolean left, right, jump, ascension = true;
-    private int stepAscend = 1;
-    private double gravity = 10;
-
-    private CharacterPosition cp;
+    private static double gravity = -3;
     Scene sc;
+    private boolean left, right, jump, onGround = true, isJumping, isFalling;
+    private CharacterPosition cp;
     AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
-            int dx = 0, velocityY = 0;
+            int dx = 0, dy = 0, velocityY = -5;
 
             if (left) dx += 2;
             if (right) dx -= 2;
 
-            if (jump) {
-                if (ascension) {
-                    if (cp.getHeroPosY() > sc.getHeight() - 200) {
-                        velocityY += 5 * stepAscend;
+            System.out.println("isFalling = " + isFalling);
+            System.out.println("isJumping = " + isJumping);
+            System.out.println("onGround = " + onGround);
+            System.out.println(cp.getHeroPosY());
 
-                        if (cp.getHeroPosY() == sc.getHeight() - 200) {
-                            velocityY += 5 * stepAscend;
-                        }
-                    }
-
+            if (jump && onGround) {
+                if (cp.getHeroPosY() == 545.5) {
+                    onGround = true;
+                    isJumping = false;
+                    isFalling = false;
                 }
-
-
+                if (onGround) {
+                    if (cp.getHeroPosY() > sc.getHeight() - 300) {
+                        dy += velocityY;
+                        isJumping = true;
+                    }
+                }
+                if (cp.getHeroPosY() == 296.5) {
+                    onGround = false;
+                    isJumping = false;
+                    isFalling = true;
+                    dy -= gravity;
+                }
             } else {
-                velocityY += gravity;
+                dy -= gravity;
             }
 
-            if (velocityY < MAX_SPEED) {
-                velocityY = MAX_SPEED;
-            }
-            cp.setPositionXY(dx, velocityY);
+            cp.setPositionXY(dx, dy);
         }
     };
 
@@ -58,7 +63,6 @@ public class Deplacement {
                 break;
             case SPACE:
                 jump = true;
-
                 break;
         }
     }
