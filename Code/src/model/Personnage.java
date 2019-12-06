@@ -9,16 +9,18 @@ public class Personnage {
     private Rectangle hero;
     private SkinPosition sp;
     private CharacterPosition characterPos;
+    private Consommable cons;
+    private int life;
 
     public Personnage(Scene sc1) {
         this.hero = new Rectangle(50, 50);
         sp = new SkinPosition(skin);
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
-
         hero.setOpacity(0);
         characterPos = new CharacterPosition(this, sc1);
         characterPos.spawnHeroPosition();
+        life = 100;
 
     }
 
@@ -33,4 +35,5 @@ public class Personnage {
     public SkinPosition getSp() {
         return sp;
     }
+
 }

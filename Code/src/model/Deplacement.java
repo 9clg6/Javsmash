@@ -4,10 +4,10 @@ import javafx.scene.input.KeyEvent;
 
 public class Deplacement {
 
-    private static int MAX_SPEED = -20;
+    private int nbjump=0;
     private boolean left, right, jump, ascension, isJumping=false;
     private double gravity = 5d, speed = 20d;
-    private double posYinit, posYpos;
+    private double posYinit;
 
     private CharacterPosition cp;
     Scene sc;
@@ -24,25 +24,34 @@ public class Deplacement {
             if (jump) {
                 if (!isJumping) {
                     isJumping = true;
-                    posYinit = cp.getHeroPosY();
                     cp.setPositionXY(dx, velocityY - 5d);
-                    System.out.println("test 1");
+                    nbjump = nbjump+1;
                 }
             }
-            System.out.println(isJumping);
+
+
             if(isJumping){
                 if(cp.getHeroPosY() < posYinit+20d){
                     velocityY = velocityY - (speed-gravity);
                     speed = speed - 0.5d;
-                    System.out.println("test 2");
                 }
 
+                if(nbjump < 2){
+                    if( -5< speed && speed < 5){
+                        if(jump){
+                            isJumping = false;
+                            speed = 20d;
 
-                if ( speed < -11.5){
+                        }
+                    }
+                }
+
+                if( cp.getHeroPosY() > posYinit-10 ){
                     isJumping = false;
                     gravity = 5d;
                     speed = 20d;
-                    System.out.println("test 3");
+                    nbjump=0;
+                    cp.setPosY(posYinit);
                 }
             }
             cp.setPositionXY(dx, velocityY);
@@ -55,7 +64,6 @@ public class Deplacement {
         this.cp = cp;
         sc = sc1;
         posYinit=cp.getHeroPosY();
-        posYpos = posYinit -5;
     }
 
     protected void eventOnKeyPressed(KeyEvent keyEvent) {
