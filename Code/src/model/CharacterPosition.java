@@ -6,7 +6,7 @@ public class CharacterPosition implements PositionAbstract {
 
 
     public CharacterPosition(Personnage p, Scene s1) {
-        this.p=p;
+        this.p = p;
         this.s1 = s1;
     }
 
@@ -28,8 +28,10 @@ public class CharacterPosition implements PositionAbstract {
             p.getHero().setY(p.getHero().getY() + position);
             p.getSp().updatePosSkinY(this);
         }
+    }
 
-
+    public Personnage getPersonnage() {
+        return p;
     }
 
     public void spawnHeroPosition() {

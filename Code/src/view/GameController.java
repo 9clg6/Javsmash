@@ -1,6 +1,5 @@
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -17,13 +16,14 @@ public class GameController {
 
         Personnage character = new Personnage(sc1);
         Deplacement d = new Deplacement(new CharacterPosition(character, sc1), sc1);
-        Consommable conso = new Consommable(sc1);
+
 
         sc1.setOnKeyPressed(new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 d.timer.start();
                 d.eventOnKeyPressed(keyEvent);
+
             }
         });
 
@@ -35,7 +35,7 @@ public class GameController {
             }
         });
 
-        root.getChildren().addAll(character.getHero(), character.getSkin(),Consommable.getCircle());
+        root.getChildren().addAll(character.getHero(), character.getSkin());
         primaryStage.setTitle("JavSmash - GAME STARTED");
         primaryStage.setFullScreen(false);
         primaryStage.setScene(sc1);

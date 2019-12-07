@@ -3,16 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f3651a24-6e08-4212-b628-0b1f2dac3661" name="Default Changelist" comment="J'ai essayé jouer avec l'instanciation des fenêtres avec les boutons.... mais c'est laborieux.&#10;Il faudrait regarder comment instancier une nouvelle fenêtre à partir d'un fichier">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/CharacterPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/CharacterPosition.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/Deplacement$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/Deplacement$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/Deplacement$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/Deplacement$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/Deplacement.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/Deplacement.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/GameController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/GameController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/Jump.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/Menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/Menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/MenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/InGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/InGame.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/Personnage.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/Personnage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/out/production/Javsmash/SkinPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/Code/out/production/Javsmash/SkinPosition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/res/img/smash1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/model/CharacterPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/model/CharacterPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/model/Consommable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/model/Consommable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/src/model/Deplacement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/model/Deplacement.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -120,6 +121,7 @@
       <workItem from="1575015870767" duration="5468000" />
       <workItem from="1575484356699" duration="5030000" />
       <workItem from="1575541834606" duration="1623000" />
+      <workItem from="1575720570323" duration="1568000" />
     </task>
     <task id="LOCAL-00001" summary="J'ai passé le fichier en ressource.......">
       <created>1574522777858</created>

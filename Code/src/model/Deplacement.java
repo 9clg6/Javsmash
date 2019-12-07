@@ -4,53 +4,55 @@ import javafx.scene.input.KeyEvent;
 
 public class Deplacement {
 
-    private int nbjump=0;
-    private boolean left, right, jump, ascension, isJumping=false;
+    private int nbJump = 0;
+    private boolean left, right, jump, isJumping = false;
     private double gravity = 5d, speed = 20d;
     private double posYinit;
-
     private CharacterPosition cp;
     Scene sc;
+
     AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
             int dx = 0;
             double velocityY = 0;
 
-            if (left) dx += 2;
-            if (right) dx -= 2;
-
+            if (left) {
+                dx += 2;
+            }
+            if (right) {
+                dx -= 2;
+            }
 
             if (jump) {
                 if (!isJumping) {
                     isJumping = true;
                     cp.setPositionXY(dx, velocityY - 5d);
-                    nbjump = nbjump+1;
+                    nbJump = nbJump + 1;
                 }
             }
 
 
-            if(isJumping){
-                if(cp.getHeroPosY() < posYinit+20d){
-                    velocityY = velocityY - (speed-gravity);
+            if (isJumping) {
+                if (cp.getHeroPosY() < posYinit + 20d) {
+                    velocityY = velocityY - (speed - gravity);
                     speed = speed - 0.5d;
                 }
 
-                if(nbjump < 2){
-                    if( -5< speed && speed < 5){
-                        if(jump){
+                if (nbJump < 2) {
+                    if (-5 < speed && speed < 5) {
+                        if (jump) {
                             isJumping = false;
                             speed = 20d;
-
                         }
                     }
                 }
 
-                if( cp.getHeroPosY() > posYinit-10 ){
+                if (cp.getHeroPosY() > posYinit - 10) {
                     isJumping = false;
                     gravity = 5d;
                     speed = 20d;
-                    nbjump=0;
+                    nbJump = 0;
                     cp.setPosY(posYinit);
                 }
             }
@@ -59,11 +61,10 @@ public class Deplacement {
     };
 
 
-
     public Deplacement(CharacterPosition cp, Scene sc1) {
         this.cp = cp;
         sc = sc1;
-        posYinit=cp.getHeroPosY();
+        posYinit = cp.getHeroPosY();
     }
 
     protected void eventOnKeyPressed(KeyEvent keyEvent) {

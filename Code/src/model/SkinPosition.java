@@ -3,8 +3,8 @@ import javafx.scene.image.ImageView;
 public class SkinPosition implements PositionAbstract {
     private ImageView skin;
 
-    public SkinPosition(ImageView skin) {
-        this.skin=skin;
+    public SkinPosition(SkinLoader skin) {
+        this.skin = skin.getSkinImage();
     }
 
     protected void updatePosSkinY(CharacterPosition cp){
