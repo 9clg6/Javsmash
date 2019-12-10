@@ -9,6 +9,7 @@ public class Deplacement {
     private double gravity = 5d, speed = 20d;
     private double posYinit;
     private CharacterPosition cp;
+    private Sprite sprite;
     Scene sc;
 
     AnimationTimer timer = new AnimationTimer() {
@@ -17,11 +18,14 @@ public class Deplacement {
             int dx = 0;
             double velocityY = 0;
 
-            if (left) {
-                dx += 2;
-            }
             if (right) {
+                dx += 2;
+                sprite.SpriteAnimation("Walk");
+
+            }
+            if (left) {
                 dx -= 2;
+                sprite.SpriteAnimation("Walk");
             }
 
             if (jump) {
@@ -64,16 +68,17 @@ public class Deplacement {
     public Deplacement(CharacterPosition cp, Scene sc1) {
         this.cp = cp;
         sc = sc1;
+        sprite = new Sprite(cp);
         posYinit = cp.getHeroPosY();
     }
 
     protected void eventOnKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
-                right = true;
+                left = true;
                 break;
             case D:
-                left = true;
+                right = true;
                 break;
             case SPACE:
                 jump = true;
@@ -84,10 +89,12 @@ public class Deplacement {
     protected void eventOnKeyReleased(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
-                right = false;
+                left = false;
+                sprite.SpriteReset();
                 break;
             case D:
-                left = false;
+                right = false;
+                sprite.SpriteReset();
                 break;
             case SPACE:
                 jump = false;

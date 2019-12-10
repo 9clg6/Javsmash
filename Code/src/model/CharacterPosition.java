@@ -1,11 +1,11 @@
 import javafx.scene.Scene;
 
 public class CharacterPosition implements PositionAbstract {
-    private Personnage p;
+    private Character p;
     private Scene s1;
 
 
-    public CharacterPosition(Personnage p, Scene s1) {
+    public CharacterPosition(Character p, Scene s1) {
         this.p = p;
         this.s1 = s1;
     }
@@ -30,7 +30,7 @@ public class CharacterPosition implements PositionAbstract {
         }
     }
 
-    public Personnage getPersonnage() {
+    protected Character getPersonnage() {
         return p;
     }
 

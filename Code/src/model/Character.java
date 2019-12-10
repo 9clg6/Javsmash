@@ -2,7 +2,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
-public class Personnage {
+public class Character {
 
     private Rectangle hero;
     private SkinPosition sp;
@@ -11,7 +11,7 @@ public class Personnage {
     private SkinLoader skin;
     private int life;
 
-    public Personnage(Scene sc1) {
+    public Character(Scene sc1) {
         this.hero = new Rectangle(50, 50);
         skin = new SkinLoader(1);
         sp = new SkinPosition(skin);

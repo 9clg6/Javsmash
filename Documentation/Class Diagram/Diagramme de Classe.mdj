@@ -62,7 +62,7 @@
 											"top": 1583,
 											"width": 142,
 											"height": 13,
-											"text": "Personnage"
+											"text": "Character"
 										},
 										{
 											"_type": "LabelView",
@@ -1378,7 +1378,7 @@
 											"top": 1847,
 											"width": 151,
 											"height": 13,
-											"text": "Objet"
+											"text": "Object"
 										},
 										{
 											"_type": "LabelView",
@@ -5397,7 +5397,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Personnage",
+					"name": "Character",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5688,7 +5688,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Objet",
+					"name": "Object",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

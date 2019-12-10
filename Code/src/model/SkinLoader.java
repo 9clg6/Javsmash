@@ -4,8 +4,7 @@ import javafx.scene.image.ImageView;
 public class SkinLoader {
     private ImageView skinImage;
     private int characterNumber;
-    private boolean isPressing = true;
-
+    private String repertory;
 
     public SkinLoader(int characterNumber) {
         this.characterNumber = characterNumber;
@@ -14,11 +13,25 @@ public class SkinLoader {
 
     public void skinManager() {
         if (characterNumber == 1) {
-            skinImage = new ImageView(new Image("img/1.png"));
+            skinImage = new ImageView(new Image("img/BombMan/Walk/1.png"));
+            setRepertory("img/BombMan/");
         }
+    }
+
+    public void setSkinImage(Image image) {
+       skinImage.setImage(image);
+    }
+
+    private void setRepertory(String repertory) {
+        this.repertory = repertory;
+    }
+
+    public String getRepertory() {
+        return repertory;
     }
 
     public ImageView getSkinImage() {
         return skinImage;
     }
+
 }

@@ -1,11 +1,9 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 
 public class MenuController {
-    @FXML
-    private GridPane GridPaneFather;
+
     @FXML
     private Button PlayButton;
     @FXML
@@ -17,18 +15,21 @@ public class MenuController {
     @FXML
     private void handlePlayButton(ActionEvent e) {
         e.consume();
-
         try {
-            GameController gc = new GameController();
-            gc.event();
+            HeroSelectionController CharacterSelection = new HeroSelectionController();
+            CharacterSelection.event();
         } catch (Exception var3) {
-            System.err.println("java Lang Exception");
+            System.err.println(var3.getMessage());
         }
     }
 
     @FXML
-    private void handleExitButton(ActionEvent e) {
+    public void handleExitButton(ActionEvent e) {
         e.consume();
+        exit();
+    }
+
+    private void exit(){
         try {
             System.exit(0);
         } catch (Exception exc) {
@@ -38,10 +39,10 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-        this.PlayButton = new Button();
-        this.GridPaneFather = new GridPane();
+    this.PlayButton = new Button();
         this.PlayButton.setOnAction(this::handlePlayButton);
         this.ExitButton = new Button();
         this.ExitButton.setOnAction(this::handleExitButton);
+
     }
 }
