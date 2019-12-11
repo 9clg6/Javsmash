@@ -1,9 +1,12 @@
+package Hero;
+
+import Interface.PositionAbstract;
 import javafx.scene.image.ImageView;
 
-public class SkinPosition implements PositionAbstract {
+public class CharacterSkinPosition implements PositionAbstract {
     private ImageView skin;
 
-    public SkinPosition(SkinLoader skin) {
+    public CharacterSkinPosition(CharacterSkinLoader skin) {
         this.skin = skin.getSkinImage();
     }
 

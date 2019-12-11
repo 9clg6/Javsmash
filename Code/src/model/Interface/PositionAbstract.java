@@ -1,3 +1,5 @@
+package Interface;
+
 public interface PositionAbstract {
     void setPosX(double pos);
 

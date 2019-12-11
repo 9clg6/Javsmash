@@ -1,4 +1,8 @@
+package Hero;
+
+import Interface.PositionAbstract;
 import javafx.scene.Scene;
+
 
 public class CharacterPosition implements PositionAbstract {
     private Character p;

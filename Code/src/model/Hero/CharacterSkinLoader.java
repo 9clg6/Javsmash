@@ -1,12 +1,14 @@
+package Hero;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class SkinLoader {
+public class CharacterSkinLoader {
     private ImageView skinImage;
     private int characterNumber;
     private String repertory;
 
-    public SkinLoader(int characterNumber) {
+    public CharacterSkinLoader(int characterNumber) {
         this.characterNumber = characterNumber;
         skinManager();
     }
@@ -19,7 +21,7 @@ public class SkinLoader {
     }
 
     public void setSkinImage(Image image) {
-       skinImage.setImage(image);
+        skinImage.setImage(image);
     }
 
     private void setRepertory(String repertory) {

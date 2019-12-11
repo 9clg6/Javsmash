@@ -8,7 +8,6 @@ public class MenuController {
     private Button PlayButton;
     @FXML
     private Button ExitButton;
-
     public MenuController() {
     }
 
@@ -18,8 +17,9 @@ public class MenuController {
         try {
             HeroSelectionController CharacterSelection = new HeroSelectionController();
             CharacterSelection.event();
+
         } catch (Exception var3) {
-            System.err.println(var3.getMessage());
+            var3.printStackTrace();
         }
     }
 
@@ -39,7 +39,7 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-    this.PlayButton = new Button();
+        this.PlayButton = new Button();
         this.PlayButton.setOnAction(this::handlePlayButton);
         this.ExitButton = new Button();
         this.ExitButton.setOnAction(this::handleExitButton);

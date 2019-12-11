@@ -4782,7 +4782,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Choisir un Character",
+					"name": "Choisir un Hero.Hero",
 					"ownedElements": [
 						{
 							"_type": "UMLInclude",

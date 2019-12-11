@@ -11,29 +11,53 @@ public class HeroSelectionController {
     private Button Clement;
     @FXML
     private Button Maxime;
+    @FXML
+    private Button TestButton;
+    private int countClick = 0;
+    private boolean isFirstCharacterSelected = false, isSecondCharacterSelected = false;
+    private boolean finalState;
     private GameController gc = new GameController();
-
+    private Object firstCharacterSelected, secondCharacterSelected;
 
     public HeroSelectionController() {
+
         Initialize();
     }
 
     @FXML
-    private void CharacterSelectionated(ActionEvent e) {
-        System.out.println("Character Selectionated");
+    private void CharacterSelected(ActionEvent e) {
+        System.out.println(firstCharacterSelected);
+        if (!isFirstCharacterSelected) {
+            isFirstCharacterSelected = true;
+            firstCharacterSelected = e.getSource();
+        }
+        if (isFirstCharacterSelected && !isSecondCharacterSelected) {
+            if (e.getSource() != firstCharacterSelected) {
+                isSecondCharacterSelected = true;
+            } else {
+                System.err.println("Same Character Selected");
+            }
+        }
     }
 
     @FXML
-    public void Initialize(){
-        this.Clement    =new Button();
-        this.Maxime     =new Button();
+
+    private void TestLaunch(ActionEvent e) throws Exception {
+        gc.event();
+    }
+
+    @FXML
+    public void Initialize() {
+        this.Clement = new Button();
+        this.Maxime = new Button();
+        this.TestButton = new Button();
     }
 
     private void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(this.getClass().getResource("/fxml/HeroSelection.fxml"));
         Scene selectionScene = new Scene(root, 1500, 600.0D);
 
-        root.getChildren().addAll(Clement,Maxime);
+        root.getChildren().addAll(Clement, Maxime);
         primaryStage.setScene(selectionScene);
         primaryStage.show();
     }

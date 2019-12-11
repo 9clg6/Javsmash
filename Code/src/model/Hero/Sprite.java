@@ -1,3 +1,5 @@
+package Hero;
+
 import javafx.scene.image.Image;
 
 public class Sprite {
@@ -10,7 +12,7 @@ public class Sprite {
 
     public void SpriteAnimation(String typeOfMovement){
         count++;
-        if (count%5==0){
+        if (count % 20 == 0) {
             if (typeOfMovement.equals("Walk")){
                 if (i+1 > 14){
                     i=1;

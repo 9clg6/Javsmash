@@ -62,7 +62,7 @@
 											"top": 1583,
 											"width": 142,
 											"height": 13,
-											"text": "Character"
+											"text": "Hero.Hero"
 										},
 										{
 											"_type": "LabelView",
@@ -1202,7 +1202,7 @@
 											"top": 2063,
 											"width": 126,
 											"height": 13,
-											"text": "Consommable"
+											"text": "Items.Consommable"
 										},
 										{
 											"_type": "LabelView",
@@ -1378,7 +1378,7 @@
 											"top": 1847,
 											"width": 151,
 											"height": 13,
-											"text": "Object"
+											"text": "Items.Object"
 										},
 										{
 											"_type": "LabelView",
@@ -3550,7 +3550,7 @@
 											"top": 1831,
 											"width": 214,
 											"height": 13,
-											"text": "CharacterPosition"
+											"text": "Hero.CharacterPosition"
 										},
 										{
 											"_type": "LabelView",
@@ -3726,7 +3726,7 @@
 											"top": 1823,
 											"width": 214,
 											"height": 13,
-											"text": "SkinPosition"
+											"text": "Hero.CharacterSkinPosition"
 										},
 										{
 											"_type": "LabelView",
@@ -3902,7 +3902,7 @@
 											"top": 1559,
 											"width": 231,
 											"height": 13,
-											"text": "PositionAbstract"
+											"text": "Interface.PositionAbstract"
 										},
 										{
 											"_type": "LabelView",
@@ -4078,7 +4078,7 @@
 											"top": 1071,
 											"width": 279,
 											"height": 13,
-											"text": "Deplacement"
+											"text": "Hero.Deplacement"
 										},
 										{
 											"_type": "LabelView",
@@ -5397,7 +5397,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Character",
+					"name": "Hero.Hero",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5665,7 +5665,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Consommable",
+					"name": "Items.Consommable",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -5688,7 +5688,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Object",
+					"name": "Items.Object",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -6163,7 +6163,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CharacterPosition",
+					"name": "Hero.CharacterPosition",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -6186,7 +6186,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "SkinPosition",
+					"name": "Hero.CharacterSkinPosition",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -6209,7 +6209,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "PositionAbstract"
+					"name": "Interface.PositionAbstract"
 				},
 				{
 					"_type": "UMLClass",
@@ -6217,7 +6217,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Deplacement",
+					"name": "Hero.Deplacement",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

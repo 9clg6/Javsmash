@@ -1,41 +1,43 @@
+package Hero;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 
 public class Deplacement {
 
-    private int nbJump = 0;
+    Scene sc;
+    private int nbJump = 0, i = 0;
     private boolean left, right, jump, isJumping = false;
-    private double gravity = 5d, speed = 20d;
+    private double gravity = 1d, speed = 2d;
     private double posYinit;
     private CharacterPosition cp;
     private Sprite sprite;
-    Scene sc;
-
-    AnimationTimer timer = new AnimationTimer() {
+    private AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
+
             int dx = 0;
             double velocityY = 0;
-
+            i = i + 1;
             if (right) {
-                dx += 2;
+                dx += 1;
                 sprite.SpriteAnimation("Walk");
 
             }
             if (left) {
-                dx -= 2;
+                dx -= 1;
                 sprite.SpriteAnimation("Walk");
             }
 
             if (jump) {
                 if (!isJumping) {
+                    System.out.println("Test1");
                     isJumping = true;
                     cp.setPositionXY(dx, velocityY - 5d);
                     nbJump = nbJump + 1;
                 }
             }
-
 
             if (isJumping) {
                 if (cp.getHeroPosY() < posYinit + 20d) {
@@ -60,10 +62,14 @@ public class Deplacement {
                     cp.setPosY(posYinit);
                 }
             }
+
             cp.setPositionXY(dx, velocityY);
         }
     };
 
+    public AnimationTimer getTimer() {
+        return timer;
+    }
 
     public Deplacement(CharacterPosition cp, Scene sc1) {
         this.cp = cp;
@@ -72,7 +78,7 @@ public class Deplacement {
         posYinit = cp.getHeroPosY();
     }
 
-    protected void eventOnKeyPressed(KeyEvent keyEvent) {
+    public void eventOnKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
                 left = true;
@@ -86,7 +92,7 @@ public class Deplacement {
         }
     }
 
-    protected void eventOnKeyReleased(KeyEvent keyEvent) {
+    public void eventOnKeyReleased(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
                 left = false;

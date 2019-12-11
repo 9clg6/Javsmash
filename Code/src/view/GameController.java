@@ -1,3 +1,6 @@
+import Hero.Character;
+import Hero.CharacterPosition;
+import Hero.Deplacement;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,7 +30,7 @@ public class GameController {
         sc1.setOnKeyPressed(new EventHandler<>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                d.timer.start();
+                d.getTimer().start();
                 d.eventOnKeyPressed(keyEvent);
 
                 if (keyEvent.getCode() == KeyCode.ESCAPE){
@@ -40,7 +43,7 @@ public class GameController {
         sc1.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                d.timer.start();
+                d.getTimer().start();
                 d.eventOnKeyReleased(keyEvent);
             }
         });
@@ -52,7 +55,7 @@ public class GameController {
         primaryStage.show();
     }
 
-    protected void event() throws Exception {
+    void event() throws Exception {
         this.start(new Stage());
     }
 
