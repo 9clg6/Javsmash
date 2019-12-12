@@ -1,4 +1,4 @@
-package Hero;
+package model.hero;
 
 public class CharacterSelection {
     private boolean FirstCharacterSelection = false;

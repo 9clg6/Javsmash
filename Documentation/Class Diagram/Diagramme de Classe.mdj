@@ -62,7 +62,7 @@
 											"top": 1583,
 											"width": 142,
 											"height": 13,
-											"text": "Hero.Hero"
+											"text": "model.model.hero.model.model.hero"
 										},
 										{
 											"_type": "LabelView",
@@ -1202,7 +1202,7 @@
 											"top": 2063,
 											"width": 126,
 											"height": 13,
-											"text": "Items.Consommable"
+											"text": "model.model.items.Consommable"
 										},
 										{
 											"_type": "LabelView",
@@ -1378,7 +1378,7 @@
 											"top": 1847,
 											"width": 151,
 											"height": 13,
-											"text": "Items.Object"
+											"text": "model.model.items.Object"
 										},
 										{
 											"_type": "LabelView",
@@ -3550,7 +3550,7 @@
 											"top": 1831,
 											"width": 214,
 											"height": 13,
-											"text": "Hero.CharacterPosition"
+											"text": "model.model.hero.CharacterPosition"
 										},
 										{
 											"_type": "LabelView",
@@ -3726,7 +3726,7 @@
 											"top": 1823,
 											"width": 214,
 											"height": 13,
-											"text": "Hero.CharacterSkinPosition"
+											"text": "model.model.hero.CharacterSkinPosition"
 										},
 										{
 											"_type": "LabelView",
@@ -3902,7 +3902,7 @@
 											"top": 1559,
 											"width": 231,
 											"height": 13,
-											"text": "Interface.PositionAbstract"
+											"text": "model.model.abstractClass.PositionAbstract"
 										},
 										{
 											"_type": "LabelView",
@@ -4078,7 +4078,7 @@
 											"top": 1071,
 											"width": 279,
 											"height": 13,
-											"text": "Hero.Deplacement"
+											"text": "model.model.hero.Deplacement"
 										},
 										{
 											"_type": "LabelView",
@@ -4254,7 +4254,7 @@
 											"top": 1055,
 											"width": 366,
 											"height": 13,
-											"text": "GameController"
+											"text": "view.GameController"
 										},
 										{
 											"_type": "LabelView",
@@ -4430,7 +4430,7 @@
 											"top": 1447,
 											"width": 287,
 											"height": 13,
-											"text": "MenuController"
+											"text": "view.MenuController"
 										},
 										{
 											"_type": "LabelView",
@@ -5397,7 +5397,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Hero.Hero",
+					"name": "model.model.hero.model.model.hero",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5665,7 +5665,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Items.Consommable",
+					"name": "model.model.items.Consommable",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -5688,7 +5688,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Items.Object",
+					"name": "model.model.items.Object",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -5815,7 +5815,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "MenuController"
+					"name": "view.MenuController"
 				},
 				{
 					"_type": "UMLClass",
@@ -5885,7 +5885,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "GameController",
+					"name": "view.GameController",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -6163,7 +6163,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Hero.CharacterPosition",
+					"name": "model.model.hero.CharacterPosition",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -6186,7 +6186,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Hero.CharacterSkinPosition",
+					"name": "model.model.hero.CharacterSkinPosition",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -6209,7 +6209,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Interface.PositionAbstract"
+					"name": "model.model.abstractClass.PositionAbstract"
 				},
 				{
 					"_type": "UMLClass",
@@ -6217,7 +6217,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Hero.Deplacement",
+					"name": "model.model.hero.Deplacement",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -6266,7 +6266,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "GameController"
+					"name": "view.GameController"
 				},
 				{
 					"_type": "UMLClass",
@@ -6274,7 +6274,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "MenuController",
+					"name": "view.MenuController",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

@@ -1,6 +1,13 @@
+package view;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MenuController {
 
@@ -8,6 +15,7 @@ public class MenuController {
     private Button PlayButton;
     @FXML
     private Button ExitButton;
+
     public MenuController() {
     }
 
@@ -15,9 +23,7 @@ public class MenuController {
     private void handlePlayButton(ActionEvent e) {
         e.consume();
         try {
-            HeroSelectionController CharacterSelection = new HeroSelectionController();
-            CharacterSelection.event();
-
+            start();
         } catch (Exception var3) {
             var3.printStackTrace();
         }
@@ -29,7 +35,7 @@ public class MenuController {
         exit();
     }
 
-    private void exit(){
+    private void exit() {
         try {
             System.exit(0);
         } catch (Exception exc) {
@@ -43,6 +49,17 @@ public class MenuController {
         this.PlayButton.setOnAction(this::handlePlayButton);
         this.ExitButton = new Button();
         this.ExitButton.setOnAction(this::handleExitButton);
+    }
 
+
+    private void start() throws Exception {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+
+        Pane root = FXMLLoader.load(this.getClass().getResource("/fxml/HeroSelection.fxml"));
+        Scene selectionScene = new Scene(root, 1500, 600.0D);
+
+        primaryStage.setScene(selectionScene);
+        primaryStage.show();
     }
 }

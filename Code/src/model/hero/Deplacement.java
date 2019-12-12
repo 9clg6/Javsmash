@@ -1,4 +1,4 @@
-package Hero;
+package model.hero;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;

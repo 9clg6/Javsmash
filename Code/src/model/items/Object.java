@@ -1,4 +1,4 @@
-package Items;
+package model.items;
 
 abstract class Object {
 

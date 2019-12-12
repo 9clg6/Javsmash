@@ -1,4 +1,4 @@
-package Items;
+package model.items;
 
 import javafx.scene.Scene;
 

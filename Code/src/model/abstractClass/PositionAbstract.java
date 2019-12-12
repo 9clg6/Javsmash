@@ -1,4 +1,4 @@
-package Interface;
+package model.abstractClass;
 
 public interface PositionAbstract {
     void setPosX(double pos);

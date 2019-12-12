@@ -1,6 +1,6 @@
-package Hero;
+package model.hero;
 
-import Interface.PositionAbstract;
+import model.abstractClass.PositionAbstract;
 import javafx.scene.Scene;
 
 

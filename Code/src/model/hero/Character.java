@@ -1,4 +1,4 @@
-package Hero;
+package model.hero;
 
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
