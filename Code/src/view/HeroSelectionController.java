@@ -1,8 +1,5 @@
 package view;
 
-import model.hero.Character;
-import model.hero.CharacterPosition;
-import model.hero.Deplacement;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +11,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.hero.Character;
+import model.hero.CharacterPosition;
+import model.hero.Deplacement;
 
 public class HeroSelectionController {
     @FXML
@@ -32,29 +32,32 @@ public class HeroSelectionController {
 
     @FXML
     private void characterSelected(ActionEvent e) throws Exception {
-        updateFinalState();
-        if (finalState) {
-            start();
-        }
-
         if (!isFirstCharacterSelected) {
+            System.out.println("First Charac selected");
             isFirstCharacterSelected = true;
             firstCharacterSelected = e.getSource();
         } else {
             if (isFirstCharacterSelected && !isSecondCharacterSelected) {
-                if (e.getSource() != firstCharacterSelected) {
+                if (e.getTarget() != firstCharacterSelected) {
                     isSecondCharacterSelected = true;
                     secondCharacterSelected = e.getSource();
+                    updateFinalState();
+
+                    if (finalState) {
+                        start();
+                    }
+
                 } else {
                     System.err.println("Same Character Selected");
                 }
             }
         }
+
+
     }
 
-    public void updateFinalState() {
+    private void updateFinalState() {
         finalState = isFirstCharacterSelected && isSecondCharacterSelected;
-        ;
     }
 
     @FXML
