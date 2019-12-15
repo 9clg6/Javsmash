@@ -1,9 +1,14 @@
 package model.items;
 
-import javafx.scene.Scene;
+/**
+ * @author Clement GUYON
+ */
 
-public class Apple extends Consommable {
-    public Apple(Scene sc1) {
+public class Apple extends Consumable {
+
+    private int healPoints = 15;
+
+    public Apple() {
 
     }
 }

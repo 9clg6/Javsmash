@@ -1202,7 +1202,7 @@
 											"top": 2063,
 											"width": 126,
 											"height": 13,
-											"text": "model.model.items.Consommable"
+											"text": "model.model.items.Consumable"
 										},
 										{
 											"_type": "LabelView",
@@ -4078,7 +4078,7 @@
 											"top": 1071,
 											"width": 279,
 											"height": 13,
-											"text": "model.model.hero.Deplacement"
+											"text": "model.model.hero.Displacement"
 										},
 										{
 											"_type": "LabelView",
@@ -5665,7 +5665,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.model.items.Consommable",
+					"name": "model.model.items.Consumable",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -6217,7 +6217,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.model.hero.Deplacement",
+					"name": "model.model.hero.Displacement",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

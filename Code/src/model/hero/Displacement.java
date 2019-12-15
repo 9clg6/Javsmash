@@ -4,15 +4,23 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 
-public class Deplacement {
+/**
+ * @author Clement GUYON and Maxime DACISAC
+ * Displacement is managing the displacement of the character on x,y,z
+ */
+public class Displacement {
 
-    Scene sc;
+    private Scene sc;
     private int nbJump = 0, i = 0;
     private boolean left, right, jump, isJumping = false;
     private double gravity = 1d, speed = 2d;
     private double posYinit;
     private CharacterPosition cp;
     private Sprite sprite;
+
+    /**
+     * GameLoop who manages displacement on x,y,z depending of keys pressed, released
+     */
     private AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
@@ -22,17 +30,13 @@ public class Deplacement {
             i = i + 1;
             if (right) {
                 dx += 1;
-                sprite.SpriteAnimation("Walk");
-
             }
             if (left) {
                 dx -= 1;
-                sprite.SpriteAnimation("Walk");
             }
 
             if (jump) {
                 if (!isJumping) {
-                    System.out.println("Test1");
                     isJumping = true;
                     cp.setPositionXY(dx, velocityY - 5d);
                     nbJump = nbJump + 1;
@@ -62,29 +66,50 @@ public class Deplacement {
                     cp.setPosY(posYinit);
                 }
             }
-
             cp.setPositionXY(dx, velocityY);
         }
     };
 
-    public AnimationTimer getTimer() {
-        return timer;
-    }
-
-    public Deplacement(CharacterPosition cp, Scene sc1) {
+    /**
+     * Constructor of Displacement
+     *
+     * @param cp  defines the actual position of the character
+     * @param sc1 defines the actual scene where keys-event are applied
+     *            Instantiates the Sprite Class
+     * @see Sprite,CharacterPosition
+     */
+    public Displacement(CharacterPosition cp, Scene sc1) {
         this.cp = cp;
         sc = sc1;
         sprite = new Sprite(cp);
         posYinit = cp.getHeroPosY();
     }
 
+    /**
+     * Getter of the gameLoop
+     *
+     * @return the actual AnimationTimer : timer
+     * @see AnimationTimer
+     */
+    public AnimationTimer getTimer() {
+        return timer;
+    }
+
+    /**
+     * eventOnKeyPressed is called when an keys is press during the AnimationTimer and sets
+     * boolean to know in which direction move and when jump.
+     *
+     * @param keyEvent KeyEvent, used to get which keys is pressed
+     */
     public void eventOnKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
                 left = true;
+                sprite.spriteAnimation("Walk");
                 break;
             case D:
                 right = true;
+                sprite.spriteAnimation("Walk");
                 break;
             case SPACE:
                 jump = true;
@@ -92,22 +117,25 @@ public class Deplacement {
         }
     }
 
+    /**
+     * eventOnKeyReleased is used to know when key is released to stop the animation and stop any movement
+     *
+     * @param keyEvent KeyEvent, used to get which key is released.
+     * @see Sprite
+     */
     public void eventOnKeyReleased(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
                 left = false;
-                sprite.SpriteReset();
+                sprite.spriteReset();
                 break;
             case D:
                 right = false;
-                sprite.SpriteReset();
+                sprite.spriteReset();
                 break;
             case SPACE:
                 jump = false;
                 break;
-
         }
     }
-
-
 }

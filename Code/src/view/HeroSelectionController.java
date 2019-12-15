@@ -1,39 +1,37 @@
 package view;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.hero.Character;
-import model.hero.CharacterPosition;
-import model.hero.Deplacement;
+
+import java.io.IOException;
+
 
 public class HeroSelectionController {
     @FXML
     private Button Clement;
     @FXML
     private Button Maxime;
-    @FXML
-    private Button TestButton;
+
     private boolean isFirstCharacterSelected = false, isSecondCharacterSelected = false;
     private boolean finalState;
     private Object firstCharacterSelected, secondCharacterSelected;
 
-    public HeroSelectionController() {
-
-    }
-
+    /**
+     * @param e is an ActionEvent. Can gives the source and the target.
+     * @throws Exception throws by the 'start' function.
+     *                   <p>
+     *                   This event is consumed by different buttons from the HeroSelection.
+     *                   It avoid different errors : If same Hero is selected two times, if only one hero is selected the game will not start.
+     * @author Clément GUYON
+     */
     @FXML
     private void characterSelected(ActionEvent e) throws Exception {
         if (!isFirstCharacterSelected) {
-            System.out.println("First Charac selected");
             isFirstCharacterSelected = true;
             firstCharacterSelected = e.getSource();
         } else {
@@ -41,71 +39,52 @@ public class HeroSelectionController {
                 if (e.getTarget() != firstCharacterSelected) {
                     isSecondCharacterSelected = true;
                     secondCharacterSelected = e.getSource();
-                    updateFinalState();
-
-                    if (finalState) {
+                    if (updateFinalState()) {
                         start();
                     }
 
                 } else {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("You can't chose the same character.");
+                    errorAlert.setHeaderText("Character Selection Error.");
+                    errorAlert.setContentText("The first player has taken :" + firstCharacterSelected);
+                    errorAlert.show();
+
                     System.err.println("Same Character Selected");
                 }
             }
         }
-
-
     }
 
-    private void updateFinalState() {
+    /**
+     * @return finalState boolean to check if two different character are selected
+     * @author Clément GUYON
+     */
+    private boolean updateFinalState() {
         finalState = isFirstCharacterSelected && isSecondCharacterSelected;
+        return finalState;
     }
 
-    @FXML
-
-    private void testLaunch(ActionEvent e) throws Exception {
-        start();
-    }
-
+    /**
+     * @author Clément GUYON
+     * Set the background of each buttons
+     */
     @FXML
     private void initialize() {
-
+        Clement.setStyle("-fx-background-image: url('img/BombMan/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
     }
 
-    private void start() throws Exception {
+    /**
+     * @throws IOException throwable by loader.load()
+     *                     This function is call if two character are selected. It creates new window of the Game.
+     * @author Clément GUYON
+     */
+    private void start() throws IOException {
         Stage heroSelectionStage = new Stage();
         heroSelectionStage.initModality(Modality.APPLICATION_MODAL);
-        Pane root = FXMLLoader.load(this.getClass().getResource("/fxml/InGame.fxml"));
-        Scene sc1 = new Scene(root, 1500, 600.0D);
+        heroSelectionStage.setResizable(false);
 
-        Character character = new Character(sc1);
-        Deplacement d = new Deplacement(new CharacterPosition(character, sc1), sc1);
-
-
-        sc1.setOnKeyPressed(new EventHandler<>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                d.getTimer().start();
-                d.eventOnKeyPressed(keyEvent);
-
-                if (keyEvent.getCode() == KeyCode.ESCAPE) {
-
-                }
-
-            }
-        });
-
-        sc1.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                d.getTimer().start();
-                d.eventOnKeyReleased(keyEvent);
-            }
-        });
-
-        root.getChildren().addAll(character.getHero(), character.getSkin());
-        heroSelectionStage.setTitle("JavSmash - GAME STARTED");
-        heroSelectionStage.setFullScreen(false);
-        heroSelectionStage.setScene(sc1);
-        heroSelectionStage.show();
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/InGame.fxml"));
+        loader.setController(new GameController(loader.load(), heroSelectionStage));
     }
 }

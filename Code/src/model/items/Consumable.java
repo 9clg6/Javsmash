@@ -3,6 +3,5 @@ package model.items;
 /**
  * @author Clement GUYON
  */
-public abstract class Object {
-
+public abstract class Consumable extends Object {
 }

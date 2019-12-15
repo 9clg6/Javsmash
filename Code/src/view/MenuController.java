@@ -9,6 +9,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MenuController {
 
     @FXML
@@ -16,47 +18,59 @@ public class MenuController {
     @FXML
     private Button ExitButton;
 
-    public MenuController() {
-    }
-
+    /**
+     * Entry point for this project.
+     *
+     * @author Clément GUYON
+     * This event is call by the button 'Play' in the main menu and call the function 'startPlaying'
+     */
     @FXML
     private void handlePlayButton(ActionEvent e) {
         e.consume();
         try {
-            start();
+            startPlaying();
         } catch (Exception var3) {
             var3.printStackTrace();
         }
     }
 
+    /**
+     * @author Clément GUYON
+     * This event is call by the button 'Exit' in the main menu and call the function 'exit'
+     */
     @FXML
     public void handleExitButton(ActionEvent e) {
         e.consume();
         exit();
     }
 
+    /**
+     * @author Clément GUYON
+     * This event is consumed by the button 'Exit'. Permitt user to leave properly the application
+     */
     private void exit() {
         try {
             System.exit(0);
         } catch (Exception exc) {
-            System.err.println("Error in exit");
+            exc.printStackTrace();
         }
     }
 
-    @FXML
-    public void initialize() {
-        this.PlayButton = new Button();
-        this.PlayButton.setOnAction(this::handlePlayButton);
-        this.ExitButton = new Button();
-        this.ExitButton.setOnAction(this::handleExitButton);
-    }
-
-
-    private void start() throws Exception {
+    /**
+     * @throws IOException throwable by loader.load()
+     *                     This function is call by the button 'Play'. It creates new window for the HeroSelection
+     * @author Clément GUYON
+     */
+    private void startPlaying() throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.APPLICATION_MODAL);
 
-        Pane root = FXMLLoader.load(this.getClass().getResource("/fxml/HeroSelection.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/HeroSelection.fxml"));
+
+        loader.setController(new HeroSelectionController());
+
+        Pane root = loader.load();
+
         Scene selectionScene = new Scene(root, 1500, 600.0D);
 
         primaryStage.setScene(selectionScene);
