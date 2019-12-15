@@ -11,10 +11,11 @@ import javafx.scene.input.KeyEvent;
 public class Displacement {
 
     private Scene sc;
-    private int nbJump = 0, i = 0;
+    private int nbJump = 0, i = 0, ti;
+    private float tifloat;
     private boolean left, right, jump, isJumping = false;
-    private double gravity = 1d, speed = 2d;
     private double posYinit;
+    private long timeinit, onesecond = 1000000000;
     private CharacterPosition cp;
     private Sprite sprite;
 
@@ -24,13 +25,12 @@ public class Displacement {
     private AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
-
             int dx = 0;
             double velocityY = 0;
-            i = i + 1;
             if (right) {
                 dx += 1;
             }
+
             if (left) {
                 dx -= 1;
             }
@@ -38,32 +38,32 @@ public class Displacement {
             if (jump) {
                 if (!isJumping) {
                     isJumping = true;
-                    cp.setPositionXY(dx, velocityY - 5d);
+                    timeinit = l;
                     nbJump = nbJump + 1;
                 }
             }
 
+            ti = (int) (l - timeinit);
+            tifloat = (float) ti / 1000000000;
+
             if (isJumping) {
-                if (cp.getHeroPosY() < posYinit + 20d) {
-                    velocityY = velocityY - (speed - gravity);
-                    speed = speed - 0.5d;
+                if (0.5 < tifloat && tifloat > 0.65 && nbJump < 2 && jump) {
+                    timeinit = l;
+                    isJumping = true;
+                    nbJump = nbJump + 1;
+                } else {
+                    velocityY = -10 * Math.cos(Math.PI * tifloat);
                 }
 
-                if (nbJump < 2) {
-                    if (-5 < speed && speed < 5) {
-                        if (jump) {
-                            isJumping = false;
-                            speed = 20d;
-                        }
-                    }
-                }
-
-                if (cp.getHeroPosY() > posYinit - 10) {
+                if (nbJump < 2 && (l - timeinit) > onesecond) {
                     isJumping = false;
-                    gravity = 5d;
-                    speed = 20d;
                     nbJump = 0;
-                    cp.setPosY(posYinit);
+                }
+
+                if (nbJump == 2 && (l - timeinit) > (1.5 * onesecond)) {
+                    isJumping = false;
+                    nbJump = 0;
+                    System.out.println("STOP");
                 }
             }
             cp.setPositionXY(dx, velocityY);
