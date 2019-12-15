@@ -1,7 +1,7 @@
 package model.items;
 
 /**
- * @author Clement GUYON
+ * @author Maxime DACISAC
  */
 public abstract class Object {
 
