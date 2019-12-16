@@ -1,13 +1,12 @@
 package model.hero;
 
 import javafx.scene.Scene;
-import model.abstractClass.PositionAbstract;
 
 /**
  * @author Clement GUYON
  * CharacterPositiong manages the position of the character
  */
-public class CharacterPosition implements PositionAbstract {
+public class CharacterPosition implements model.Interface.IPosition {
     private Character p;
     private Scene s1;
 
@@ -74,8 +73,14 @@ public class CharacterPosition implements PositionAbstract {
     /**
      * Setter of the position XY at spawn
      */
-    void spawnHeroPosition() {
-        setPositionXY(32, 540.5);
+    void spawnHeroPosition(boolean isFirstCharacterSelected) {
+        if (isFirstCharacterSelected) {
+            setPositionXY(32, 540.5);
+
+        } else {
+            setPositionXY(350, 540.5);
+
+        }
     }
 
     /**
