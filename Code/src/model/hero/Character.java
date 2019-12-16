@@ -12,10 +12,11 @@ import javafx.scene.shape.Rectangle;
 public class Character {
 
     private Rectangle hero;
-    private CharacterSkinPosition sp;
+    private CharacterSkinIPosition sp;
     private CharacterPosition characterPos;
     private CharacterSkinLoader skin;
     private HealPoints life;
+    private boolean isFirstCharacterSelecter;
 
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
@@ -23,18 +24,19 @@ public class Character {
      *
      * @param sc1 type of Scene, is the Scene where the Character will moves
      */
-    public Character(Scene sc1) {
+    public Character(Scene sc1, String characterSelected, boolean isFirstCharacterSelecter) {
         this.hero = new Rectangle(50, 50);
-        skin = new CharacterSkinLoader(1);
-        sp = new CharacterSkinPosition(skin);
+        skin = new CharacterSkinLoader(characterSelected);
+        sp = new CharacterSkinIPosition(skin);
         life = new HealPoints();
+        this.isFirstCharacterSelecter = isFirstCharacterSelecter;
 
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
 
         hero.setOpacity(0);
         characterPos = new CharacterPosition(this, sc1);
-        characterPos.spawnHeroPosition();
+        characterPos.spawnHeroPosition(isFirstCharacterSelecter);
         life.setHP(100);
     }
 
@@ -66,11 +68,11 @@ public class Character {
     }
 
     /**
-     * Getter of the CharacterSkinPosition which defines the position of the skin
+     * Getter of the CharacterSkinIPosition which defines the position of the skin
      *
      * @return sp type of skin position
      */
-    CharacterSkinPosition getSp() {
+    CharacterSkinIPosition getSp() {
         return sp;
     }
 

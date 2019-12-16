@@ -11,78 +11,145 @@ import javafx.scene.input.KeyEvent;
 public class Displacement {
 
     private Scene sc;
-    private int nbJump = 0, i = 0, ti;
-    private float tifloat;
-    private boolean left, right, jump, isJumping = false;
-    private double posYinit;
-    private long timeinit, onesecond = 1000000000;
-    private CharacterPosition cp;
-    private Sprite sprite;
 
-    /**
-     * GameLoop who manages displacement on x,y,z depending of keys pressed, released
-     */
+    private int nbJumpA = 0;
+    private int nbJumpB = 0;
+
+    private float tifloatA;
+    private float tifloatB;
+
+    private boolean leftA, rightA, jumpA, isJumpingA = false;
+    private boolean leftB, rightB, jumpB, isJumpingB = false;
+
+    private long timeInitA, timeInitB, timeinitxA, timeinitxB, oneSecond = 1000000000, timexA, timexB, ti, ty;
+
+    private CharacterPosition firstCp, secondCp;
+    private Sprite spriteA, spriteB;
     private AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long l) {
-            int dx = 0;
-            double velocityY = 0;
-            if (right) {
-                dx += 1;
-            }
+            int dxA = 0, dxB = 0;
+            double velocityYA = 0, velocityYB = 0;
 
-            if (left) {
-                dx -= 1;
-            }
-
-            if (jump) {
-                if (!isJumping) {
-                    isJumping = true;
-                    timeinit = l;
-                    nbJump = nbJump + 1;
+            if (rightA) {
+                timexA = l - timeinitxA;
+                if (timexA > 1000000) {
+                    dxA = 3;
+                    timeinitxA = l;
                 }
             }
 
-            ti = (int) (l - timeinit);
-            tifloat = (float) ti / 1000000000;
+            if (rightB) {
+                timexB = l - timeinitxB;
+                if (timexB > 1000000) {
+                    dxB = 3;
+                    timeinitxB = l;
+                }
+            }
 
-            if (isJumping) {
-                if (0.5 < tifloat && tifloat > 0.65 && nbJump < 2 && jump) {
-                    timeinit = l;
-                    isJumping = true;
-                    nbJump = nbJump + 1;
+            if (leftA) {
+                timexA = l - timeinitxA;
+                if (timexA > 1000000) {
+                    dxA = -3;
+                    timeinitxA = l;
+                }
+            }
+
+
+            if (leftB) {
+                timexB = l - timeinitxB;
+                if (timexB > 1000000) {
+                    dxB = -3;
+                    timeinitxB = l;
+                }
+            }
+
+            if (jumpA) {
+                if (!isJumpingA) {
+                    isJumpingA = true;
+                    timeInitA = l;
+                    nbJumpA = nbJumpA + 1;
+                }
+            }
+
+            ti = l - timeInitA;
+
+            if (jumpB) {
+                if (!isJumpingB) {
+                    isJumpingB = true;
+                    timeInitB = l;
+                    nbJumpB = nbJumpB + 1;
+                }
+            }
+
+            ty = l - timeInitB;
+
+            tifloatA = (float) ti / 1000000000;
+            tifloatB = (float) ty / 1000000000;
+
+            if (isJumpingA) {
+                if (0.5 < tifloatA && tifloatA > 0.65 && nbJumpA < 2 && jumpA) {
+                    timeInitA = l;
+                    isJumpingA = true;
+                    nbJumpA = nbJumpA + 1;
                 } else {
-                    velocityY = -10 * Math.cos(Math.PI * tifloat);
+                    velocityYA = -10 * Math.cos(Math.PI * tifloatA);
                 }
 
-                if (nbJump < 2 && (l - timeinit) > onesecond) {
-                    isJumping = false;
-                    nbJump = 0;
+                if (nbJumpA < 2 && (l - timeInitA) > oneSecond) {
+                    isJumpingA = false;
+                    nbJumpA = 0;
                 }
 
-                if (nbJump == 2 && (l - timeinit) > (1.5 * onesecond)) {
-                    isJumping = false;
-                    nbJump = 0;
-                    System.out.println("STOP");
+                if (nbJumpA == 2 && (l - timeInitA) > (1.5 * oneSecond)) {
+                    isJumpingA = false;
+                    nbJumpA = 0;
                 }
             }
-            cp.setPositionXY(dx, velocityY);
+
+            firstCp.setPositionXY(dxA, velocityYA);
+
+            if (isJumpingB) {
+                if (0.5 < tifloatB && tifloatB > 0.65 && nbJumpB < 2 && jumpB) {
+                    timeInitB = l;
+                    isJumpingB = true;
+                    nbJumpB = nbJumpB + 1;
+                } else {
+                    velocityYB = -10 * Math.cos(Math.PI * tifloatA);
+                }
+
+                if (nbJumpB < 2 && (l - timeInitB) > oneSecond) {
+                    isJumpingB = false;
+                    nbJumpB = 0;
+                }
+
+                if (nbJumpB == 2 && (l - timeInitB) > (1.5 * oneSecond)) {
+                    isJumpingB = false;
+                    nbJumpB = 0;
+                }
+            }
+
+            secondCp.setPositionXY(dxB, velocityYB);
         }
     };
 
     /**
+     * GameLoop who manages displacement on x,y,z depending of keys pressed, released
      * Constructor of Displacement
      *
-     * @param cp  defines the actual position of the character
-     * @param sc1 defines the actual scene where keys-event are applied
-     *            Instantiates the Sprite Class
-     * @see Sprite,CharacterPosition
+     * @param firstCp  defines the actual position of the first character
+     * @param secondCp defines the actual position of the second character
+     * @param sc1      defines the actual scene where keys-event are applied
+     *                 Instantiates the Sprite Class
+     * @see Sprite, CharacterPosition
      */
-    public Displacement(CharacterPosition cp, Scene sc1) {
-        this.cp = cp;
+    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Scene sc1) {
+        this.firstCp = firstCp;
+        this.secondCp = secondCp;
+
         sc = sc1;
-        sprite = new Sprite(cp);
-        posYinit = cp.getHeroPosY();
+        spriteA = new Sprite(this.firstCp);
+        spriteB = new Sprite(this.secondCp);
     }
 
     /**
@@ -96,45 +163,75 @@ public class Displacement {
     }
 
     /**
-     * eventOnKeyPressed is called when an keys is press during the AnimationTimer and sets
-     * boolean to know in which direction move and when jump.
+     * CharacterEventOnKeyPressed is called when an keys is press during the AnimationTimer and sets
+     * boolean to know in which direction move and when jumpA.
      *
      * @param keyEvent KeyEvent, used to get which keys is pressed
      */
-    public void eventOnKeyPressed(KeyEvent keyEvent) {
+    public void CharacterEventOnKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
-                left = true;
-                sprite.spriteAnimation("Walk");
+                leftA = true;
+                spriteA.spriteAnimation("Walk");
+                firstCp.getPersonnage().getSkin().setScaleX(-1);
                 break;
             case D:
-                right = true;
-                sprite.spriteAnimation("Walk");
+                rightA = true;
+                spriteA.spriteAnimation("Walk");
+                firstCp.getPersonnage().getSkin().setScaleX(1);
                 break;
             case SPACE:
-                jump = true;
+                jumpA = true;
                 break;
+
+            case LEFT:
+                leftB = true;
+                spriteB.spriteAnimation("Walk");
+                secondCp.getPersonnage().getSkin().setScaleX(1);
+                break;
+            case RIGHT:
+                rightB = true;
+                spriteB.spriteAnimation("Walk");
+                secondCp.getPersonnage().getSkin().setScaleX(-1);
+                break;
+            case UP:
+                jumpB = true;
+                break;
+            case E:
+                new RangeAttack(firstCp.getPersonnage());
         }
     }
 
     /**
-     * eventOnKeyReleased is used to know when key is released to stop the animation and stop any movement
+     * CharacterEventOnKeyReleased is used to know when key is released to stop the animation and stop any movement
      *
      * @param keyEvent KeyEvent, used to get which key is released.
      * @see Sprite
      */
-    public void eventOnKeyReleased(KeyEvent keyEvent) {
+    public void CharacterEventOnKeyReleased(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case Q:
-                left = false;
-                sprite.spriteReset();
+                leftA = false;
+                spriteA.spriteReset();
                 break;
             case D:
-                right = false;
-                sprite.spriteReset();
+                rightA = false;
+                spriteA.spriteReset();
                 break;
             case SPACE:
-                jump = false;
+                jumpA = false;
+                break;
+
+            case LEFT:
+                leftB = false;
+                spriteB.spriteReset();
+                break;
+            case RIGHT:
+                rightB = false;
+                spriteB.spriteReset();
+                break;
+            case UP:
+                jumpB = false;
                 break;
         }
     }

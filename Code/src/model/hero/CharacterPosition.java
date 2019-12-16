@@ -1,13 +1,13 @@
 package model.hero;
 
 import javafx.scene.Scene;
-import model.abstractClass.PositionAbstract;
+import model.Interface.IPosition;
 
 /**
  * @author Clement GUYON
  * CharacterPositiong manages the position of the character
  */
-public class CharacterPosition implements PositionAbstract {
+public class CharacterPosition implements IPosition {
     private Character p;
     private Scene s1;
 
@@ -39,12 +39,22 @@ public class CharacterPosition implements PositionAbstract {
      * @param position type of double
      */
     public void setPosX(double position) {
+        p.getHero().setX(p.getHero().getX() + position);
+        p.getSp().updatePosSkinX(this);
+
         if (p.getHero().getX() < 32) {
             p.getHero().setX(s1.getWidth() - s1.getWidth() + 32);
         }
+
         p.getHero().setX(p.getHero().getX() + position);
         p.getSp().updatePosSkinX(this);
+
+        if (p.getHero().getX() > s1.getWidth() - 64) {
+            p.getHero().setX(s1.getWidth() - 64);
+        }
+
     }
+
 
     /**
      * Setter of the position Y of the character
@@ -69,8 +79,12 @@ public class CharacterPosition implements PositionAbstract {
     /**
      * Setter of the position XY at spawn
      */
-    void spawnHeroPosition() {
-        setPositionXY(32, 540.5);
+    void spawnHeroPosition(boolean isFirstCharacterSelecter) {
+        if (isFirstCharacterSelecter) {
+            setPositionXY(32, 540.5);
+        } else {
+            setPositionXY(300, 540.5);
+        }
     }
 
     /**

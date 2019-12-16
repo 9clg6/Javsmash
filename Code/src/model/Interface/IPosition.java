@@ -1,11 +1,11 @@
-package model.abstractClass;
+package model.Interface;
 
 
 /**
  * @author Clement GUYON
- * PositionAbstract is an Interface to be the mother of an PositionManager
+ * IPosition is an Interface to be the mother of an PositionManager
  */
-public interface PositionAbstract {
+public interface IPosition {
     /**
      * Setter of the position X
      *

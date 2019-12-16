@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
  */
 class CharacterSkinLoader {
     private ImageView skinImage;
-    private int characterNumber;
+    private String characterNumber;
     private String repertory;
 
     /**
@@ -17,7 +17,7 @@ class CharacterSkinLoader {
      *
      * @param characterNumber types on int defines which character is selected
      */
-    CharacterSkinLoader(int characterNumber) {
+    CharacterSkinLoader(String characterNumber) {
         this.characterNumber = characterNumber;
         skinManager();
     }
@@ -25,10 +25,14 @@ class CharacterSkinLoader {
     /**
      * skinManager set the skin depending of the characterNumber and set the repertory of the character
      */
-    void skinManager() {
-        if (characterNumber == 1) {
+    private void skinManager() {
+        if (characterNumber.equals("Clement")) {
             skinImage = new ImageView(new Image("img/BombMan/Walk/1.png"));
             setRepertory("img/BombMan/");
+        }
+        if (characterNumber.equals("Maxime")) {
+            skinImage = new ImageView(new Image("img/Cucumber/Walk/1.png"));
+            setRepertory("img/Cucumber/");
         }
     }
 
@@ -44,7 +48,7 @@ class CharacterSkinLoader {
     /**
      * Defines the directory of the character
      *
-     * @param repertory
+     * @param repertory is the name of the repertory
      */
     private void setRepertory(String repertory) {
         this.repertory = repertory;

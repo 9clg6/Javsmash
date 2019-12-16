@@ -1,13 +1,13 @@
 package model.hero;
 
 import javafx.scene.image.ImageView;
-import model.abstractClass.PositionAbstract;
+import model.Interface.IPosition;
 
 /**
  * @author Clement GUYON
  * Class used to manage the position of the skin
  */
-public class CharacterSkinPosition implements PositionAbstract {
+public class CharacterSkinIPosition implements IPosition {
     private ImageView skin;
 
     /**
@@ -16,7 +16,7 @@ public class CharacterSkinPosition implements PositionAbstract {
      * @param skin types of CharacterSkinLoader
      * @see CharacterSkinLoader
      */
-    public CharacterSkinPosition(CharacterSkinLoader skin) {
+    public CharacterSkinIPosition(CharacterSkinLoader skin) {
         this.skin = skin.getSkinImage();
     }
 

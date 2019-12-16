@@ -19,7 +19,8 @@ public class HeroSelectionController {
 
     private boolean isFirstCharacterSelected = false, isSecondCharacterSelected = false;
     private boolean finalState;
-    private Object firstCharacterSelected, secondCharacterSelected;
+    private Button firstCharacterSelected, secondCharacterSelected;
+    private String nameOfFirstHeroSelected, nameOfSecondHeroSelected;
 
     /**
      * @param e is an ActionEvent. Can gives the source and the target.
@@ -33,12 +34,16 @@ public class HeroSelectionController {
     private void characterSelected(ActionEvent e) throws Exception {
         if (!isFirstCharacterSelected) {
             isFirstCharacterSelected = true;
-            firstCharacterSelected = e.getSource();
+            firstCharacterSelected = (Button) e.getSource();
+            nameOfFirstHeroSelected = firstCharacterSelected.getId();
+
         } else {
             if (isFirstCharacterSelected && !isSecondCharacterSelected) {
                 if (e.getTarget() != firstCharacterSelected) {
                     isSecondCharacterSelected = true;
-                    secondCharacterSelected = e.getSource();
+                    secondCharacterSelected = (Button) e.getSource();
+                    nameOfSecondHeroSelected = secondCharacterSelected.getId();
+
                     if (updateFinalState()) {
                         start();
                     }
@@ -72,6 +77,7 @@ public class HeroSelectionController {
     @FXML
     private void initialize() {
         Clement.setStyle("-fx-background-image: url('img/BombMan/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
+        Maxime.setStyle("-fx-background-image: url('img/Cucumber/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
     }
 
     /**
@@ -85,6 +91,6 @@ public class HeroSelectionController {
         heroSelectionStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/InGame.fxml"));
-        loader.setController(new GameController(loader.load(), heroSelectionStage));
+        loader.setController(new GameController(nameOfFirstHeroSelected, nameOfSecondHeroSelected, loader.load(), heroSelectionStage));
     }
 }

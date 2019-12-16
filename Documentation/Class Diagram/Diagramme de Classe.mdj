@@ -3726,7 +3726,7 @@
 											"top": 1823,
 											"width": 214,
 											"height": 13,
-											"text": "model.model.hero.CharacterSkinPosition"
+											"text": "model.model.hero.CharacterSkinIPosition"
 										},
 										{
 											"_type": "LabelView",
@@ -3902,7 +3902,7 @@
 											"top": 1559,
 											"width": 231,
 											"height": 13,
-											"text": "model.model.abstractClass.PositionAbstract"
+											"text": "model.model.Interface.IPosition"
 										},
 										{
 											"_type": "LabelView",
@@ -6186,7 +6186,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.model.hero.CharacterSkinPosition",
+					"name": "model.model.hero.CharacterSkinIPosition",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -6209,7 +6209,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.model.abstractClass.PositionAbstract"
+					"name": "model.model.Interface.IPosition"
 				},
 				{
 					"_type": "UMLClass",

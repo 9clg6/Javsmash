@@ -25,7 +25,7 @@ class Sprite {
      */
     void spriteAnimation(String typeOfMovement) {
         count++;
-        if (count % 20 == 0) {
+        if (count % 5 == 0) {
             if (typeOfMovement.equals("Walk")) {
                 if (i + 1 > 14) {
                     i = 1;
