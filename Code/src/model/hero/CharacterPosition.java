@@ -39,15 +39,20 @@ public class CharacterPosition implements PositionAbstract {
      * @param position type of double
      */
     public void setPosX(double position) {
+        p.getHero().setX(p.getHero().getX() + position);
+        p.getSp().updatePosSkinX(this);
         if (p.getHero().getX() < 32) {
             p.getHero().setX(s1.getWidth() - s1.getWidth() + 32);
         }
-        p.getHero().setX(p.getHero().getX() + position);
-        p.getSp().updatePosSkinX(this);
+        if (p.getHero().getX() > s1.getWidth() - 64) {
+            p.getHero().setX(s1.getWidth() - 64);
+        }
+
     }
 
     /**
      * Setter of the position Y of the character
+     *
      * @param position type of double
      */
     public void setPosY(double position) {

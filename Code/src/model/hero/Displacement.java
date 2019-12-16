@@ -11,11 +11,10 @@ import javafx.scene.input.KeyEvent;
 public class Displacement {
 
     private Scene sc;
-    private int nbJump = 0, i = 0, ti;
+    private int nbJump = 0;
     private float tifloat;
     private boolean left, right, jump, isJumping = false;
-    private double posYinit;
-    private long timeinit, onesecond = 1000000000;
+    private long timeinit, timeinitx, onesecond = 1000000000, timex, ti;
     private CharacterPosition cp;
     private Sprite sprite;
 
@@ -27,12 +26,24 @@ public class Displacement {
         public void handle(long l) {
             int dx = 0;
             double velocityY = 0;
+
+
             if (right) {
-                dx += 1;
+                timex = l - timeinitx;
+                if (timex > 1000000) {
+                    dx = 3;
+                    timeinitx = l;
+                    System.out.println("DROITE");
+                }
             }
 
             if (left) {
-                dx -= 1;
+                timex = l - timeinitx;
+                if (timex > 1000000) {
+                    dx = -3;
+                    timeinitx = l;
+                    System.out.println("GAUCHE");
+                }
             }
 
             if (jump) {
@@ -43,8 +54,9 @@ public class Displacement {
                 }
             }
 
-            ti = (int) (l - timeinit);
+            ti = l - timeinit;
             tifloat = (float) ti / 1000000000;
+
 
             if (isJumping) {
                 if (0.5 < tifloat && tifloat > 0.65 && nbJump < 2 && jump) {
@@ -82,7 +94,6 @@ public class Displacement {
         this.cp = cp;
         sc = sc1;
         sprite = new Sprite(cp);
-        posYinit = cp.getHeroPosY();
     }
 
     /**
