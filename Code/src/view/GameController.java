@@ -43,7 +43,7 @@ public class GameController {
         Character firstCharacter = new Character(sc1, firstCharacterSelected, true);
         Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
 
-        Displacement CharacterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), sc1);
+        Displacement CharacterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), sc1, root);
 
 
         sc1.setOnKeyPressed(new EventHandler<>() {

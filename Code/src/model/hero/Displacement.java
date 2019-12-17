@@ -3,6 +3,8 @@ package model.hero;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import model.entity.FirePosition;
 
 /**
  * @author Clement GUYON and Maxime DACISAC
@@ -18,12 +20,13 @@ public class Displacement {
     private float tifloatA;
     private float tifloatB;
 
-    private boolean leftA, rightA, jumpA, isJumpingA = false;
+    private boolean leftA, rightA, jumpA, isJumpingA = false, Aattacking;
     private boolean leftB, rightB, jumpB, isJumpingB = false;
 
-    private long timeInitA, timeInitB, timeinitxA, timeinitxB, oneSecond = 1000000000, timexA, timexB, ti, ty;
+    private long timeInitA, timeInitB, timeinitxA, timeinitxB, oneSecond = 1000000000, timexA, timexB, ti, ty, timeinitAttackA;
 
     private CharacterPosition firstCp, secondCp;
+    private FirePosition firepos;
     private Sprite spriteA, spriteB;
     private AnimationTimer timer = new AnimationTimer() {
         @Override
@@ -130,6 +133,16 @@ public class Displacement {
             }
 
             secondCp.setPositionXY(dxB, velocityYB);
+
+            if (Aattacking) {
+                if (l - timeinitAttackA > 2 * oneSecond) {
+                    new RangeAttack(firstCp.getPersonnage(), root);
+                    Aattacking = false;
+                    timeinitAttackA = l;
+
+                }
+            }
+
         }
     };
 
@@ -143,9 +156,11 @@ public class Displacement {
      *                 Instantiates the Sprite Class
      * @see Sprite, CharacterPosition
      */
-    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Scene sc1) {
+    Pane root;
+    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Scene sc1, Pane root) {
         this.firstCp = firstCp;
         this.secondCp = secondCp;
+        this.root = root;
 
         sc = sc1;
         spriteA = new Sprite(this.firstCp);
@@ -198,7 +213,9 @@ public class Displacement {
                 jumpB = true;
                 break;
             case E:
-                new RangeAttack(firstCp.getPersonnage());
+                Aattacking = true;
+                break;
+
         }
     }
 
