@@ -115,7 +115,7 @@ public class Displacement {
                     isJumpingB = true;
                     nbJumpB = nbJumpB + 1;
                 } else {
-                    velocityYB = -10 * Math.cos(Math.PI * tifloatA);
+                    velocityYB = -10 * Math.cos(Math.PI * tifloatB);
                 }
 
                 if (nbJumpB < 2 && (l - timeInitB) > oneSecond) {
