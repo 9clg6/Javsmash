@@ -16,6 +16,7 @@ public class Displacement {
 
     private int nbJumpA = 0;
     private int nbJumpB = 0;
+    private Pane root;
 
     private float tifloatA;
     private float tifloatB;
@@ -26,7 +27,7 @@ public class Displacement {
     private long timeInitA, timeInitB, timeinitxA, timeinitxB, oneSecond = 1000000000, timexA, timexB, ti, ty, timeinitAttackA;
 
     private CharacterPosition firstCp, secondCp;
-    private FirePosition firepos;
+    private FirePosition firePos;
     private Sprite spriteA, spriteB;
     private AnimationTimer timer = new AnimationTimer() {
         @Override
@@ -36,7 +37,7 @@ public class Displacement {
 
             if (rightA) {
                 timexA = l - timeinitxA;
-                if (timexA > 1000000) {
+                if (timexA > 10000000) {
                     dxA = 3;
                     timeinitxA = l;
                 }
@@ -44,7 +45,7 @@ public class Displacement {
 
             if (rightB) {
                 timexB = l - timeinitxB;
-                if (timexB > 1000000) {
+                if (timexB > 10000000) {
                     dxB = 3;
                     timeinitxB = l;
                 }
@@ -52,7 +53,7 @@ public class Displacement {
 
             if (leftA) {
                 timexA = l - timeinitxA;
-                if (timexA > 1000000) {
+                if (timexA > 10000000) {
                     dxA = -3;
                     timeinitxA = l;
                 }
@@ -61,7 +62,7 @@ public class Displacement {
 
             if (leftB) {
                 timexB = l - timeinitxB;
-                if (timexB > 1000000) {
+                if (timexB > 10000000) {
                     dxB = -3;
                     timeinitxB = l;
                 }
@@ -96,7 +97,7 @@ public class Displacement {
                     isJumpingA = true;
                     nbJumpA = nbJumpA + 1;
                 } else {
-                    velocityYA = -10 * Math.cos(Math.PI * tifloatA);
+                    velocityYA = -1 * Math.cos(Math.PI * tifloatA);
                 }
 
                 if (nbJumpA < 2 && (l - timeInitA) > oneSecond) {
@@ -139,7 +140,6 @@ public class Displacement {
                     new RangeAttack(firstCp.getPersonnage(), root);
                     Aattacking = false;
                     timeinitAttackA = l;
-
                 }
             }
 
@@ -156,7 +156,7 @@ public class Displacement {
      *                 Instantiates the Sprite Class
      * @see Sprite, CharacterPosition
      */
-    Pane root;
+
     public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Scene sc1, Pane root) {
         this.firstCp = firstCp;
         this.secondCp = secondCp;
@@ -166,6 +166,7 @@ public class Displacement {
         spriteA = new Sprite(this.firstCp);
         spriteB = new Sprite(this.secondCp);
     }
+
 
     /**
      * Getter of the gameLoop
@@ -184,15 +185,16 @@ public class Displacement {
      * @param keyEvent KeyEvent, used to get which keys is pressed
      */
     public void CharacterEventOnKeyPressed(KeyEvent keyEvent) {
+        spriteA.spriteAnimation("Walk");
+        spriteB.spriteAnimation("Walk");
+
         switch (keyEvent.getCode()) {
             case Q:
                 leftA = true;
-                spriteA.spriteAnimation("Walk");
                 firstCp.getPersonnage().getSkin().setScaleX(-1);
                 break;
             case D:
                 rightA = true;
-                spriteA.spriteAnimation("Walk");
                 firstCp.getPersonnage().getSkin().setScaleX(1);
                 break;
             case SPACE:
@@ -201,12 +203,10 @@ public class Displacement {
 
             case LEFT:
                 leftB = true;
-                spriteB.spriteAnimation("Walk");
                 secondCp.getPersonnage().getSkin().setScaleX(1);
                 break;
             case RIGHT:
                 rightB = true;
-                spriteB.spriteAnimation("Walk");
                 secondCp.getPersonnage().getSkin().setScaleX(-1);
                 break;
             case UP:

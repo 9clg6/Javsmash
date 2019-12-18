@@ -13,6 +13,7 @@ public class Fire {
 
     public Fire(Character character, Pane root) {
         this.root= root;
+
         this.character = character;
         fireBall = new Circle();
         fireBall.setRadius(20);
@@ -20,6 +21,7 @@ public class Fire {
         fireBall.setOpacity(20);
         fireBall.setCenterX(character.getHero().getX());
         fireBall.setCenterY(character.getHero().getY());
+
         root.getChildren().addAll(fireBall);
     }
 
