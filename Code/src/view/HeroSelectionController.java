@@ -3,15 +3,18 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class HeroSelectionController {
+public class HeroSelectionController implements Initializable {
     @FXML
     private Button Clement;
     @FXML
@@ -71,16 +74,6 @@ public class HeroSelectionController {
     }
 
     /**
-     * @author Clément GUYON
-     * Set the background of each buttons
-     */
-    @FXML
-    private void initialize() {
-        Clement.setStyle("-fx-background-image: url('img/BombMan/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
-        Maxime.setStyle("-fx-background-image: url('img/Cucumber/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
-    }
-
-    /**
      * @throws IOException throwable by loader.load()
      *                     This function is call if two character are selected. It creates new window of the Game.
      * @author Clément GUYON
@@ -91,6 +84,13 @@ public class HeroSelectionController {
         heroSelectionStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/InGame.fxml"));
-        loader.setController(new GameController(nameOfFirstHeroSelected, nameOfSecondHeroSelected, loader.load(), heroSelectionStage));
+        loader.setController(new GameController(nameOfFirstHeroSelected, nameOfSecondHeroSelected, heroSelectionStage));
+        loader.load();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Clement.setStyle("-fx-background-image: url('img/BombMan/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
+        Maxime.setStyle("-fx-background-image: url('img/Cucumber/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");
     }
 }

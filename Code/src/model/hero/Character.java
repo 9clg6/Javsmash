@@ -24,19 +24,19 @@ public class Character {
      *
      * @param sc1 type of Scene, is the Scene where the Character will moves
      */
-    public Character(Scene sc1, String characterSelected, boolean isFirstCharacterSelecter) {
+    public Character(Scene sc1, String characterSelected, boolean isFirstCharacterSelected) {
         this.hero = new Rectangle(50, 50);
         skin = new CharacterSkinLoader(characterSelected);
         sp = new CharacterSkinIPosition(skin);
         life = new HealPoints();
-        this.isFirstCharacterSelecter = isFirstCharacterSelecter;
+        this.isFirstCharacterSelecter = isFirstCharacterSelected;
 
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
 
         hero.setOpacity(0);
         characterPos = new CharacterPosition(this, sc1);
-        characterPos.spawnHeroPosition(isFirstCharacterSelecter);
+        characterPos.spawnHeroPosition(isFirstCharacterSelected);
         life.setHP(100);
     }
 

@@ -1,16 +1,35 @@
 package model.hero;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import model.entity.FirePosition;
 
 /**
  * @author Clement GUYON and Maxime DACISAC
  * Displacement is managing the displacement of the character on x,y,z
  */
 public class Displacement {
+
+    /*
+
+
+
+
+                        TA PRIORITE AUJOURD'HUI C'EST DE NETTOYER CETTE CLASSE : VIRER LES VARIABLE MAGIQUE,
+                        TOUT LE CODE REDONDANT DOIT DEVENIR UNE METHODE AVEC PARAMETRES
+                        SUPPRIMER LE MAX DE LIGNES POSSIBLE
+                        PAR EXEMPLE EN CREANT UN OBJET COMPOSER D'UN BOOLEAN ET UN STRING POUR REMPLACER
+                        LES LIGNES COMME LES LIGNES DE 86 A 92
+
+                        OCCUPES TOI UNIQUEMENT DE LA CLASSE DEPLACEMENT FAUT QUE CE CODE SOIT NETTOYER LE PLUS
+                        RAPIDEMENT POSSIBLE
+
+
+
+
+
+     */
+
 
     private Scene sc;
 
@@ -27,124 +46,8 @@ public class Displacement {
     private long timeInitA, timeInitB, timeinitxA, timeinitxB, oneSecond = 1000000000, timexA, timexB, ti, ty, timeinitAttackA;
 
     private CharacterPosition firstCp, secondCp;
-    private FirePosition firePos;
     private Sprite spriteA, spriteB;
-    private AnimationTimer timer = new AnimationTimer() {
-        @Override
-        public void handle(long l) {
-            int dxA = 0, dxB = 0;
-            double velocityYA = 0, velocityYB = 0;
 
-            if (rightA) {
-                timexA = l - timeinitxA;
-                if (timexA > 10000000) {
-                    dxA = 3;
-                    timeinitxA = l;
-                }
-            }
-
-            if (rightB) {
-                timexB = l - timeinitxB;
-                if (timexB > 10000000) {
-                    dxB = 3;
-                    timeinitxB = l;
-                }
-            }
-
-            if (leftA) {
-                timexA = l - timeinitxA;
-                if (timexA > 10000000) {
-                    dxA = -3;
-                    timeinitxA = l;
-                }
-            }
-
-
-            if (leftB) {
-                timexB = l - timeinitxB;
-                if (timexB > 10000000) {
-                    dxB = -3;
-                    timeinitxB = l;
-                }
-            }
-
-            if (jumpA) {
-                if (!isJumpingA) {
-                    isJumpingA = true;
-                    timeInitA = l;
-                    nbJumpA = nbJumpA + 1;
-                }
-            }
-
-            ti = l - timeInitA;
-
-            if (jumpB) {
-                if (!isJumpingB) {
-                    isJumpingB = true;
-                    timeInitB = l;
-                    nbJumpB = nbJumpB + 1;
-                }
-            }
-
-            ty = l - timeInitB;
-
-            tifloatA = (float) ti / 1000000000;
-            tifloatB = (float) ty / 1000000000;
-
-            if (isJumpingA) {
-                if (0.5 < tifloatA && tifloatA > 0.65 && nbJumpA < 2 && jumpA) {
-                    timeInitA = l;
-                    isJumpingA = true;
-                    nbJumpA = nbJumpA + 1;
-                } else {
-                    velocityYA = -1 * Math.cos(Math.PI * tifloatA);
-                }
-
-                if (nbJumpA < 2 && (l - timeInitA) > oneSecond) {
-                    isJumpingA = false;
-                    nbJumpA = 0;
-                }
-
-                if (nbJumpA == 2 && (l - timeInitA) > (1.5 * oneSecond)) {
-                    isJumpingA = false;
-                    nbJumpA = 0;
-                }
-            }
-
-            firstCp.setPositionXY(dxA, velocityYA);
-
-            if (isJumpingB) {
-                if (0.5 < tifloatB && tifloatB > 0.65 && nbJumpB < 2 && jumpB) {
-                    timeInitB = l;
-                    isJumpingB = true;
-                    nbJumpB = nbJumpB + 1;
-                } else {
-                    velocityYB = -10 * Math.cos(Math.PI * tifloatB);
-                }
-
-                if (nbJumpB < 2 && (l - timeInitB) > oneSecond) {
-                    isJumpingB = false;
-                    nbJumpB = 0;
-                }
-
-                if (nbJumpB == 2 && (l - timeInitB) > (1.5 * oneSecond)) {
-                    isJumpingB = false;
-                    nbJumpB = 0;
-                }
-            }
-
-            secondCp.setPositionXY(dxB, velocityYB);
-
-            if (Aattacking) {
-                if (l - timeinitAttackA > 2 * oneSecond) {
-                    new RangeAttack(firstCp.getPersonnage(), root);
-                    Aattacking = false;
-                    timeinitAttackA = l;
-                }
-            }
-
-        }
-    };
 
     /**
      * GameLoop who manages displacement on x,y,z depending of keys pressed, released
@@ -167,15 +70,126 @@ public class Displacement {
         spriteB = new Sprite(this.secondCp);
     }
 
+    private void swapScale(CharacterPosition characterPosition) {
+        if (characterPosition.getPersonnage().getSkin().getScaleX() == 1 && leftA || rightB) {
+            characterPosition.getPersonnage().getSkin().setScaleX(-1);
+        } else {
+            if (characterPosition.getPersonnage().getSkin().getScaleX() == -1 && rightA || leftB)
+                characterPosition.getPersonnage().getSkin().setScaleX(1);
+        }
+    }
 
-    /**
-     * Getter of the gameLoop
-     *
-     * @return the actual AnimationTimer : timer
-     * @see AnimationTimer
-     */
-    public AnimationTimer getTimer() {
-        return timer;
+    public void moving(long l) {
+        int dxA = 0, dxB = 0;
+        double velocityYA = 0, velocityYB = 0;
+
+        if (rightA) {
+            timexA = l - timeinitxA;
+            if (timexA > 10000000) {
+                dxA = 3;
+                timeinitxA = l;
+            }
+        }
+
+        if (rightB) {
+            timexB = l - timeinitxB;
+            if (timexB > 10000000) {
+                dxB = 3;
+                timeinitxB = l;
+            }
+        }
+
+        if (leftA) {
+            timexA = l - timeinitxA;
+            if (timexA > 10000000) {
+                dxA = -3;
+                timeinitxA = l;
+            }
+        }
+
+
+        if (leftB) {
+            timexB = l - timeinitxB;
+            if (timexB > 10000000) {
+                dxB = -3;
+                timeinitxB = l;
+            }
+        }
+
+        if (jumpA) {
+            if (!isJumpingA) {
+                isJumpingA = true;
+                timeInitA = l;
+                nbJumpA = nbJumpA + 1;
+            }
+        }
+
+        ti = l - timeInitA;
+
+        if (jumpB) {
+            if (!isJumpingB) {
+                isJumpingB = true;
+                timeInitB = l;
+                nbJumpB = nbJumpB + 1;
+            }
+        }
+
+        ty = l - timeInitB;
+
+        tifloatA = (float) ti / 1000000000;
+        tifloatB = (float) ty / 1000000000;
+
+        if (isJumpingA) {
+            if (0.5 < tifloatA && tifloatA > 0.65 && nbJumpA < 2 && jumpA) {
+                timeInitA = l;
+                isJumpingA = true;
+                nbJumpA = nbJumpA + 1;
+            } else {
+                velocityYA = -1 * Math.cos(Math.PI * tifloatA);
+            }
+
+            if (nbJumpA < 2 && (l - timeInitA) > oneSecond) {
+                isJumpingA = false;
+                nbJumpA = 0;
+            }
+
+            if (nbJumpA == 2 && (l - timeInitA) > (1.5 * oneSecond)) {
+                isJumpingA = false;
+                nbJumpA = 0;
+            }
+        }
+
+        firstCp.setPositionXY(dxA, velocityYA);
+
+        if (isJumpingB) {
+            if (0.5 < tifloatB && tifloatB > 0.65 && nbJumpB < 2 && jumpB) {
+                timeInitB = l;
+                isJumpingB = true;
+                nbJumpB = nbJumpB + 1;
+            } else {
+                velocityYB = -10 * Math.cos(Math.PI * tifloatB);
+            }
+
+            if (nbJumpB < 2 && (l - timeInitB) > oneSecond) {
+                isJumpingB = false;
+                nbJumpB = 0;
+            }
+
+            if (nbJumpB == 2 && (l - timeInitB) > (1.5 * oneSecond)) {
+                isJumpingB = false;
+                nbJumpB = 0;
+            }
+        }
+
+        secondCp.setPositionXY(dxB, velocityYB);
+
+        if (Aattacking) {
+            if (l - timeinitAttackA > 2 * oneSecond) {
+                new RangeAttack(firstCp.getPersonnage(), root);
+                Aattacking = false;
+                timeinitAttackA = l;
+            }
+        }
     }
 
     /**
@@ -187,15 +201,14 @@ public class Displacement {
     public void CharacterEventOnKeyPressed(KeyEvent keyEvent) {
         spriteA.spriteAnimation("Walk");
         spriteB.spriteAnimation("Walk");
-
         switch (keyEvent.getCode()) {
             case Q:
                 leftA = true;
-                firstCp.getPersonnage().getSkin().setScaleX(-1);
+                swapScale(firstCp);
                 break;
             case D:
                 rightA = true;
-                firstCp.getPersonnage().getSkin().setScaleX(1);
+                swapScale(firstCp);
                 break;
             case SPACE:
                 jumpA = true;
@@ -203,19 +216,15 @@ public class Displacement {
 
             case LEFT:
                 leftB = true;
-                secondCp.getPersonnage().getSkin().setScaleX(1);
+                swapScale(secondCp);
                 break;
             case RIGHT:
                 rightB = true;
-                secondCp.getPersonnage().getSkin().setScaleX(-1);
+                swapScale(secondCp);
                 break;
             case UP:
                 jumpB = true;
                 break;
-            case E:
-                Aattacking = true;
-                break;
-
         }
     }
 
