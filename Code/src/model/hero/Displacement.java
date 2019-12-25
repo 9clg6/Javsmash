@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
  * Displacement is managing the displacement of the character on x,y,z
  */
 public class Displacement {
+    private static final int ZERO = 0;
 
     /*
 
@@ -31,14 +32,9 @@ public class Displacement {
      */
 
 
-    private Scene sc;
-
-    private int nbJumpA = 0;
-    private int nbJumpB = 0;
+    private int nbJumpA = ZERO;
+    private int nbJumpB = ZERO;
     private Pane root;
-
-    private float tifloatA;
-    private float tifloatB;
 
     private boolean leftA, rightA, jumpA, isJumpingA = false, Aattacking;
     private boolean leftB, rightB, jumpB, isJumpingB = false;
@@ -65,7 +61,6 @@ public class Displacement {
         this.secondCp = secondCp;
         this.root = root;
 
-        sc = sc1;
         spriteA = new Sprite(this.firstCp);
         spriteB = new Sprite(this.secondCp);
     }
@@ -136,8 +131,8 @@ public class Displacement {
 
         ty = l - timeInitB;
 
-        tifloatA = (float) ti / 1000000000;
-        tifloatB = (float) ty / 1000000000;
+        float tifloatA = (float) ti / 1000000000;
+        float tifloatB = (float) ty / 1000000000;
 
         if (isJumpingA) {
             if (0.5 < tifloatA && tifloatA > 0.65 && nbJumpA < 2 && jumpA) {

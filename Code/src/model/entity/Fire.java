@@ -7,14 +7,19 @@ import javafx.scene.shape.Circle;
 import model.hero.Character;
 
 public class Fire {
-    private Circle fireBall;
     private Character character;
     private Pane root;
+    private Circle fireBall;
 
     public Fire(Character character, Pane root) {
         this.root= root;
-
         this.character = character;
+
+        initializeFireball();
+        FirePosition fireballPosition = new FirePosition(fireBall);
+    }
+
+    private void initializeFireball(){
         fireBall = new Circle();
         fireBall.setRadius(20);
         fireBall.setFill(Color.RED);

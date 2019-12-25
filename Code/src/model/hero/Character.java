@@ -3,6 +3,7 @@ package model.hero;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import model.manager.SkinManager;
 
 
 /**
@@ -12,11 +13,8 @@ import javafx.scene.shape.Rectangle;
 public class Character {
 
     private Rectangle hero;
-    private CharacterSkinIPosition sp;
-    private CharacterPosition characterPos;
-    private CharacterSkinLoader skin;
-    private HealPoints life;
-    private boolean isFirstCharacterSelecter;
+    private CharacterSkinPosition sp;
+    private SkinManager skin;
 
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
@@ -25,17 +23,16 @@ public class Character {
      * @param sc1 type of Scene, is the Scene where the Character will moves
      */
     public Character(Scene sc1, String characterSelected, boolean isFirstCharacterSelected) {
-        this.hero = new Rectangle(50, 50);
-        skin = new CharacterSkinLoader(characterSelected);
-        sp = new CharacterSkinIPosition(skin);
-        life = new HealPoints();
-        this.isFirstCharacterSelecter = isFirstCharacterSelected;
+        this.hero       = new Rectangle(50, 50);
+        skin            = new SkinManager(characterSelected);
+        sp              = new CharacterSkinPosition(skin);
+        HealPoints life = new HealPoints();
 
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
-
         hero.setOpacity(0);
-        characterPos = new CharacterPosition(this, sc1);
+
+        CharacterPosition characterPos = new CharacterPosition(this, sc1);
         characterPos.spawnHeroPosition(isFirstCharacterSelected);
         life.setHP(100);
     }
@@ -63,7 +60,7 @@ public class Character {
      *
      * @return skin type of CharacterSkinLoader
      */
-    CharacterSkinLoader getSkinLoader() {
+    SkinManager getSkinLoader() {
         return skin;
     }
 
@@ -72,8 +69,8 @@ public class Character {
      *
      * @return sp type of skin position
      */
-    CharacterSkinIPosition getSp() {
+
+    public CharacterSkinPosition getSp() {
         return sp;
     }
-
 }

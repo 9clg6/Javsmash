@@ -19,6 +19,9 @@ public class CharacterPosition implements model.Interface.IPosition {
     public CharacterPosition(Character p, Scene s1) {
         this.p = p;
         this.s1 = s1;
+
+        setPosX(p.getHero().getX());
+        setPosY(p.getHero().getY());
     }
 
     /**
@@ -40,6 +43,7 @@ public class CharacterPosition implements model.Interface.IPosition {
     public void setPosX(double position) {
         p.getHero().setX(p.getHero().getX() + position);
         p.getSp().updatePosSkinX(this);
+
         if (p.getHero().getX() < 32) {
             p.getHero().setX(s1.getWidth() - s1.getWidth() + 32);
         }

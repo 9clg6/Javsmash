@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import model.hero.Character;
 import model.hero.CharacterPosition;
 import model.hero.Displacement;
+import model.manager.AttackManager;
+import model.manager.KeyManager;
 
 public class GameController {
 
@@ -38,7 +40,6 @@ public class GameController {
     private void initialize() {
         initializeWindow();
 
-        healthBarPlayerA.setOpacity(0);
     }
 
     /**
@@ -54,6 +55,9 @@ public class GameController {
         Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
 
         Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), sc1, root);
+        AttackManager attackManager = new AttackManager(firstCharacter,secondCharacter,root);
+
+        KeyManager keyManager = new KeyManager(characterDisplacement,attackManager);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -62,9 +66,8 @@ public class GameController {
 
                 characterDisplacement.moving(l);
 
-                sc1.setOnKeyPressed(characterDisplacement::CharacterEventOnKeyPressed);
-
-                sc1.setOnKeyReleased(characterDisplacement::CharacterEventOnKeyReleased);
+                sc1.setOnKeyPressed(keyManager::separatorOnPress);
+                sc1.setOnKeyReleased(keyManager::separatorOnRelease);
 
             }
         };

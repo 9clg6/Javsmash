@@ -1,4 +1,4 @@
-package model.hero;
+package model.manager;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
  * @author Clement GUYON
  * CharacterSkinLoader manages images of skins
  */
-class CharacterSkinLoader {
+public class SkinManager {
     private ImageView skinImage;
     private String characterNumber;
     private String repertory;
@@ -17,7 +17,7 @@ class CharacterSkinLoader {
      *
      * @param characterNumber types on int defines which character is selected
      */
-    CharacterSkinLoader(String characterNumber) {
+    public SkinManager(String characterNumber) {
         this.characterNumber = characterNumber;
         skinManager();
     }
@@ -41,7 +41,7 @@ class CharacterSkinLoader {
      *
      * @return repertory type of String
      */
-    String getRepertory() {
+    public String getRepertory() {
         return repertory;
     }
 
@@ -59,7 +59,7 @@ class CharacterSkinLoader {
      *
      * @return skinImage type of ImageView
      */
-    ImageView getSkinImage() {
+    public ImageView getSkinImage() {
         return skinImage;
     }
 
@@ -68,7 +68,7 @@ class CharacterSkinLoader {
      *
      * @param image types of Image
      */
-    void setSkinImage(Image image) {
+    public void setSkinImage(Image image) {
         skinImage.setImage(image);
     }
 
