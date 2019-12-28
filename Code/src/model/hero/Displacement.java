@@ -39,7 +39,7 @@ public class Displacement {
     private boolean leftA, rightA, jumpA, isJumpingA = false, Aattacking;
     private boolean leftB, rightB, jumpB, isJumpingB = false;
 
-    private long timeInitA, timeInitB, timeinitxA, timeinitxB, oneSecond = 1000000000, timexA, timexB, ti, ty, timeinitAttackA;
+    private long timeinitA, timeinitB, timeA, timeB, timeInitA, timeInitB, oneSecond = 1000000000, ti, ty, timeinitAttackA;
 
     private CharacterPosition firstCp, secondCp;
     private Sprite spriteA, spriteB;
@@ -75,40 +75,16 @@ public class Displacement {
     }
 
     public void moving(long l) {
-        int dxA = 0, dxB = 0;
         double velocityYA = 0, velocityYB = 0;
 
-        if (rightA) {
-            timexA = l - timeinitxA;
-            if (timexA > 10000000) {
-                dxA = 3;
-                timeinitxA = l;
-            }
+        timeA = l - timeinitA;
+        if (movingLR(firstCp, velocityYA, leftA, rightA, timeA)) {
+            timeinitA = l;
         }
 
-        if (rightB) {
-            timexB = l - timeinitxB;
-            if (timexB > 10000000) {
-                dxB = 3;
-                timeinitxB = l;
-            }
-        }
-
-        if (leftA) {
-            timexA = l - timeinitxA;
-            if (timexA > 10000000) {
-                dxA = -3;
-                timeinitxA = l;
-            }
-        }
-
-
-        if (leftB) {
-            timexB = l - timeinitxB;
-            if (timexB > 10000000) {
-                dxB = -3;
-                timeinitxB = l;
-            }
+        timeB = l - timeinitB;
+        if (movingLR(secondCp, velocityYB, leftB, rightB, timeB)) {
+            timeinitB = l;
         }
 
         if (jumpA) {
@@ -140,7 +116,7 @@ public class Displacement {
                 isJumpingA = true;
                 nbJumpA = nbJumpA + 1;
             } else {
-                velocityYA = -1 * Math.cos(Math.PI * tifloatA);
+                velocityYA = -10 * Math.cos(Math.PI * tifloatA);
             }
 
             if (nbJumpA < 2 && (l - timeInitA) > oneSecond) {
@@ -154,7 +130,6 @@ public class Displacement {
             }
         }
 
-        firstCp.setPositionXY(dxA, velocityYA);
 
         if (isJumpingB) {
             if (0.5 < tifloatB && tifloatB > 0.65 && nbJumpB < 2 && jumpB) {
@@ -176,7 +151,6 @@ public class Displacement {
             }
         }
 
-        secondCp.setPositionXY(dxB, velocityYB);
 
         if (Aattacking) {
             if (l - timeinitAttackA > 2 * oneSecond) {
@@ -185,6 +159,23 @@ public class Displacement {
                 timeinitAttackA = l;
             }
         }
+    }
+
+
+    private boolean movingLR(CharacterPosition cp, double dy, boolean isMovingL, boolean isMovingR, long time) {
+        double dx = 3;
+
+        if (isMovingL)
+            dx = dx * -1;
+
+        if (isMovingL || isMovingR) {
+
+            if (time > oneSecond / 1000) {
+                cp.setPositionXY(dx, dy);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
