@@ -9,6 +9,11 @@ import javafx.scene.Scene;
 public class CharacterPosition implements model.Interface.IPosition {
     private Character p;
     private Scene s1;
+    private int nbjump =0;
+    private boolean isjumping=false;
+    private long timeinit;
+    private long ti;
+    private float tifloat;
 
     /**
      * Constructor
@@ -104,4 +109,45 @@ public class CharacterPosition implements model.Interface.IPosition {
     double getHeroPosX() {
         return p.getHero().getX();
     }
+
+    public int getNbjump() {
+        return nbjump;
+    }
+
+    public void setNbjump(int nbjump) {
+        this.nbjump = nbjump;
+    }
+
+    public boolean isIsjumping() {
+        return isjumping;
+    }
+
+    public void setIsjumping(boolean isjumping) {
+        this.isjumping = isjumping;
+    }
+
+    public long getTimeinit() {
+        return timeinit;
+    }
+
+    public void setTimeinit(long timeinit) {
+        this.timeinit = timeinit;
+    }
+
+    public long getTi() {
+        return ti;
+    }
+
+    public void setTi(long ti) {
+        this.ti = ti;
+    }
+
+    public float getTifloat() {
+        return tifloat;
+    }
+
+    public void setTifloat(float tifloat) {
+        this.tifloat = tifloat;
+    }
 }
+

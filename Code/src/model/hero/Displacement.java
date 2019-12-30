@@ -75,81 +75,21 @@ public class Displacement {
     }
 
     public void moving(long l) {
-        double velocityYA = 0, velocityYB = 0;
 
         timeA = l - timeinitA;
-        if (movingLR(firstCp, velocityYA, leftA, rightA, timeA)) {
+        if (movingLR(firstCp, leftA, rightA, timeA)) {
             timeinitA = l;
         }
 
         timeB = l - timeinitB;
-        if (movingLR(secondCp, velocityYB, leftB, rightB, timeB)) {
+        if (movingLR(secondCp, leftB, rightB, timeB)) {
             timeinitB = l;
         }
 
-        if (jumpA) {
-            if (!isJumpingA) {
-                isJumpingA = true;
-                timeInitA = l;
-                nbJumpA = nbJumpA + 1;
-            }
-        }
 
-        ti = l - timeInitA;
+        jump(firstCp, jumpA, l);
 
-        if (jumpB) {
-            if (!isJumpingB) {
-                isJumpingB = true;
-                timeInitB = l;
-                nbJumpB = nbJumpB + 1;
-            }
-        }
-
-        ty = l - timeInitB;
-
-        float tifloatA = (float) ti / 1000000000;
-        float tifloatB = (float) ty / 1000000000;
-
-        if (isJumpingA) {
-            if (0.5 < tifloatA && tifloatA > 0.65 && nbJumpA < 2 && jumpA) {
-                timeInitA = l;
-                isJumpingA = true;
-                nbJumpA = nbJumpA + 1;
-            } else {
-                velocityYA = -10 * Math.cos(Math.PI * tifloatA);
-            }
-
-            if (nbJumpA < 2 && (l - timeInitA) > oneSecond) {
-                isJumpingA = false;
-                nbJumpA = 0;
-            }
-
-            if (nbJumpA == 2 && (l - timeInitA) > (1.5 * oneSecond)) {
-                isJumpingA = false;
-                nbJumpA = 0;
-            }
-        }
-
-
-        if (isJumpingB) {
-            if (0.5 < tifloatB && tifloatB > 0.65 && nbJumpB < 2 && jumpB) {
-                timeInitB = l;
-                isJumpingB = true;
-                nbJumpB = nbJumpB + 1;
-            } else {
-                velocityYB = -10 * Math.cos(Math.PI * tifloatB);
-            }
-
-            if (nbJumpB < 2 && (l - timeInitB) > oneSecond) {
-                isJumpingB = false;
-                nbJumpB = 0;
-            }
-
-            if (nbJumpB == 2 && (l - timeInitB) > (1.5 * oneSecond)) {
-                isJumpingB = false;
-                nbJumpB = 0;
-            }
-        }
+        jump(secondCp, jumpB, l);
 
 
         if (Aattacking) {
@@ -162,7 +102,7 @@ public class Displacement {
     }
 
 
-    private boolean movingLR(CharacterPosition cp, double dy, boolean isMovingL, boolean isMovingR, long time) {
+    private boolean movingLR(CharacterPosition cp, boolean isMovingL, boolean isMovingR, long time) {
         double dx = 3;
 
         if (isMovingL)
@@ -171,11 +111,54 @@ public class Displacement {
         if (isMovingL || isMovingR) {
 
             if (time > oneSecond / 1000) {
-                cp.setPositionXY(dx, dy);
+                cp.setPosX(dx);
                 return true;
             }
         }
         return false;
+    }
+
+
+    private void jump(CharacterPosition cp, boolean jump, long l) {
+
+
+        if (jump && !cp.isIsjumping()) {
+            cp.setIsjumping(true);
+            cp.setNbjump(cp.getNbjump() + 1);
+            cp.setTimeinit(l);
+
+
+        }
+        cp.setTi(l - cp.getTimeinit());
+        cp.setTifloat((float) cp.getTi() / 1000000000);
+
+        if (cp.isIsjumping()) {
+
+
+            if (0.5 < cp.getTifloat() && cp.getTifloat() > 0.6 && cp.getNbjump() < 2 && jump) {
+                cp.setIsjumping(true);
+                cp.setNbjump(cp.getNbjump() + 1);
+                cp.setTimeinit(l);
+
+            } else {
+                cp.setPosY(-10 * Math.cos(Math.PI * cp.getTifloat()));
+
+            }
+
+            if (cp.getNbjump() < 2 && (l - cp.getTimeinit()) > oneSecond) {
+                cp.setIsjumping(false);
+                cp.setNbjump(0);
+
+            }
+
+            if (cp.getNbjump() == 2 && (l - cp.getTimeinit()) > (1.5 * oneSecond)) {
+                cp.setIsjumping(false);
+                cp.setNbjump(0);
+
+            }
+
+        }
+
     }
 
     /**
