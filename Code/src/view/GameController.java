@@ -3,7 +3,7 @@ package view;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.hero.Character;
@@ -18,12 +18,14 @@ public class GameController {
     @FXML
     private Pane root;
     private Stage heroSelectionStage;
-    private boolean isFirstCharacterSelecter;
+    private boolean isFirstCharacterSelected;
     private String firstCharacterSelected, secondCharacterSelected;
+
     @FXML
-    private ProgressBar healthBarPlayerA;
+    public Rectangle healthBarPlayerA;
+
     @FXML
-    private ProgressBar healthBarPlayerB;
+    private Rectangle healthBarPlayerB;
 
     /**
      * @param heroSelectionStage Stage of the window
@@ -31,15 +33,15 @@ public class GameController {
      * @author Clement
      */
     public GameController(String firstCharacter, String secondCharacter, Stage heroSelectionStage) {
-        this.heroSelectionStage = heroSelectionStage;
-        this.firstCharacterSelected = firstCharacter;
+        this.heroSelectionStage      = heroSelectionStage;
+        this.firstCharacterSelected  = firstCharacter;
         this.secondCharacterSelected = secondCharacter;
+
     }
 
     @FXML
     private void initialize() {
         initializeWindow();
-
     }
 
     /**
@@ -50,14 +52,14 @@ public class GameController {
 
         sc1 = new Scene(root, 1500, 600.0D);
 
-
-        Character firstCharacter = new Character(sc1, firstCharacterSelected, true);
-        Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
+        Character firstCharacter    = new Character(sc1, firstCharacterSelected, true);
+        Character secondCharacter   = new Character(sc1, secondCharacterSelected, false);
 
         Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), sc1, root);
-        AttackManager attackManager = new AttackManager(firstCharacter,secondCharacter,root);
+        AttackManager attackManager        = new AttackManager(firstCharacter,secondCharacter,root);
+        KeyManager keyManager              = new KeyManager(characterDisplacement,attackManager);
 
-        KeyManager keyManager = new KeyManager(characterDisplacement,attackManager);
+
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -69,8 +71,17 @@ public class GameController {
                 sc1.setOnKeyPressed(keyManager::separatorOnPress);
                 sc1.setOnKeyReleased(keyManager::separatorOnRelease);
 
+                healthBarPlayerA.setWidth(firstCharacter.getLifeStatus().getHP());
+                healthBarPlayerB.setWidth(secondCharacter.getLifeStatus().getHP());
+
+                //LIFE DOWNGRADING ACTUALISATION
+                firstCharacter.setLife(firstCharacter.getLifeStatus().getHP()-1);
+                System.out.println(firstCharacter.getLifeStatus().getHP());
+
+
             }
         };
+
         gameLoop.start();
 
 

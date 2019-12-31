@@ -6,9 +6,14 @@ package model.items;
 
 public class Apple extends Consumable {
 
-    private int healPoints = 15;
+    private static int healPoints = 15;
+    private boolean isConsumed;
 
     public Apple() {
 
+    }
+
+    public boolean isConsumed(){
+        return isConsumed;
     }
 }

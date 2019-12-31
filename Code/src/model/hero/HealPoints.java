@@ -6,17 +6,18 @@ package model.hero;
  */
 
 public class HealPoints {
-    private int HP;
+    private double HP;
+    private static double MIN_HP = 0;
 
     public HealPoints() {
-        this.HP = 100;
+        this.HP = 500;
     }
 
-    public int getHP() {
-        return HP;
+    public double getHP() {
+        return Math.max(HP, MIN_HP);
     }
 
-    void setHP(int HP) {
+    void setHP(double HP) {
         this.HP = HP;
     }
 }

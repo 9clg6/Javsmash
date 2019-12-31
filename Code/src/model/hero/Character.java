@@ -15,6 +15,7 @@ public class Character {
     private Rectangle hero;
     private CharacterSkinPosition sp;
     private SkinManager skin;
+    private HealPoints life;
 
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
@@ -26,7 +27,7 @@ public class Character {
         this.hero       = new Rectangle(50, 50);
         skin            = new SkinManager(characterSelected);
         sp              = new CharacterSkinPosition(skin);
-        HealPoints life = new HealPoints();
+        life = new HealPoints();
 
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
@@ -60,7 +61,7 @@ public class Character {
      *
      * @return skin type of CharacterSkinLoader
      */
-    SkinManager getSkinLoader() {
+    public SkinManager getSkinLoader() {
         return skin;
     }
 
@@ -72,5 +73,13 @@ public class Character {
 
     public CharacterSkinPosition getSp() {
         return sp;
+    }
+
+    public HealPoints getLifeStatus() {
+        return life;
+    }
+
+    public void setLife(double life) {
+        getLifeStatus().setHP(life);
     }
 }

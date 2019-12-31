@@ -10,13 +10,14 @@ public class Fire {
     private Character character;
     private Pane root;
     private Circle fireBall;
+    private FirePosition fireballPosition;
 
     public Fire(Character character, Pane root) {
         this.root= root;
         this.character = character;
 
         initializeFireball();
-        FirePosition fireballPosition = new FirePosition(fireBall);
+        fireballPosition = new FirePosition(fireBall);
     }
 
     private void initializeFireball(){
