@@ -1,30 +1,50 @@
 package model.entity;
 
-import javafx.scene.shape.Circle;
 import model.Interface.IPosition;
 
 public class FirePosition implements IPosition {
 
-    private Circle fireball;
+    private static final int FIREBALL_CHARACTER_DISTANCE = 20;
+    private Fire fireBall;
 
-    public FirePosition(Circle fireball) {
-        this.fireball = fireball;
+    FirePosition(Fire fireBall) {
+        this.fireBall = fireBall;
+        spawnInitPosition();
     }
 
-    @Override
-    public void setPosX(double pos) {
-        fireball.setCenterX(pos);
+    private void spawnInitPosition() {
+        setPosXY(fireBall.getCharacter().getHero().getX() + 40, fireBall.getCharacter().getHero().getY() + FIREBALL_CHARACTER_DISTANCE);
+
+    }
+
+    //<editor-fold desc="POSITION SETTER X & Y and XY">
+    public void setPosXY(double X, double Y) {
+        setPosX(X);
+        setPosY(Y);
+    }
+
+    //<editor-fold desc="POSITION X & Y GETTER">
+    public double getPosY() {
+        return fireBall.getFireBallCircle().getCenterY();
     }
 
     @Override
     public void setPosY(double pos) {
-        fireball.setCenterY(pos);
+        fireBall.getFireBallCircle().setCenterY(pos);
+        fireBall.getFireSkinPosition().updatePosSkinY(this);
+    }
+    //</editor-fold>
+
+    public double getPosX() {
+        return fireBall.getFireBallCircle().getCenterX();
     }
 
-    public void setPosXY(double X, double Y){
-        setPosX(X);
-        setPosY(Y);
+    @Override
+    public void setPosX(double pos) {
+        fireBall.getFireBallCircle().setCenterX(pos);
+        fireBall.getFireSkinPosition().updatePosSkinX(this);
     }
+    //</editor-fold>
 
 
 }

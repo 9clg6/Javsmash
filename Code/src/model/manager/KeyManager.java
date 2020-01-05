@@ -22,4 +22,3 @@ public class KeyManager {
         displacement.CharacterEventOnKeyReleased(keyEvent);
     }
 }
-

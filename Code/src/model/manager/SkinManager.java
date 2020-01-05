@@ -9,30 +9,32 @@ import javafx.scene.image.ImageView;
  */
 public class SkinManager {
     private ImageView skinImage;
-    private String characterNumber;
     private String repertory;
 
     /**
      * Constructor of the function which defines which skin to defines at the character
      *
-     * @param characterNumber types on int defines which character is selected
+     * @param entity types on int defines which character is selected
      */
-    public SkinManager(String characterNumber) {
-        this.characterNumber = characterNumber;
-        skinManager();
+    public SkinManager(String entity) {
+        skinManager(entity);
     }
 
     /**
      * skinManager set the skin depending of the characterNumber and set the repertory of the character
      */
-    private void skinManager() {
-        if (characterNumber.equals("Clement")) {
+    private void skinManager(String entity) {
+        if (entity.equals("Clement")) {
             skinImage = new ImageView(new Image("img/BombMan/Walk/1.png"));
             setRepertory("img/BombMan/");
         }
-        if (characterNumber.equals("Maxime")) {
+        if (entity.equals("Maxime")) {
             skinImage = new ImageView(new Image("img/Cucumber/Walk/1.png"));
             setRepertory("img/Cucumber/");
+        }
+        if (entity.equals("Fireball")) {
+            skinImage = new ImageView(new Image("img/Fireball/1.png"));
+            setRepertory("img/Fireball/");
         }
     }
 

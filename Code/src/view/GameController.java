@@ -3,8 +3,8 @@ package view;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.hero.Character;
 import model.hero.CharacterPosition;
@@ -12,17 +12,18 @@ import model.hero.Displacement;
 import model.manager.AttackManager;
 import model.manager.KeyManager;
 
-public class GameController {
+class GameController {
 
+    private static final int MAX_WIDTH = 1500;
+    private static final double MAX_HEIGHT = 600.0D;
     private Scene sc1;
     @FXML
     private Pane root;
     private Stage heroSelectionStage;
-    private boolean isFirstCharacterSelected;
     private String firstCharacterSelected, secondCharacterSelected;
 
     @FXML
-    public Rectangle healthBarPlayerA;
+    private Rectangle healthBarPlayerA;
 
     @FXML
     private Rectangle healthBarPlayerB;
@@ -32,7 +33,7 @@ public class GameController {
      *                           Initialize the window
      * @author Clement
      */
-    public GameController(String firstCharacter, String secondCharacter, Stage heroSelectionStage) {
+    GameController(String firstCharacter, String secondCharacter, Stage heroSelectionStage) {
         this.heroSelectionStage      = heroSelectionStage;
         this.firstCharacterSelected  = firstCharacter;
         this.secondCharacterSelected = secondCharacter;
@@ -50,12 +51,12 @@ public class GameController {
      */
     private void initializeWindow() {
 
-        sc1 = new Scene(root, 1500, 600.0D);
+        sc1 = new Scene(root, MAX_WIDTH, MAX_HEIGHT);
 
         Character firstCharacter    = new Character(sc1, firstCharacterSelected, true);
         Character secondCharacter   = new Character(sc1, secondCharacterSelected, false);
 
-        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), sc1, root);
+        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), root);
         AttackManager attackManager        = new AttackManager(firstCharacter,secondCharacter,root);
         KeyManager keyManager              = new KeyManager(characterDisplacement,attackManager);
 
@@ -71,12 +72,15 @@ public class GameController {
                 sc1.setOnKeyPressed(keyManager::separatorOnPress);
                 sc1.setOnKeyReleased(keyManager::separatorOnRelease);
 
+                attackManager.hasAttacked();
+
                 healthBarPlayerA.setWidth(firstCharacter.getLifeStatus().getHP());
                 healthBarPlayerB.setWidth(secondCharacter.getLifeStatus().getHP());
 
+
                 //LIFE DOWNGRADING ACTUALISATION
-                firstCharacter.setLife(firstCharacter.getLifeStatus().getHP()-1);
-                System.out.println(firstCharacter.getLifeStatus().getHP());
+                //firstCharacter.setLife(firstCharacter.getLifeStatus().getHP()-1);
+                //System.out.println(firstCharacter.getLifeStatus().getHP());
 
 
             }

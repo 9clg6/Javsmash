@@ -1,6 +1,7 @@
 package model.hero;
 
 import javafx.scene.image.Image;
+import model.entity.FirePosition;
 
 /**
  * @author Clement GUYON
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
  */
 class Sprite {
     private CharacterPosition cp;
+    private FirePosition fp;
     private int count = 1, i = 1;
 
     /**
@@ -17,6 +19,10 @@ class Sprite {
      */
     Sprite(CharacterPosition cp) {
         this.cp = cp;
+    }
+
+    Sprite(FirePosition fp) {
+        this.fp = fp;
     }
 
     /**

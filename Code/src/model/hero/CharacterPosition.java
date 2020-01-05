@@ -4,16 +4,24 @@ import javafx.scene.Scene;
 
 /**
  * @author Clement GUYON
- * CharacterPositiong manages the position of the character
+ * CharacterPosition manages the position of the character
  */
 public class CharacterPosition implements model.Interface.IPosition {
+    public static final int SECONDCHARACTER_POS_X_AT_SPAWN = 350;
+    public static final double SECONDCHARACTER_POS_Y_AT_SPAWN = 540.5;
+    private static final int ZERO = 0;
+    private static final int LEFT_MAP_LIMIT = 32;
+    private static final int RIGHT_MAP_LIMIT = 64;
+    private static final int VERTICAL_BOTTOM_LIMIT = 52;
+    private static final int FIRSTCHARACTER_POS_X_AT_SPAWN = 32;
+    private static final double FIRSTCHARACTER_POS_Y_AT_SPAWN = 540.5;
     private Character p;
     private Scene s1;
-    private int nbjump =0;
-    private boolean isjumping=false;
-    private long timeinit;
+    private int nbJump = ZERO;
+    private boolean isJumping = false;
+    private long timeInit;
     private long ti;
-    private float tifloat;
+    private float tiFloat;
 
     /**
      * Constructor
@@ -25,8 +33,7 @@ public class CharacterPosition implements model.Interface.IPosition {
         this.p = p;
         this.s1 = s1;
 
-        setPosX(p.getHero().getX());
-        setPosY(p.getHero().getY());
+        setPositionXY(p.getHero().getX(), p.getHero().getY());
     }
 
     /**
@@ -35,7 +42,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param posX type of double
      * @param posY type of double
      */
-    void setPositionXY(double posX, double posY) {
+    private void setPositionXY(double posX, double posY) {
         setPosX(posX);
         setPosY(posY);
     }
@@ -49,11 +56,11 @@ public class CharacterPosition implements model.Interface.IPosition {
         p.getHero().setX(p.getHero().getX() + position);
         p.getSp().updatePosSkinX(this);
 
-        if (p.getHero().getX() < 32) {
-            p.getHero().setX(s1.getWidth() - s1.getWidth() + 32);
+        if (p.getHero().getX() < LEFT_MAP_LIMIT) {
+            p.getHero().setX(s1.getWidth() - s1.getWidth() + LEFT_MAP_LIMIT);
         }
-        if (p.getHero().getX() > s1.getWidth() - 64) {
-            p.getHero().setX(s1.getWidth() - 64);
+        if (p.getHero().getX() > s1.getWidth() - RIGHT_MAP_LIMIT) {
+            p.getHero().setX(s1.getWidth() - RIGHT_MAP_LIMIT);
         }
 
     }
@@ -64,7 +71,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param position type of double
      */
     public void setPosY(double position) {
-        if (!(p.getHero().getY() + position > s1.getHeight() - 52)) {
+        if (!(p.getHero().getY() + position > s1.getHeight() - VERTICAL_BOTTOM_LIMIT)) {
             p.getHero().setY(p.getHero().getY() + position);
             p.getSp().updatePosSkinY(this);
         }
@@ -84,11 +91,10 @@ public class CharacterPosition implements model.Interface.IPosition {
      */
     void spawnHeroPosition(boolean isFirstCharacterSelected) {
         if (isFirstCharacterSelected) {
-            setPositionXY(32, 540.5);
+            setPositionXY(FIRSTCHARACTER_POS_X_AT_SPAWN, FIRSTCHARACTER_POS_Y_AT_SPAWN);
 
         } else {
-            setPositionXY(350, 540.5);
-
+            setPositionXY(SECONDCHARACTER_POS_X_AT_SPAWN, SECONDCHARACTER_POS_Y_AT_SPAWN);
         }
     }
 
@@ -110,44 +116,44 @@ public class CharacterPosition implements model.Interface.IPosition {
         return p.getHero().getX();
     }
 
-    public int getNbjump() {
-        return nbjump;
+    int getNbJump() {
+        return nbJump;
     }
 
-    public void setNbjump(int nbjump) {
-        this.nbjump = nbjump;
+    void setNbJump(int nbJump) {
+        this.nbJump = nbJump;
     }
 
-    public boolean isIsjumping() {
-        return isjumping;
+    boolean isJumping() {
+        return isJumping;
     }
 
-    public void setIsjumping(boolean isjumping) {
-        this.isjumping = isjumping;
+    void setJumping(boolean jumping) {
+        this.isJumping = jumping;
     }
 
-    public long getTimeinit() {
-        return timeinit;
+    long getTimeInit() {
+        return timeInit;
     }
 
-    public void setTimeinit(long timeinit) {
-        this.timeinit = timeinit;
+    void setTimeInit(long timeInit) {
+        this.timeInit = timeInit;
     }
 
-    public long getTi() {
+    long getTi() {
         return ti;
     }
 
-    public void setTi(long ti) {
+    void setTi(long ti) {
         this.ti = ti;
     }
 
-    public float getTifloat() {
-        return tifloat;
+    float getTiFloat() {
+        return tiFloat;
     }
 
-    public void setTifloat(float tifloat) {
-        this.tifloat = tifloat;
+    void setTiFloat(float tiFloat) {
+        this.tiFloat = tiFloat;
     }
 }
 

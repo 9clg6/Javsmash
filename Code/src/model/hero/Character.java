@@ -12,6 +12,9 @@ import model.manager.SkinManager;
  */
 public class Character {
 
+    private static final int HERO_WIDTH = 50;
+    private static final int HERO_HEIGHT = 50;
+    private static final int OPACITY = 0;
     private Rectangle hero;
     private CharacterSkinPosition sp;
     private SkinManager skin;
@@ -24,20 +27,18 @@ public class Character {
      * @param sc1 type of Scene, is the Scene where the Character will moves
      */
     public Character(Scene sc1, String characterSelected, boolean isFirstCharacterSelected) {
-        this.hero       = new Rectangle(50, 50);
+        this.hero = new Rectangle(HERO_WIDTH, HERO_HEIGHT);
         skin            = new SkinManager(characterSelected);
         sp              = new CharacterSkinPosition(skin);
         life = new HealPoints();
 
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
-        hero.setOpacity(0);
+        hero.setOpacity(OPACITY);
 
         CharacterPosition characterPos = new CharacterPosition(this, sc1);
         characterPos.spawnHeroPosition(isFirstCharacterSelected);
-        life.setHP(100);
     }
-
     /**
      * Getter of the Hero
      *
@@ -61,7 +62,7 @@ public class Character {
      *
      * @return skin type of CharacterSkinLoader
      */
-    public SkinManager getSkinLoader() {
+    SkinManager getSkinLoader() {
         return skin;
     }
 
@@ -71,7 +72,7 @@ public class Character {
      * @return sp type of skin position
      */
 
-    public CharacterSkinPosition getSp() {
+    CharacterSkinPosition getSp() {
         return sp;
     }
 

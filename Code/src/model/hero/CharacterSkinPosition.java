@@ -17,7 +17,7 @@ public class CharacterSkinPosition implements IPosition {
      * @param skin types of CharacterSkinLoader
      * @see SkinManager
      */
-    public CharacterSkinPosition(SkinManager skin) {
+    CharacterSkinPosition(SkinManager skin) {
         this.skin = skin.getSkinImage();
     }
 

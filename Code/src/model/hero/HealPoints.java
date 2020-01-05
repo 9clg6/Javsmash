@@ -10,7 +10,7 @@ public class HealPoints {
     private static double MIN_HP = 0;
 
     public HealPoints() {
-        this.HP = 500;
+        this.HP = 200;
     }
 
     public double getHP() {
