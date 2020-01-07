@@ -14,7 +14,6 @@ public class FirePosition implements IPosition {
 
     private void spawnInitPosition() {
         setPosXY(fireBall.getCharacter().getHero().getX() + 40, fireBall.getCharacter().getHero().getY() + FIREBALL_CHARACTER_DISTANCE);
-
     }
 
     //<editor-fold desc="POSITION SETTER X & Y and XY">
