@@ -19,9 +19,9 @@ public class CharacterPosition implements model.Interface.IPosition {
     private Scene s1;
     private int nbJump = ZERO;
     private boolean isJumping = false;
-    private long timeInit;
-    private long ti;
-    private float tiFloat;
+    private long TimeInitOfJump;
+    private long TimeOfTheJumpInstant_i;
+    private float TimeOfTheJumpInstant_i_float;
 
     /**
      * Constructor
@@ -116,44 +116,91 @@ public class CharacterPosition implements model.Interface.IPosition {
         return p.getHero().getX();
     }
 
+    /**
+     * Getter of number of jump
+     *
+     * @return the number of jump of the character
+     */
     int getNbJump() {
         return nbJump;
     }
 
+    /**
+     * Set a new number of jump for a character
+     *
+     * @param nbJump int
+     */
     void setNbJump(int nbJump) {
         this.nbJump = nbJump;
     }
 
+    /**
+     *
+     * @return is the character is jumping or not
+     */
     boolean isJumping() {
         return isJumping;
     }
 
+    /**
+     * Set if the character is jumping or not
+     *
+     * @param jumping boolean
+     */
     void setJumping(boolean jumping) {
         this.isJumping = jumping;
     }
 
-    long getTimeInit() {
-        return timeInit;
+    /**
+     *
+     * @return the time when the character had started the jump (nanosecond)
+     */
+    long getTimeInitOfJump() {
+        return TimeInitOfJump;
     }
 
-    void setTimeInit(long timeInit) {
-        this.timeInit = timeInit;
+    /**
+     * Change the time initial when the character start his jump (nanosecond)
+     *
+     * @param timeInitOfJump long
+     */
+    void setTimeInitOfJump(long timeInitOfJump) {
+        this.TimeInitOfJump = timeInitOfJump;
     }
 
-    long getTi() {
-        return ti;
+    /**
+     *
+     * @return during how many time the character is on his jump (nanosecond)
+     */
+    long getTimeOfTheJumpInstant_i() {
+        return TimeOfTheJumpInstant_i;
     }
 
-    void setTi(long ti) {
-        this.ti = ti;
+    /**
+     * Change during how many time the jump has started (nanosecond)
+     *
+     * @param timeOfTheJumpInstant_i long
+     */
+    void setTimeOfTheJumpInstant_i(long timeOfTheJumpInstant_i) {
+        this.TimeOfTheJumpInstant_i = timeOfTheJumpInstant_i;
     }
 
-    float getTiFloat() {
-        return tiFloat;
+    /**
+     *Time used in the function of the jump
+     * @return during how many time the character is on his jump (second)
+     */
+    float getTimeOfTheJumpInstant_i_float() {
+        return TimeOfTheJumpInstant_i_float;
     }
 
-    void setTiFloat(float tiFloat) {
-        this.tiFloat = tiFloat;
+    /**
+     * Change during how many time the jump has started (second)
+     * Time used in the function of the jump
+     *
+     * @param timeOfTheJumpInstant_i_float float
+     */
+    void setTimeOfTheJumpInstant_i_float(float timeOfTheJumpInstant_i_float) {
+        this.TimeOfTheJumpInstant_i_float = timeOfTheJumpInstant_i_float;
     }
 }
 

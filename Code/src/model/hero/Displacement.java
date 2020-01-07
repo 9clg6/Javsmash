@@ -13,7 +13,10 @@ public class Displacement {
     private boolean leftA, rightA, jumpA, Aattacking;
     private boolean leftB, rightB, jumpB;
 
-    private long timeinitA, timeinitB, timeA, timeB, oneSecond = 1000000000, timeinitAttackA;
+    private long TimeLastDisplacementA;
+    private long TimeLastDisplacementB;
+    private long oneSecond = 1000000000;
+    private long timeinitAttackA;
 
     private CharacterPosition firstCp, secondCp;
     private Sprite spriteA, spriteB;
@@ -54,16 +57,22 @@ public class Displacement {
         characterPosition.getPersonnage().getHero().setScaleX(orientation);
     }
 
-    public boolean moving(long l) {
+    /**
+     *Call the function jump for each character all the frame
+     *Call the function moving for each character when the can move
+     *
+     * @param l time in nanosecond
+     */
+    public void moving(long l) {
 
-        timeA = l - timeinitA;
-        if (movingLR(firstCp, leftA, rightA, timeA)) {
-            timeinitA = l;
+        long timeSinceMovingA = l - TimeLastDisplacementA;
+        if (movingLR(firstCp, leftA, rightA, timeSinceMovingA)) {
+            TimeLastDisplacementA = l;
         }
 
-        timeB = l - timeinitB;
-        if (movingLR(secondCp, leftB, rightB, timeB)) {
-            timeinitB = l;
+        long timeSinceMovingB = l - TimeLastDisplacementB;
+        if (movingLR(secondCp, leftB, rightB, timeSinceMovingB)) {
+            TimeLastDisplacementB = l;
         }
 
         jump(firstCp, jumpA, l);
@@ -77,10 +86,19 @@ public class Displacement {
                 timeinitAttackA = l;
             }
         }
-        return false;
     }
 
-    private boolean movingLR(CharacterPosition cp, boolean isMovingL, boolean isMovingR, long time) {
+    /**
+     * Move the character to the right or to the left in function of the time
+     *
+     *
+     * @param cp characterPosition
+     * @param isMovingL if the character wants to move to the left
+     * @param isMovingR is the character wants to move to the right
+     * @param TimeSinceLastDisplacement time since the last displacement of the player had been effectuated
+     * @return true when the character is moving or false when he is not moving
+     */
+    private boolean movingLR(CharacterPosition cp, boolean isMovingL, boolean isMovingR, long TimeSinceLastDisplacement) {
         double dx = 3;
 
         if (isMovingL)
@@ -88,7 +106,7 @@ public class Displacement {
 
         if (isMovingL || isMovingR) {
 
-            if (time > oneSecond / 1000) {
+            if (TimeSinceLastDisplacement > oneSecond / 1000) {
                 cp.setPosX(dx);
                 return true;
             }
@@ -96,40 +114,47 @@ public class Displacement {
         return false;
     }
 
-
+    /**
+     * Do the jump of the character
+     * Called all the frame
+     *
+     * @param cp characterPosition
+     * @param jump is the character wants to jump
+     * @param l time in nanosecond
+     */
     private void jump(CharacterPosition cp, boolean jump, long l) {
 
 
         if (jump && !cp.isJumping()) {
             cp.setJumping(true);
             cp.setNbJump(cp.getNbJump() + 1);
-            cp.setTimeInit(l);
+            cp.setTimeInitOfJump(l);
 
 
         }
-        cp.setTi(l - cp.getTimeInit());
-        cp.setTiFloat((float) cp.getTi() / 1000000000);
+        cp.setTimeOfTheJumpInstant_i(l - cp.getTimeInitOfJump());
+        cp.setTimeOfTheJumpInstant_i_float((float) cp.getTimeOfTheJumpInstant_i() / 1000000000);
 
         if (cp.isJumping()) {
 
 
-            if (0.5 < cp.getTiFloat() && cp.getTiFloat() > 0.6 && cp.getNbJump() < 2 && jump) {
+            if (0.5 < cp.getTimeOfTheJumpInstant_i_float() && cp.getTimeOfTheJumpInstant_i_float() > 0.6 && cp.getNbJump() < 2 && jump) {
                 cp.setJumping(true);
                 cp.setNbJump(cp.getNbJump() + 1);
-                cp.setTimeInit(l);
+                cp.setTimeInitOfJump(l);
 
             } else {
-                cp.setPosY(-10 * Math.cos(Math.PI * cp.getTiFloat()));
+                cp.setPosY(-10 * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
 
             }
 
-            if (cp.getNbJump() < 2 && (l - cp.getTimeInit()) > oneSecond) {
+            if (cp.getNbJump() < 2 && (l - cp.getTimeInitOfJump()) > oneSecond) {
                 cp.setJumping(false);
                 cp.setNbJump(0);
 
             }
 
-            if (cp.getNbJump() == 2 && (l - cp.getTimeInit()) > (1.5 * oneSecond)) {
+            if (cp.getNbJump() == 2 && (l - cp.getTimeInitOfJump()) > (1.5 * oneSecond)) {
                 cp.setJumping(false);
                 cp.setNbJump(0);
             }
