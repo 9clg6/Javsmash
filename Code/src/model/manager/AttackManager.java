@@ -41,18 +41,14 @@ public class AttackManager {
             case E:
                 characterWhoAttacked = characterOne;
 
-                if (fireBall != null) {
-                    fireBall.destruction();
-                }
+                isFireballNull();
 
                 fireBall = new Fire(characterOne, root);
                 break;
             case NUMPAD0:
                 characterWhoAttacked = characterTwo;
 
-                if (fireBall != null) {
-                    fireBall.destruction();
-                }
+                isFireballNull();
 
                 fireBall = new Fire(characterTwo, root);
                 break;
@@ -77,11 +73,19 @@ public class AttackManager {
                 }
             }
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException ignored) {
 
         }
+    }
 
+    private void isFireballNull() {
+        try {
+            if (fireBall != null) {
+                fireBall.destruction();
+            }
+        } catch (NullPointerException ignored) {
 
+        }
     }
 
 }
