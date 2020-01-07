@@ -10,6 +10,7 @@ import model.hero.Character;
 import model.hero.CharacterPosition;
 import model.hero.Displacement;
 import model.manager.AttackManager;
+import model.manager.ItemManager;
 import model.manager.KeyManager;
 
 class GameController {
@@ -59,7 +60,7 @@ class GameController {
         Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), root);
         AttackManager attackManager        = new AttackManager(firstCharacter,secondCharacter,root);
         KeyManager keyManager              = new KeyManager(characterDisplacement,attackManager);
-
+        ItemManager itemmanager            = new ItemManager(root);
 
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -73,9 +74,12 @@ class GameController {
                 sc1.setOnKeyReleased(keyManager::separatorOnRelease);
 
                 attackManager.hasAttacked();
+                itemmanager.spawnItem(l);
 
                 healthBarPlayerA.setWidth(firstCharacter.getLifeStatus().getHP());
                 healthBarPlayerB.setWidth(secondCharacter.getLifeStatus().getHP());
+
+                //System.out.println(Math.random()*1000%500);
 
 
                 //LIFE DOWNGRADING ACTUALISATION

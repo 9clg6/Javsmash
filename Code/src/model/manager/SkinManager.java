@@ -36,6 +36,10 @@ public class SkinManager {
             skinImage = new ImageView(new Image("img/Fireball/1.png"));
             setRepertory("img/Fireball/");
         }
+        if (entity.equals("Apple")) {
+            skinImage = new ImageView(new Image("img/Items/apple.png"));
+            setRepertory("img/Items/");
+        }
     }
 
     /**
