@@ -1,5 +1,6 @@
 package model.hero;
 
+import hitbox.Hitbox;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -14,12 +15,13 @@ public class Character {
 
     private static final int HERO_WIDTH = 50;
     private static final int HERO_HEIGHT = 50;
-    private static final int OPACITY = 0;
+    private static final int OPACITY = 50;
+
     private Rectangle hero;
     private CharacterSkinPosition sp;
     private SkinManager skin;
     private HealPoints life;
-
+    private Hitbox hitbox;
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
      * opacity and number of Life Points
@@ -31,6 +33,7 @@ public class Character {
         skin            = new SkinManager(characterSelected);
         sp              = new CharacterSkinPosition(skin);
         life = new HealPoints();
+        hitbox = new Hitbox(hero);
 
         sp.setPosX(hero.getX());
         sp.setPosY(hero.getY());
@@ -46,6 +49,10 @@ public class Character {
      */
     public Rectangle getHero() {
         return hero;
+    }
+
+    public Hitbox getHitbox() {
+        return hitbox;
     }
 
     /**

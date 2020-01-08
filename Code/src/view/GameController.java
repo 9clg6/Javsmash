@@ -13,6 +13,8 @@ import model.manager.AttackManager;
 import model.manager.ItemManager;
 import model.manager.KeyManager;
 
+import java.util.ArrayList;
+
 class GameController {
 
     private static final int MAX_WIDTH = 1500;
@@ -20,6 +22,7 @@ class GameController {
     private Scene sc1;
     @FXML
     private Pane root;
+    private ArrayList<Character> characterCollection;
     private Stage heroSelectionStage;
     private String firstCharacterSelected, secondCharacterSelected;
 
@@ -57,10 +60,15 @@ class GameController {
         Character firstCharacter    = new Character(sc1, firstCharacterSelected, true);
         Character secondCharacter   = new Character(sc1, secondCharacterSelected, false);
 
+        characterCollection = new ArrayList<>();
+        characterCollection.add(firstCharacter);
+        characterCollection.add(secondCharacter);
+
         Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), root);
         AttackManager attackManager        = new AttackManager(firstCharacter,secondCharacter,root);
         KeyManager keyManager              = new KeyManager(characterDisplacement,attackManager);
         ItemManager itemmanager            = new ItemManager(root);
+
 
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -93,10 +101,7 @@ class GameController {
         gameLoop.start();
 
 
-
-
-
-        root.getChildren().addAll(firstCharacter.getHero(), firstCharacter.getSkin(), secondCharacter.getHero(), secondCharacter.getSkin());
+        root.getChildren().addAll(firstCharacter.getHero(), firstCharacter.getSkin(), secondCharacter.getHero(), secondCharacter.getSkin(), characterCollection.stream().collect()orEach(character -> character.getHitbox().getCircleArrayList()));
         heroSelectionStage.setTitle("JavSmash - GAME STARTED");
         heroSelectionStage.setFullScreen(false);
         heroSelectionStage.setResizable(false);

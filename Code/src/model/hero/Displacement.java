@@ -106,7 +106,7 @@ public class Displacement {
 
         if (isMovingL || isMovingR) {
 
-            if (TimeSinceLastDisplacement > oneSecond / 1000) {
+            if (TimeSinceLastDisplacement > oneSecond / 100) {
                 cp.setPosX(dx);
                 return true;
             }
@@ -129,22 +129,19 @@ public class Displacement {
             cp.setJumping(true);
             cp.setNbJump(cp.getNbJump() + 1);
             cp.setTimeInitOfJump(l);
-
-
         }
+
         cp.setTimeOfTheJumpInstant_i(l - cp.getTimeInitOfJump());
         cp.setTimeOfTheJumpInstant_i_float((float) cp.getTimeOfTheJumpInstant_i() / 1000000000);
 
         if (cp.isJumping()) {
-
-
             if (0.5 < cp.getTimeOfTheJumpInstant_i_float() && cp.getTimeOfTheJumpInstant_i_float() > 0.6 && cp.getNbJump() < 2 && jump) {
                 cp.setJumping(true);
                 cp.setNbJump(cp.getNbJump() + 1);
                 cp.setTimeInitOfJump(l);
 
             } else {
-                cp.setPosY(-10 * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
+                cp.setPosY(-1 * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
 
             }
 
