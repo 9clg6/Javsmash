@@ -34,6 +34,11 @@ public class FirePosition implements IPosition {
     }
     //</editor-fold>
 
+
+    public Fire getFireBall() {
+        return fireBall;
+    }
+
     public double getPosX() {
         return fireBall.getFireBallCircle().getCenterX();
     }

@@ -1,5 +1,6 @@
 package model.hero;
 
+import animation.Sprite;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
@@ -19,7 +20,8 @@ public class Displacement {
     private long timeinitAttackA;
 
     private CharacterPosition firstCp, secondCp;
-    private Sprite spriteA, spriteB;
+    private Sprite<CharacterPosition> spriteA;
+    private Sprite<CharacterPosition> spriteB;
 
 
     /**
@@ -37,10 +39,15 @@ public class Displacement {
         this.secondCp = secondCp;
         this.root = root;
 
-        spriteA = new Sprite(this.firstCp);
-        spriteB = new Sprite(this.secondCp);
+        spriteA = new Sprite<>(this.firstCp);
+        spriteB = new Sprite<>(this.secondCp);
     }
 
+    /***
+     * Switch scale when the character goes to right or left
+     *
+     * @param characterPosition defines the position of the character
+     */
     private void swapScale(CharacterPosition characterPosition) {
         if (characterPosition.getPersonnage().getSkin().getScaleX() == 1 && leftA || rightB) {
             setScale(characterPosition, -1);
@@ -48,10 +55,15 @@ public class Displacement {
         } else {
             if (characterPosition.getPersonnage().getSkin().getScaleX() == -1 && rightA || leftB)
                 setScale(characterPosition, 1);
-
         }
     }
 
+    /***
+     * Defines the orientation of the Character
+     *
+     * @param characterPosition defines the position of the character
+     * @param orientation Defines the orientation of the character
+     */
     private void setScale(CharacterPosition characterPosition, double orientation) {
         characterPosition.getPersonnage().getSkin().setScaleX(orientation);
         characterPosition.getPersonnage().getHero().setScaleX(orientation);
@@ -91,7 +103,6 @@ public class Displacement {
     /**
      * Move the character to the right or to the left in function of the time
      *
-     *
      * @param cp characterPosition
      * @param isMovingL if the character wants to move to the left
      * @param isMovingR is the character wants to move to the right
@@ -123,8 +134,6 @@ public class Displacement {
      * @param l time in nanosecond
      */
     private void jump(CharacterPosition cp, boolean jump, long l) {
-
-
         if (jump && !cp.isJumping()) {
             cp.setJumping(true);
             cp.setNbJump(cp.getNbJump() + 1);
@@ -165,8 +174,9 @@ public class Displacement {
      * @param keyEvent KeyEvent, used to get which keys is pressed
      */
     public void CharacterEventOnKeyPressed(KeyEvent keyEvent) {
-        spriteA.spriteAnimation("Walk");
-        spriteB.spriteAnimation("Walk");
+        spriteA.spriteAnimation("Forward");
+        spriteB.spriteAnimation("Forward");
+
         switch (keyEvent.getCode()) {
             case Q:
                 leftA = true;

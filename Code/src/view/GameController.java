@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.hero.Character;
@@ -57,18 +58,23 @@ class GameController {
 
         sc1 = new Scene(root, MAX_WIDTH, MAX_HEIGHT);
 
-        Character firstCharacter    = new Character(sc1, firstCharacterSelected, true);
-        Character secondCharacter   = new Character(sc1, secondCharacterSelected, false);
+        Character firstCharacter = new Character(sc1, firstCharacterSelected, true);
+        Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
 
         characterCollection = new ArrayList<>();
         characterCollection.add(firstCharacter);
         characterCollection.add(secondCharacter);
 
-        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), root);
-        AttackManager attackManager        = new AttackManager(firstCharacter,secondCharacter,root);
-        KeyManager keyManager              = new KeyManager(characterDisplacement,attackManager);
-        ItemManager itemmanager            = new ItemManager(root);
+        for (Character character : characterCollection) {
+            for (Circle circle : character.getHitbox().getCircleArrayList()) {
+                root.getChildren().addAll(circle);
+            }
+        }
 
+        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), root);
+        AttackManager attackManager = new AttackManager(firstCharacter, secondCharacter, root);
+        KeyManager keyManager = new KeyManager(characterDisplacement, attackManager);
+        ItemManager itemmanager = new ItemManager(root);
 
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -101,7 +107,13 @@ class GameController {
         gameLoop.start();
 
 
-        root.getChildren().addAll(firstCharacter.getHero(), firstCharacter.getSkin(), secondCharacter.getHero(), secondCharacter.getSkin(), characterCollection.stream().collect());
+        root.getChildren().addAll(firstCharacter.getHero(),
+                firstCharacter.getSkin(),
+                secondCharacter.getHero(),
+                secondCharacter.getSkin()
+        );
+
+
         heroSelectionStage.setTitle("JavSmash - GAME STARTED");
         heroSelectionStage.setFullScreen(false);
         heroSelectionStage.setResizable(false);

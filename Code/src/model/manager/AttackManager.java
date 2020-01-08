@@ -3,6 +3,7 @@ package model.manager;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.entity.Fire;
+import model.entity.FireDisplacement;
 import model.hero.Character;
 
 /***
@@ -12,10 +13,10 @@ import model.hero.Character;
 public class AttackManager {
 
     public static final int MAX_RANGE_FIREBALL_VALUE = 600;
-    public static final int FIREBALL_MOVEMENT_ITERATOR = 10;
     private Character characterOne, characterTwo, characterWhoAttacked;
     private Pane root;
     private Fire fireBall;
+    private FireDisplacement fireDisplacement;
 
     /**
      * Constructor that defines two character and the actual parent-group
@@ -28,6 +29,7 @@ public class AttackManager {
         this.root = root;
         this.characterOne = characterOne;
         this.characterTwo = characterTwo;
+
     }
 
     /***
@@ -42,8 +44,9 @@ public class AttackManager {
                 characterWhoAttacked = characterOne;
 
                 isFireballNull();
-
                 fireBall = new Fire(characterOne, root);
+
+                fireDisplacement = new FireDisplacement(fireBall);
                 break;
             case NUMPAD0:
                 characterWhoAttacked = characterTwo;
@@ -51,6 +54,8 @@ public class AttackManager {
                 isFireballNull();
 
                 fireBall = new Fire(characterTwo, root);
+                fireDisplacement = new FireDisplacement(fireBall);
+
                 break;
 
         }
@@ -63,10 +68,11 @@ public class AttackManager {
      */
     public void hasAttacked() {
         try {
-
             if (fireBall != null) {
                 if (!(characterWhoAttacked == characterOne && fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
-                    fireBall.getFireballPosition().setPosXY(fireBall.getFireballPosition().getPosX() + FIREBALL_MOVEMENT_ITERATOR, fireBall.getFireballPosition().getPosY());
+                    fireDisplacement.goForward();
+
+
                 } else {
                     fireBall.destruction();
                     System.gc();

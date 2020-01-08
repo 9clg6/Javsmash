@@ -60,6 +60,9 @@ public class Fire {
         return character;
     }
 
+    public SkinManager getSkinManager() {
+        return skin;
+    }
 
     Circle getFireBallCircle() {
         return fireBallCircle;

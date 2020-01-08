@@ -7,6 +7,7 @@ import javafx.scene.Scene;
  * CharacterPosition manages the position of the character
  */
 public class CharacterPosition implements model.Interface.IPosition {
+
     public static final int SECONDCHARACTER_POS_X_AT_SPAWN = 350;
     public static final double SECONDCHARACTER_POS_Y_AT_SPAWN = 540.5;
     private static final int ZERO = 0;
@@ -15,6 +16,7 @@ public class CharacterPosition implements model.Interface.IPosition {
     private static final int VERTICAL_BOTTOM_LIMIT = 52;
     private static final int FIRSTCHARACTER_POS_X_AT_SPAWN = 32;
     private static final double FIRSTCHARACTER_POS_Y_AT_SPAWN = 540.5;
+
     private Character p;
     private Scene s1;
     private int nbJump = ZERO;
@@ -53,6 +55,8 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param position type of double
      */
     public void setPosX(double position) {
+        p.getHitbox().updateXY();
+
         p.getHero().setX(p.getHero().getX() + position);
         p.getSp().updatePosSkinX(this);
 
@@ -71,6 +75,8 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param position type of double
      */
     public void setPosY(double position) {
+        p.getHitbox().updateXY();
+
         if (!(p.getHero().getY() + position > s1.getHeight() - VERTICAL_BOTTOM_LIMIT)) {
             p.getHero().setY(p.getHero().getY() + position);
             p.getSp().updatePosSkinY(this);
@@ -82,7 +88,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      *
      * @return p Character
      */
-    Character getPersonnage() {
+    public Character getPersonnage() {
         return p;
     }
 
@@ -92,10 +98,10 @@ public class CharacterPosition implements model.Interface.IPosition {
     void spawnHeroPosition(boolean isFirstCharacterSelected) {
         if (isFirstCharacterSelected) {
             setPositionXY(FIRSTCHARACTER_POS_X_AT_SPAWN, FIRSTCHARACTER_POS_Y_AT_SPAWN);
-
         } else {
             setPositionXY(SECONDCHARACTER_POS_X_AT_SPAWN, SECONDCHARACTER_POS_Y_AT_SPAWN);
         }
+        p.getHitbox().updateXY();
     }
 
     /**

@@ -15,7 +15,7 @@ public class Character {
 
     private static final int HERO_WIDTH = 50;
     private static final int HERO_HEIGHT = 50;
-    private static final int OPACITY = 50;
+    private static final int OPACITY = 0;
 
     private Rectangle hero;
     private CharacterSkinPosition sp;
@@ -69,7 +69,7 @@ public class Character {
      *
      * @return skin type of CharacterSkinLoader
      */
-    SkinManager getSkinLoader() {
+    public SkinManager getSkinManager() {
         return skin;
     }
 
