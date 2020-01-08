@@ -101,7 +101,7 @@ class GameController {
         gameLoop.start();
 
 
-        root.getChildren().addAll(firstCharacter.getHero(), firstCharacter.getSkin(), secondCharacter.getHero(), secondCharacter.getSkin(), characterCollection.stream().collect()orEach(character -> character.getHitbox().getCircleArrayList()));
+        root.getChildren().addAll(firstCharacter.getHero(), firstCharacter.getSkin(), secondCharacter.getHero(), secondCharacter.getSkin(), characterCollection.stream().collect());
         heroSelectionStage.setTitle("JavSmash - GAME STARTED");
         heroSelectionStage.setFullScreen(false);
         heroSelectionStage.setResizable(false);
