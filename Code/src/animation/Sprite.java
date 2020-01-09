@@ -43,6 +43,7 @@ public class Sprite<T> implements ISprite {
                     iterator++;
                     Image imgChange = new Image(((CharacterPosition) elementPosition).getPersonnage().getSkinManager().getRepertory() + "Walk/" + iterator + ".png");
                     ((CharacterPosition) elementPosition).getPersonnage().getSkinManager().setSkinImage(imgChange);
+
                 } else {
                     if (elementPosition instanceof FirePosition) {
                         if (iterator + incrementer > MAX_ITERATOR_FIREBALL) {

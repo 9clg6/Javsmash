@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Hitbox {
 
     public static final int divisor = 2;
-    private static final int RADIUS = 5;
+    private static final int RADIUS = 10;
     private static final Color colorOfHitBox = Color.RED;
 
     private Rectangle hero;
