@@ -8,9 +8,11 @@ import model.manager.SkinManager;
 public class Fire {
     private static final int RADIUS = 15;
     private static final int OPACITY = 0;
+
     private Character character;
     private Pane root;
     private Circle fireBallCircle;
+
     private FirePosition fireballPosition;
     private FireSkinPosition fireSkinPosition;
     private SkinManager skin;

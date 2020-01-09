@@ -16,11 +16,12 @@ import model.manager.KeyManager;
 
 import java.util.ArrayList;
 
-class GameController {
+public class GameController {
 
     private static final int MAX_WIDTH = 1500;
     private static final double MAX_HEIGHT = 600.0D;
-    private Scene sc1;
+    private static Scene sc1;
+
     @FXML
     private Pane root;
     private ArrayList<Character> characterCollection;
@@ -42,12 +43,19 @@ class GameController {
         this.heroSelectionStage      = heroSelectionStage;
         this.firstCharacterSelected  = firstCharacter;
         this.secondCharacterSelected = secondCharacter;
-
     }
 
     @FXML
     private void initialize() {
         initializeWindow();
+    }
+
+    public static int getMaxWidth() {
+        return MAX_WIDTH;
+    }
+
+    public static double getMaxHeight() {
+        return MAX_HEIGHT;
     }
 
     /**
@@ -57,6 +65,7 @@ class GameController {
     private void initializeWindow() {
 
         sc1 = new Scene(root, MAX_WIDTH, MAX_HEIGHT);
+
 
         Character firstCharacter = new Character(sc1, firstCharacterSelected, true);
         Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
@@ -71,7 +80,7 @@ class GameController {
             }
         }
 
-        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter, sc1), new CharacterPosition(secondCharacter, sc1), root);
+        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter), new CharacterPosition(secondCharacter), root);
         AttackManager attackManager = new AttackManager(firstCharacter, secondCharacter, root);
         KeyManager keyManager = new KeyManager(characterDisplacement, attackManager);
         ItemManager itemmanager = new ItemManager(root);
@@ -120,6 +129,4 @@ class GameController {
         heroSelectionStage.setScene(sc1);
         heroSelectionStage.show();
     }
-
-
 }

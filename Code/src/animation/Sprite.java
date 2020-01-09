@@ -2,8 +2,7 @@ package animation;
 
 import javafx.scene.image.Image;
 import model.Interface.ISprite;
-import model.entity.FirePosition;
-import model.hero.CharacterPosition;
+import model.manager.SkinManager;
 
 /**
  * @author Clement GUYON
@@ -11,20 +10,19 @@ import model.hero.CharacterPosition;
  * This class is used by the class Displacement
  */
 public class Sprite<T> implements ISprite {
-    public static final int MAX_ITERATOR_CHARACTER = 14;
-    public static final int MAX_ITERATOR_FIREBALL = 5;
-    public static final int SWITCH_SKIN_SPEED = 5;
-    public static final int ZERO = 0;
+    private static final int MAX_ITERATOR_CHARACTER = 14;
+    private static final int MAX_ITERATOR_FIREBALL = 5;
+    private static final int SWITCH_SKIN_SPEED = 5;
+    private static final int ZERO = 0;
     private static final int incrementer = 1;
     private static int counter = 1, iterator = 1;
-    private T elementPosition;
+    private SkinManager skinManager;
+    private String typeOfObject;
 
-    /**
-     * @param elementPosition defines the position of the character
-     *                        Defines the CharacterPosition
-     */
-    public Sprite(T elementPosition) {
-        this.elementPosition = elementPosition;
+
+    public Sprite(SkinManager skinManager, String typeOfObject) {
+        this.skinManager = skinManager;
+        this.typeOfObject = typeOfObject;
     }
 
     /**
@@ -36,22 +34,22 @@ public class Sprite<T> implements ISprite {
         counter++;
         if (counter % SWITCH_SKIN_SPEED == ZERO) {
             if (typeOfMovement.equals("Forward")) {
-                if (elementPosition instanceof CharacterPosition) {
+                if (typeOfObject.equals("Character")) {
                     if (iterator + incrementer > MAX_ITERATOR_CHARACTER) {
                         iterator = incrementer;
                     }
                     iterator++;
-                    Image imgChange = new Image(((CharacterPosition) elementPosition).getPersonnage().getSkinManager().getRepertory() + "Walk/" + iterator + ".png");
-                    ((CharacterPosition) elementPosition).getPersonnage().getSkinManager().setSkinImage(imgChange);
+                    Image imgChange = new Image(skinManager.getRepertory() + "Walk/" + iterator + ".png");
+                    skinManager.setSkinImage(imgChange);
 
                 } else {
-                    if (elementPosition instanceof FirePosition) {
+                    if (typeOfObject.equals("Entity")) {
                         if (iterator + incrementer > MAX_ITERATOR_FIREBALL) {
                             iterator = incrementer;
                         }
                         iterator++;
-                        Image imgChange = new Image(((FirePosition) elementPosition).getFireBall().getSkinManager().getRepertory() + iterator + ".png");
-                        ((FirePosition) elementPosition).getFireBall().getSkinManager().setSkinImage(imgChange);
+                        Image imgChange = new Image(skinManager.getRepertory() + iterator + ".png");
+                        skinManager.setSkinImage(imgChange);
                     }
                 }
             }
@@ -63,11 +61,12 @@ public class Sprite<T> implements ISprite {
      * spriteReset permits to set default-position of the skin when any key is pressed.
      */
     public void spriteReset() {
-        if (elementPosition instanceof CharacterPosition) {
-            ((CharacterPosition) elementPosition).getPersonnage().getSkinManager().setSkinImage(new Image(((CharacterPosition) elementPosition).getPersonnage().getSkinManager().getRepertory() + "Walk/" + "1.png"));
+        if (typeOfObject.equals("Character")) {
+            System.out.println(skinManager.getRepertory() + "1.png");
+            skinManager.setSkinImage(new Image(skinManager.getRepertory() + "1.png"));
         } else {
-            if (elementPosition instanceof FirePosition) {
-                ((FirePosition) elementPosition).getFireBall().getSkinManager().setSkinImage(new Image(((FirePosition) elementPosition).getFireBall().getSkinManager().getRepertory() + "1.png"));
+            if (typeOfObject.equals("Entity")) {
+                skinManager.setSkinImage(new Image(skinManager.getRepertory() + "1.png"));
             }
         }
     }

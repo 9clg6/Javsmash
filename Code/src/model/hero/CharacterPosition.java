@@ -1,6 +1,6 @@
 package model.hero;
 
-import javafx.scene.Scene;
+import view.GameController;
 
 /**
  * @author Clement GUYON
@@ -8,8 +8,8 @@ import javafx.scene.Scene;
  */
 public class CharacterPosition implements model.Interface.IPosition {
 
-    public static final int SECONDCHARACTER_POS_X_AT_SPAWN = 350;
-    public static final double SECONDCHARACTER_POS_Y_AT_SPAWN = 540.5;
+    private static final int SECONDCHARACTER_POS_X_AT_SPAWN = 350;
+    private static final double SECONDCHARACTER_POS_Y_AT_SPAWN = 540.5;
     private static final int ZERO = 0;
     private static final int LEFT_MAP_LIMIT = 32;
     private static final int RIGHT_MAP_LIMIT = 64;
@@ -18,7 +18,6 @@ public class CharacterPosition implements model.Interface.IPosition {
     private static final double FIRSTCHARACTER_POS_Y_AT_SPAWN = 540.5;
 
     private Character p;
-    private Scene s1;
     private int nbJump = ZERO;
     private boolean isJumping = false;
     private long TimeInitOfJump;
@@ -29,11 +28,9 @@ public class CharacterPosition implements model.Interface.IPosition {
      * Constructor
      *
      * @param p  defines the character
-     * @param s1 defines the scene
      */
-    public CharacterPosition(Character p, Scene s1) {
+    public CharacterPosition(Character p) {
         this.p = p;
-        this.s1 = s1;
 
         setPositionXY(p.getHero().getX(), p.getHero().getY());
     }
@@ -58,13 +55,13 @@ public class CharacterPosition implements model.Interface.IPosition {
         p.getHitbox().updateXY();
 
         p.getHero().setX(p.getHero().getX() + position);
-        p.getSp().updatePosSkinX(this);
+        p.getSp().updatePosSkinX(this.getHeroPosX());
 
         if (p.getHero().getX() < LEFT_MAP_LIMIT) {
-            p.getHero().setX(s1.getWidth() - s1.getWidth() + LEFT_MAP_LIMIT);
+            p.getHero().setX(LEFT_MAP_LIMIT);
         }
-        if (p.getHero().getX() > s1.getWidth() - RIGHT_MAP_LIMIT) {
-            p.getHero().setX(s1.getWidth() - RIGHT_MAP_LIMIT);
+        if (p.getHero().getX() > GameController.getMaxWidth() - RIGHT_MAP_LIMIT) {
+            p.getHero().setX(GameController.getMaxWidth() - RIGHT_MAP_LIMIT);
         }
 
     }
@@ -77,9 +74,9 @@ public class CharacterPosition implements model.Interface.IPosition {
     public void setPosY(double position) {
         p.getHitbox().updateXY();
 
-        if (!(p.getHero().getY() + position > s1.getHeight() - VERTICAL_BOTTOM_LIMIT)) {
+        if (!(p.getHero().getY() + position > GameController.getMaxHeight() - VERTICAL_BOTTOM_LIMIT)) {
             p.getHero().setY(p.getHero().getY() + position);
-            p.getSp().updatePosSkinY(this);
+            p.getSp().updatePosSkinY(this.getHeroPosY());
         }
     }
 
@@ -88,7 +85,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      *
      * @return p Character
      */
-    public Character getPersonnage() {
+    Character getPersonnage() {
         return p;
     }
 

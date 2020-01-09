@@ -17,11 +17,11 @@ public class Displacement {
     private long TimeLastDisplacementA;
     private long TimeLastDisplacementB;
     private long oneSecond = 1000000000;
-    private long timeinitAttackA;
+    private long timeInitAttackA;
 
     private CharacterPosition firstCp, secondCp;
-    private Sprite<CharacterPosition> spriteA;
-    private Sprite<CharacterPosition> spriteB;
+    private Sprite spriteA;
+    private Sprite spriteB;
 
 
     /**
@@ -39,8 +39,8 @@ public class Displacement {
         this.secondCp = secondCp;
         this.root = root;
 
-        spriteA = new Sprite<>(this.firstCp);
-        spriteB = new Sprite<>(this.secondCp);
+        spriteA = new Sprite(firstCp.getPersonnage().getSkinManager(), "Character");
+        spriteB = new Sprite(secondCp.getPersonnage().getSkinManager(), "Character");
     }
 
     /***
@@ -92,10 +92,10 @@ public class Displacement {
         jump(secondCp, jumpB, l);
 
         if (Aattacking) {
-            if (l - timeinitAttackA > 2 * oneSecond) {
+            if (l - timeInitAttackA > 2 * oneSecond) {
                 new RangeAttack(firstCp.getPersonnage(), root);
                 Aattacking = false;
-                timeinitAttackA = l;
+                timeInitAttackA = l;
             }
         }
     }

@@ -18,10 +18,13 @@ public class Character {
     private static final int OPACITY = 0;
 
     private Rectangle hero;
-    private CharacterSkinPosition sp;
-    private SkinManager skin;
     private HealPoints life;
     private Hitbox hitbox;
+
+    //SKINABLE
+    private SkinManager skin;
+    private CharacterSkinPosition sp;
+    private CharacterPosition characterPos;
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
      * opacity and number of Life Points
@@ -39,7 +42,7 @@ public class Character {
         sp.setPosY(hero.getY());
         hero.setOpacity(OPACITY);
 
-        CharacterPosition characterPos = new CharacterPosition(this, sc1);
+        characterPos = new CharacterPosition(this);
         characterPos.spawnHeroPosition(isFirstCharacterSelected);
     }
     /**

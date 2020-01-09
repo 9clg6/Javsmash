@@ -30,7 +30,7 @@ public class FirePosition implements IPosition {
     @Override
     public void setPosY(double pos) {
         fireBall.getFireBallCircle().setCenterY(pos);
-        fireBall.getFireSkinPosition().updatePosSkinY(this);
+        fireBall.getFireSkinPosition().updatePosSkinY(this.getPosY());
     }
     //</editor-fold>
 
@@ -46,7 +46,7 @@ public class FirePosition implements IPosition {
     @Override
     public void setPosX(double pos) {
         fireBall.getFireBallCircle().setCenterX(pos);
-        fireBall.getFireSkinPosition().updatePosSkinX(this);
+        fireBall.getFireSkinPosition().updatePosSkinX(this.getPosX());
     }
     //</editor-fold>
 

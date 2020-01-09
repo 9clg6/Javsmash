@@ -2,13 +2,14 @@ package model.hero;
 
 import javafx.scene.image.ImageView;
 import model.Interface.IPosition;
+import model.Interface.ISkinPosition;
 import model.manager.SkinManager;
 
 /**
  * @author Clement GUYON
  * Class used to manage the position of the skin
  */
-public class CharacterSkinPosition implements IPosition {
+public class CharacterSkinPosition implements IPosition, ISkinPosition {
     private ImageView skin;
 
     /**
@@ -24,19 +25,19 @@ public class CharacterSkinPosition implements IPosition {
     /**
      * updatePosSkinY updates the position of the skin in Y
      *
-     * @param cp types of CharacterPosition
+     * @param pos position in Y
      */
-    void updatePosSkinY(CharacterPosition cp) {
-        setPosY(cp.getHeroPosY());
+    public void updatePosSkinY(double pos) {
+        setPosY(pos);
     }
 
     /**
      * updatePosSkinY updates the position of the skin in X
      *
-     * @param cp types of CharacterPosition
+     * @param pos X position
      */
-    void updatePosSkinX(CharacterPosition cp) {
-        setPosX(cp.getHeroPosX());
+    public void updatePosSkinX(double pos) {
+        setPosX(pos);
     }
 
     /**

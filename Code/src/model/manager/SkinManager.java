@@ -3,11 +3,17 @@ package model.manager;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Clement GUYON
  * CharacterSkinLoader manages images of skins
  */
 public class SkinManager {
+    private Map<String, Repertory> skinCollection;
+
+
     private ImageView skinImage;
     private String repertory;
 
@@ -17,28 +23,49 @@ public class SkinManager {
      * @param entity types on int defines which character is selected
      */
     public SkinManager(String entity) {
-        skinManager(entity);
+        skinCollection = new HashMap<>();
+        initializeMap();
+
+        skinFinder(entity);
     }
 
     /**
      * skinManager set the skin depending of the characterNumber and set the repertory of the character
      */
-    private void skinManager(String entity) {
-        if (entity.equals("Clement")) {
-            skinImage = new ImageView(new Image("img/BombMan/Walk/1.png"));
-            setRepertory("img/BombMan/");
+    private void skinFinder(String entity) {
+        for (Map.Entry<String, Repertory> entry : skinCollection.entrySet()) {
+            if (entity.equals(entry.getKey())) {
+                skinImage = entry.getValue().getImageView();
+                setRepertory(entry.getValue().getPath());
+            }
         }
-        if (entity.equals("Maxime")) {
-            skinImage = new ImageView(new Image("img/Cucumber/Walk/1.png"));
-            setRepertory("img/Cucumber/");
+    }
+
+    /***
+     * Initialize the skin Map
+     */
+    private void initializeMap() {
+        skinCollection.put("Clement", new Repertory(new ImageView(new Image("img/BombMan/Walk/1.png")), "img/BombMan/Walk/"));
+        skinCollection.put("Maxime", new Repertory(new ImageView(new Image("img/Cucumber/Walk/1.png")), "img/Cucumber/Walk/"));
+        skinCollection.put("Fireball", new Repertory(new ImageView(new Image("img/Fireball/1.png")), "img/Fireball/"));
+        skinCollection.put("Apple", new Repertory(new ImageView(new Image("img/Items/apple.png")), "img/Items/"));
+    }
+
+    private static class Repertory {
+        private ImageView imageView;
+        private String path;
+
+        public Repertory(ImageView imageView, String path) {
+            this.imageView = imageView;
+            this.path = path;
         }
-        if (entity.equals("Fireball")) {
-            skinImage = new ImageView(new Image("img/Fireball/1.png"));
-            setRepertory("img/Fireball/");
+
+        public ImageView getImageView() {
+            return imageView;
         }
-        if (entity.equals("Apple")) {
-            skinImage = new ImageView(new Image("img/Items/apple.png"));
-            setRepertory("img/Items/");
+
+        public String getPath() {
+            return path;
         }
     }
 

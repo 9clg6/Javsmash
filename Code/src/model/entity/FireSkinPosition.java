@@ -2,9 +2,10 @@ package model.entity;
 
 import javafx.scene.image.ImageView;
 import model.Interface.IPosition;
+import model.Interface.ISkinPosition;
 import model.manager.SkinManager;
 
-public class FireSkinPosition implements IPosition {
+public class FireSkinPosition implements IPosition, ISkinPosition {
 
     private ImageView skin;
 
@@ -15,12 +16,12 @@ public class FireSkinPosition implements IPosition {
     }
 
     //<editor-fold desc="POSITION X & Y UPDATER">
-    void updatePosSkinX(FirePosition firePosition) {
-        setPosX(firePosition.getPosX() - 50);
+    public void updatePosSkinX(double pos) {
+        setPosX(pos - 50);
     }
 
-    void updatePosSkinY(FirePosition firePosition) {
-        setPosY(firePosition.getPosY() - 20);
+    public void updatePosSkinY(double pos) {
+        setPosY(pos - 20);
     }
     //</editor-fold>
 
@@ -34,10 +35,6 @@ public class FireSkinPosition implements IPosition {
         skin.setX(pos);
     }
     //</editor-fold>
-
-    public double getPosY() {
-        return skin.getY();
-    }
 
     @Override
     public void setPosY(double pos) {
