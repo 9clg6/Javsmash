@@ -39,7 +39,7 @@ public class Sprite<T> implements ISprite {
                         iterator = incrementer;
                     }
                     iterator++;
-                    Image imgChange = new Image(skinManager.getRepertory() + "Walk/" + iterator + ".png");
+                    Image imgChange = new Image(skinManager.getRepertory() + iterator + ".png");
                     skinManager.setSkinImage(imgChange);
 
                 } else {
@@ -62,7 +62,6 @@ public class Sprite<T> implements ISprite {
      */
     public void spriteReset() {
         if (typeOfObject.equals("Character")) {
-            System.out.println(skinManager.getRepertory() + "1.png");
             skinManager.setSkinImage(new Image(skinManager.getRepertory() + "1.png"));
         } else {
             if (typeOfObject.equals("Entity")) {

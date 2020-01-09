@@ -13,6 +13,7 @@ import model.hero.Displacement;
 import model.manager.AttackManager;
 import model.manager.ItemManager;
 import model.manager.KeyManager;
+import model.world.Collision;
 
 import java.util.ArrayList;
 
@@ -65,8 +66,6 @@ public class GameController {
     private void initializeWindow() {
 
         sc1 = new Scene(root, MAX_WIDTH, MAX_HEIGHT);
-
-
         Character firstCharacter = new Character(sc1, firstCharacterSelected, true);
         Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
 
@@ -74,17 +73,12 @@ public class GameController {
         characterCollection.add(firstCharacter);
         characterCollection.add(secondCharacter);
 
-        for (Character character : characterCollection) {
-            for (Circle circle : character.getHitbox().getCircleArrayList()) {
-                root.getChildren().addAll(circle);
-            }
-        }
-
         Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter), new CharacterPosition(secondCharacter), root);
         AttackManager attackManager = new AttackManager(firstCharacter, secondCharacter, root);
         KeyManager keyManager = new KeyManager(characterDisplacement, attackManager);
         ItemManager itemmanager = new ItemManager(root);
 
+        Collision collision = new Collision(firstCharacter, secondCharacter);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -95,6 +89,8 @@ public class GameController {
 
                 sc1.setOnKeyPressed(keyManager::separatorOnPress);
                 sc1.setOnKeyReleased(keyManager::separatorOnRelease);
+
+                collision.secondCheckCollision();
 
                 attackManager.hasAttacked();
                 itemmanager.spawnItem(l);
@@ -115,6 +111,12 @@ public class GameController {
 
         gameLoop.start();
 
+
+        for (Character character : characterCollection) {
+            for (Circle circle : character.getHitbox().getCircleArrayList()) {
+                root.getChildren().addAll(circle);
+            }
+        }
 
         root.getChildren().addAll(firstCharacter.getHero(),
                 firstCharacter.getSkin(),

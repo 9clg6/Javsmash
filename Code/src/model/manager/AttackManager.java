@@ -71,8 +71,6 @@ public class AttackManager {
             if (fireBall != null) {
                 if (!(characterWhoAttacked == characterOne && fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
                     fireDisplacement.goForward();
-
-
                 } else {
                     fireBall.destruction();
                     System.gc();
