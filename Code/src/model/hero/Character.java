@@ -1,9 +1,9 @@
 package model.hero;
 
-import hitbox.Hitbox;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import model.hitbox.Hitbox;
 import model.manager.SkinManager;
 
 
@@ -15,7 +15,7 @@ public class Character {
 
     private static final int HERO_WIDTH = 50;
     private static final int HERO_HEIGHT = 50;
-    private static final int OPACITY = 0;
+    private static final int OPACITY = 50;
 
     private Rectangle hero;
     private HealPoints life;

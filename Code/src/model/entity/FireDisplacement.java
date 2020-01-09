@@ -1,6 +1,6 @@
 package model.entity;
 
-import animation.Sprite;
+import model.animation.Sprite;
 
 public class FireDisplacement {
     public static final int FIREBALL_MOVEMENT_ITERATOR = 10;

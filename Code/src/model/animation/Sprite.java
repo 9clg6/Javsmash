@@ -1,4 +1,4 @@
-package animation;
+package model.animation;
 
 import javafx.scene.image.Image;
 import model.Interface.ISprite;
@@ -6,7 +6,7 @@ import model.manager.SkinManager;
 
 /**
  * @author Clement GUYON
- * Sprite is use to change the skin of the character while he is walking to do an walk-animation
+ * Sprite is use to change the skin of the character while he is walking to do an walk-model.animation
  * This class is used by the class Displacement
  */
 public class Sprite<T> implements ISprite {

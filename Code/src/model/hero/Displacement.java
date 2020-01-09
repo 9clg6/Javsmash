@@ -1,8 +1,8 @@
 package model.hero;
 
-import animation.Sprite;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import model.animation.Sprite;
 
 /**
  * @author Clement GUYON and Maxime DACISAC
@@ -205,7 +205,7 @@ public class Displacement {
     }
 
     /**
-     * CharacterEventOnKeyReleased is used to know when key is released to stop the animation and stop any movement
+     * CharacterEventOnKeyReleased is used to know when key is released to stop the model.animation and stop any movement
      *
      * @param keyEvent KeyEvent, used to get which key is released.
      * @see Sprite

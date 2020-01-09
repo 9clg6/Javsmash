@@ -13,14 +13,19 @@ public class Collision {
     }
 
     public void secondCheckCollision() {
+
         for (Circle circleA : one.getHitbox().getCircleArrayList()) {
             for (Circle circleB : two.getHitbox().getCircleArrayList()) {
                 if (circleA.intersects(circleB.getBoundsInLocal())) {
                     circleA.setFill(Color.GREEN);
                     circleB.setFill(Color.GREEN);
+                    break;
                 }
+                circleA.setFill(Color.RED);
+                circleB.setFill(Color.RED);
             }
         }
     }
-
 }
+
+

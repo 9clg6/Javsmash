@@ -1,4 +1,4 @@
-package hitbox;
+package model.hitbox;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
