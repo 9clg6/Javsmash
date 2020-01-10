@@ -19,6 +19,7 @@ public class AttackManager {
     private Fire fireBall;
     private FireDisplacement fireDisplacement;
     private long timeDisplacementFireball;
+    private double characterScale;
 
 
     /**
@@ -50,6 +51,7 @@ public class AttackManager {
                 fireBall = new Fire(characterOne, root);
 
                 fireDisplacement = new FireDisplacement(fireBall);
+                characterScale= characterWhoAttacked.getSkin().getScaleX();
                 break;
             case NUMPAD0:
                 characterWhoAttacked = characterTwo;
@@ -58,6 +60,7 @@ public class AttackManager {
 
                 fireBall = new Fire(characterTwo, root);
                 fireDisplacement = new FireDisplacement(fireBall);
+                characterScale= characterWhoAttacked.getSkin().getScaleX();
 
                 break;
 
@@ -75,7 +78,7 @@ public class AttackManager {
                 if (!(characterWhoAttacked == characterOne && fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
 
                     if (time - timeDisplacementFireball > ONE_MICRO_SECOND) {
-                        fireDisplacement.goForward();
+                        fireDisplacement.goForward(characterScale);
                         timeDisplacementFireball = time;
                     }
 
