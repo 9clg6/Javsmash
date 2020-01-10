@@ -17,8 +17,9 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
         primaryStage.setTitle("JavSmash");
-
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Scene scene =new Scene(root, 300, 275);
+        scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
 
     }

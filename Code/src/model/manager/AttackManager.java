@@ -13,10 +13,13 @@ import model.hero.Character;
 public class AttackManager {
 
     public static final int MAX_RANGE_FIREBALL_VALUE = 600;
+    private static final long ONE_MICRO_SECOND = 1000000;
     private Character characterOne, characterTwo, characterWhoAttacked;
     private Pane root;
     private Fire fireBall;
     private FireDisplacement fireDisplacement;
+    private long timeDisplacementFireball;
+
 
     /**
      * Constructor that defines two character and the actual parent-group
@@ -66,11 +69,16 @@ public class AttackManager {
      *
      * @throws NullPointerException is thrown if any fireBall is casted
      */
-    public void hasAttacked() {
+    public void hasAttacked(long time) {
         try {
             if (fireBall != null) {
                 if (!(characterWhoAttacked == characterOne && fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
-                    fireDisplacement.goForward();
+
+                    if (time - timeDisplacementFireball > ONE_MICRO_SECOND) {
+                        fireDisplacement.goForward();
+                        timeDisplacementFireball = time;
+                    }
+
                 } else {
                     fireBall.destruction();
                     System.gc();

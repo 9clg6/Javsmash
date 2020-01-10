@@ -15,6 +15,7 @@ public class FireSkinPosition implements IPosition, ISkinPosition {
         skin.getSkinImage().setFitWidth(80);
     }
 
+
     //<editor-fold desc="POSITION X & Y UPDATER">
     public void updatePosSkinX(double pos) {
         setPosX(pos - 50);

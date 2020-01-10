@@ -20,9 +20,9 @@ public class CharacterPosition implements model.Interface.IPosition {
     private Character p;
     private int nbJump = ZERO;
     private boolean isJumping = false;
-    private long TimeInitOfJump;
-    private long TimeOfTheJumpInstant_i;
-    private float TimeOfTheJumpInstant_i_float;
+    private long timeInitOfJump;
+    private long timeOfTheJumpInstant_i;
+    private float timeOfTheJumpInstant_i_float;
 
     /**
      * Constructor
@@ -159,7 +159,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @return the time when the character had started the jump (nanosecond)
      */
     long getTimeInitOfJump() {
-        return TimeInitOfJump;
+        return timeInitOfJump;
     }
 
     /**
@@ -168,7 +168,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param timeInitOfJump long
      */
     void setTimeInitOfJump(long timeInitOfJump) {
-        this.TimeInitOfJump = timeInitOfJump;
+        this.timeInitOfJump = timeInitOfJump;
     }
 
     /**
@@ -176,7 +176,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @return during how many time the character is on his jump (nanosecond)
      */
     long getTimeOfTheJumpInstant_i() {
-        return TimeOfTheJumpInstant_i;
+        return timeOfTheJumpInstant_i;
     }
 
     /**
@@ -185,7 +185,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param timeOfTheJumpInstant_i long
      */
     void setTimeOfTheJumpInstant_i(long timeOfTheJumpInstant_i) {
-        this.TimeOfTheJumpInstant_i = timeOfTheJumpInstant_i;
+        this.timeOfTheJumpInstant_i = timeOfTheJumpInstant_i;
     }
 
     /**
@@ -193,7 +193,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @return during how many time the character is on his jump (second)
      */
     float getTimeOfTheJumpInstant_i_float() {
-        return TimeOfTheJumpInstant_i_float;
+        return timeOfTheJumpInstant_i_float;
     }
 
     /**
@@ -203,7 +203,7 @@ public class CharacterPosition implements model.Interface.IPosition {
      * @param timeOfTheJumpInstant_i_float float
      */
     void setTimeOfTheJumpInstant_i_float(float timeOfTheJumpInstant_i_float) {
-        this.TimeOfTheJumpInstant_i_float = timeOfTheJumpInstant_i_float;
+        this.timeOfTheJumpInstant_i_float = timeOfTheJumpInstant_i_float;
     }
 }
 

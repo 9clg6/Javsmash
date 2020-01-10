@@ -66,6 +66,7 @@ public class GameController {
     private void initializeWindow() {
 
         sc1 = new Scene(root, MAX_WIDTH, MAX_HEIGHT);
+        sc1.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         Character firstCharacter = new Character(sc1, firstCharacterSelected, true);
         Character secondCharacter = new Character(sc1, secondCharacterSelected, false);
 
@@ -92,7 +93,8 @@ public class GameController {
 
                 collision.secondCheckCollision();
 
-                attackManager.hasAttacked();
+                attackManager.hasAttacked(l);
+
                 itemmanager.spawnItem(l);
 
                 healthBarPlayerA.setWidth(firstCharacter.getLifeStatus().getHP());

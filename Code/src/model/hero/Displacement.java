@@ -10,14 +10,14 @@ import model.animation.Sprite;
  */
 public class Displacement {
     private Pane root;
+    private static final long ONE_SECOND = 1000000000;
 
-    private boolean leftA, rightA, jumpA, Aattacking;
+    private boolean leftA, rightA, jumpA;
     private boolean leftB, rightB, jumpB;
 
-    private long TimeLastDisplacementA;
-    private long TimeLastDisplacementB;
-    private long oneSecond = 1000000000;
-    private long timeInitAttackA;
+    private long timeLastDisplacementA;
+    private long timeLastDisplacementB;
+
 
     private CharacterPosition firstCp, secondCp;
     private Sprite spriteA;
@@ -70,42 +70,35 @@ public class Displacement {
     }
 
     /**
-     *Call the function jump for each character all the frame
-     *Call the function moving for each character when the can move
+     * Call the function jump for each character all the frame
+     * Call the function moving for each character when the can move
      *
      * @param l time in nanosecond
      */
     public void moving(long l) {
 
-        long timeSinceMovingA = l - TimeLastDisplacementA;
+        long timeSinceMovingA = l - timeLastDisplacementA;
         if (movingLR(firstCp, leftA, rightA, timeSinceMovingA)) {
-            TimeLastDisplacementA = l;
+            timeLastDisplacementA = l;
         }
 
-        long timeSinceMovingB = l - TimeLastDisplacementB;
+        long timeSinceMovingB = l - timeLastDisplacementB;
         if (movingLR(secondCp, leftB, rightB, timeSinceMovingB)) {
-            TimeLastDisplacementB = l;
+            timeLastDisplacementB = l;
         }
 
         jump(firstCp, jumpA, l);
 
         jump(secondCp, jumpB, l);
 
-        if (Aattacking) {
-            if (l - timeInitAttackA > 2 * oneSecond) {
-                new RangeAttack(firstCp.getPersonnage(), root);
-                Aattacking = false;
-                timeInitAttackA = l;
-            }
-        }
     }
 
     /**
      * Move the character to the right or to the left in function of the time
      *
-     * @param cp characterPosition
-     * @param isMovingL if the character wants to move to the left
-     * @param isMovingR is the character wants to move to the right
+     * @param cp                        characterPosition
+     * @param isMovingL                 if the character wants to move to the left
+     * @param isMovingR                 is the character wants to move to the right
      * @param TimeSinceLastDisplacement time since the last displacement of the player had been effectuated
      * @return true when the character is moving or false when he is not moving
      */
@@ -117,7 +110,7 @@ public class Displacement {
 
         if (isMovingL || isMovingR) {
 
-            if (TimeSinceLastDisplacement > oneSecond / 100) {
+            if (TimeSinceLastDisplacement > ONE_SECOND / 100) {
                 cp.setPosX(dx);
                 return true;
             }
@@ -129,9 +122,9 @@ public class Displacement {
      * Do the jump of the character
      * Called all the frame
      *
-     * @param cp characterPosition
+     * @param cp   characterPosition
      * @param jump is the character wants to jump
-     * @param l time in nanosecond
+     * @param l    time in nanosecond
      */
     private void jump(CharacterPosition cp, boolean jump, long l) {
         if (jump && !cp.isJumping()) {
@@ -154,13 +147,13 @@ public class Displacement {
 
             }
 
-            if (cp.getNbJump() < 2 && (l - cp.getTimeInitOfJump()) > oneSecond) {
+            if (cp.getNbJump() < 2 && (l - cp.getTimeInitOfJump()) > ONE_SECOND) {
                 cp.setJumping(false);
                 cp.setNbJump(0);
 
             }
 
-            if (cp.getNbJump() == 2 && (l - cp.getTimeInitOfJump()) > (1.5 * oneSecond)) {
+            if (cp.getNbJump() == 2 && (l - cp.getTimeInitOfJump()) > (1.5 * ONE_SECOND)) {
                 cp.setJumping(false);
                 cp.setNbJump(0);
             }
