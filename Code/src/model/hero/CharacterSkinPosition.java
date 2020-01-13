@@ -1,15 +1,15 @@
 package model.hero;
 
 import javafx.scene.image.ImageView;
-import model.Interface.IPosition;
-import model.Interface.ISkinPosition;
+import model.Interface.Positionable;
+import model.Interface.SkinPositionable;
 import model.manager.SkinManager;
 
 /**
  * @author Clement GUYON
  * Class used to manage the position of the skin
  */
-public class CharacterSkinPosition implements IPosition, ISkinPosition {
+public class CharacterSkinPosition implements Positionable, SkinPositionable {
     private ImageView skin;
 
     /**

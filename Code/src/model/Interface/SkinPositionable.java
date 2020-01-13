@@ -1,6 +1,6 @@
 package model.Interface;
 
-public interface ISkinPosition {
+public interface SkinPositionable {
 
     void updatePosSkinX(double pos);
 

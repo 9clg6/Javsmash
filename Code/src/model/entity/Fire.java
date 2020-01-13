@@ -8,14 +8,16 @@ import model.manager.SkinManager;
 public class Fire {
     private static final int RADIUS = 15;
     private static final int OPACITY = 0;
+    public static final double DAMAGE = 0.15;
 
     private Character character;
     private Pane root;
     private Circle fireBallCircle;
 
     private FirePosition fireballPosition;
-    private FireSkinPosition fireSkinPosition;
+
     private SkinManager skin;
+    private FireSkinPosition fireSkinPosition;
 
     /**
      * @param character Character who casts the fireball
@@ -34,13 +36,12 @@ public class Fire {
         root.getChildren().addAll(fireBallCircle, skin.getSkinImage());
     }
 
-    public void destruction() {
-        root.getChildren().removeAll(fireBallCircle, skin.getSkinImage());
-
-        fireballPosition = null;
-        fireSkinPosition = null;
-        fireBallCircle = null;
-        skin = null;
+    /***
+     *
+     * @return damage of Fireball
+     */
+    public static double getDAMAGE() {
+        return DAMAGE;
     }
 
     /**
@@ -58,18 +59,43 @@ public class Fire {
         return fireSkinPosition;
     }
 
+    /**
+     * Destructs the current fireball
+     */
+    public void destruction() {
+        root.getChildren().removeAll(fireBallCircle, skin.getSkinImage());
+
+        fireballPosition = null;
+        fireSkinPosition = null;
+        fireBallCircle = null;
+        skin = null;
+    }
+
+    /***
+     * Getter of the character
+     * @return the character who cast the fireball
+     */
     public Character getCharacter() {
         return character;
     }
 
+    /***
+     * @return the skin manager
+     */
     public SkinManager getSkinManager() {
         return skin;
     }
 
-    Circle getFireBallCircle() {
+    /***
+     * @return the base-shape of fireball
+     */
+    public Circle getFireBallCircle() {
         return fireBallCircle;
     }
 
+    /***
+     * @return the actual position of fireball
+     */
     public FirePosition getFireballPosition() {
         return fireballPosition;
     }

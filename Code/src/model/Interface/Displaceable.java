@@ -1,6 +1,6 @@
 package model.Interface;
 
-public interface IDisplacement {
+public interface Displaceable {
 
     boolean movingLR();
 

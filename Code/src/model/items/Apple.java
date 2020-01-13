@@ -4,7 +4,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import model.entity.FirePosition;
 import model.entity.FireSkinPosition;
-import model.hero.Character;
 import model.manager.SkinManager;
 
 /**

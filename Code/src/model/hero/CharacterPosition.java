@@ -1,14 +1,15 @@
 package model.hero;
 
+import model.Interface.Positionable;
 import view.GameController;
 
 /**
  * @author Clement GUYON
  * CharacterPosition manages the position of the character
  */
-public class CharacterPosition implements model.Interface.IPosition {
+public class CharacterPosition implements Positionable {
 
-    private static final int SECONDCHARACTER_POS_X_AT_SPAWN = 350;
+    private static final int SECONDCHARACTER_POS_X_AT_SPAWN = 900;
     private static final double SECONDCHARACTER_POS_Y_AT_SPAWN = 540.5;
     private static final int ZERO = 0;
     private static final int LEFT_MAP_LIMIT = 32;
@@ -31,8 +32,6 @@ public class CharacterPosition implements model.Interface.IPosition {
      */
     public CharacterPosition(Character p) {
         this.p = p;
-
-        setPositionXY(p.getHero().getX(), p.getHero().getY());
     }
 
     /**

@@ -1,6 +1,5 @@
 package model.hero;
 
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import model.hitbox.Hitbox;
@@ -15,7 +14,7 @@ public class Character {
 
     private static final int HERO_WIDTH = 50;
     private static final int HERO_HEIGHT = 50;
-    private static final int OPACITY = 50;
+    private static final int OPACITY = 0;
 
     private Rectangle hero;
     private HealPoints life;
@@ -24,27 +23,40 @@ public class Character {
     //SKINABLE
     private SkinManager skin;
     private CharacterSkinPosition sp;
-    private CharacterPosition characterPos;
+
+
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
      * opacity and number of Life Points
      *
-     * @param sc1 type of Scene, is the Scene where the Character will moves
      */
-    public Character(Scene sc1, String characterSelected, boolean isFirstCharacterSelected) {
+    public Character(String characterSelected, boolean isFirstCharacterSelected) {
         this.hero = new Rectangle(HERO_WIDTH, HERO_HEIGHT);
         skin            = new SkinManager(characterSelected);
         sp              = new CharacterSkinPosition(skin);
         life = new HealPoints();
         hitbox = new Hitbox(hero);
 
-        sp.setPosX(hero.getX());
-        sp.setPosY(hero.getY());
-        hero.setOpacity(OPACITY);
+        initializeSpawn();
 
-        characterPos = new CharacterPosition(this);
+        CharacterPosition characterPos = new CharacterPosition(this);
         characterPos.spawnHeroPosition(isFirstCharacterSelected);
     }
+
+    private void initializeSpawn() {
+        hero.setOpacity(OPACITY);
+    }
+
+    public void heroDestructor() {
+        hero = null;
+        skin = null;
+        sp = null;
+        hitbox = null;
+        life = null;
+
+        System.gc();
+    }
+
     /**
      * Getter of the Hero
      *
@@ -91,6 +103,6 @@ public class Character {
     }
 
     public void setLife(double life) {
-        getLifeStatus().setHP(life);
+        getLifeStatus().setHP(getLifeStatus().getHP() + life);
     }
 }

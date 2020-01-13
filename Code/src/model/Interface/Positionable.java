@@ -5,7 +5,7 @@ package model.Interface;
  * @author Clement GUYON
  * IPosition is an Interface to be the mother of an PositionManager
  */
-public interface IPosition {
+public interface Positionable {
     /**
      * Setter of the position X
      *

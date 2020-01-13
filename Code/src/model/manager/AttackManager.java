@@ -74,8 +74,7 @@ public class AttackManager {
      */
     public void hasAttacked(long time) {
         try {
-            if (fireBall != null) {
-                if (!(characterWhoAttacked == characterOne && fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
+            if (!(fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
 
                     if (time - timeDisplacementFireball > ONE_MICRO_SECOND) {
                         fireDisplacement.goForward(characterScale);
@@ -86,21 +85,29 @@ public class AttackManager {
                     fireBall.destruction();
                     System.gc();
                 }
-            }
 
         } catch (NullPointerException ignored) {
 
         }
     }
 
+    /***
+     *
+     */
     private void isFireballNull() {
         try {
             if (fireBall != null) {
                 fireBall.destruction();
             }
         } catch (NullPointerException ignored) {
-
         }
     }
 
+    public Fire getFireBall() {
+        return fireBall;
+    }
+
+    public Character getCharacterWhoAttacked() {
+        return characterWhoAttacked;
+    }
 }

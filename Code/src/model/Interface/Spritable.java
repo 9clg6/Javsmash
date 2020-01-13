@@ -1,6 +1,6 @@
 package model.Interface;
 
-public interface ISprite {
+public interface Spritable {
 
     void spriteAnimation(String typeOfMovement);
 

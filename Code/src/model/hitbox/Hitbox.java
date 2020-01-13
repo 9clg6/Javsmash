@@ -10,7 +10,7 @@ public class Hitbox {
 
     public static final int divisor = 2;
     private static final int RADIUS = 10;
-    private static final Color colorOfHitBox = Color.RED;
+    private static final Color colorOfHitBox = Color.TRANSPARENT;
 
     private Rectangle hero;
     private ArrayList<Circle> circleArrayList;

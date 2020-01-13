@@ -1,7 +1,7 @@
 package model.animation;
 
 import javafx.scene.image.Image;
-import model.Interface.ISprite;
+import model.Interface.Spritable;
 import model.manager.SkinManager;
 
 /**
@@ -9,17 +9,23 @@ import model.manager.SkinManager;
  * Sprite is use to change the skin of the character while he is walking to do an walk-model.animation
  * This class is used by the class Displacement
  */
-public class Sprite<T> implements ISprite {
+public class Sprite<T> implements Spritable {
     private static final int MAX_ITERATOR_CHARACTER = 14;
     private static final int MAX_ITERATOR_FIREBALL = 5;
     private static final int SWITCH_SKIN_SPEED = 5;
     private static final int ZERO = 0;
     private static final int incrementer = 1;
     private static int counter = 1, iterator = 1;
+
     private SkinManager skinManager;
     private String typeOfObject;
 
 
+    /***
+     * Constructor of Sprite
+     * @param skinManager skin
+     * @param typeOfObject type of the object
+     */
     public Sprite(SkinManager skinManager, String typeOfObject) {
         this.skinManager = skinManager;
         this.typeOfObject = typeOfObject;
@@ -69,6 +75,4 @@ public class Sprite<T> implements ISprite {
             }
         }
     }
-
-
 }
