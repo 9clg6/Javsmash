@@ -2,8 +2,11 @@ package model.hero;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import model.entity.Fire;
 import model.hitbox.Hitbox;
 import model.manager.SkinManager;
+
+import java.util.ArrayList;
 
 
 /**
@@ -24,7 +27,7 @@ public class Character {
     private SkinManager skin;
     private CharacterSkinPosition sp;
 
-
+    private ArrayList<Fire> listFireBall;
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,
      * opacity and number of Life Points
@@ -36,6 +39,7 @@ public class Character {
         sp              = new CharacterSkinPosition(skin);
         life = new HealPoints();
         hitbox = new Hitbox(hero);
+        listFireBall = new ArrayList<>();
 
         initializeSpawn();
 
@@ -104,5 +108,13 @@ public class Character {
 
     public void setLife(double life) {
         getLifeStatus().setHP(getLifeStatus().getHP() + life);
+    }
+
+    public ArrayList<Fire> getListFireBall() {
+        return listFireBall;
+    }
+
+    public void AddFireBall(Fire ball){
+        listFireBall.add(ball);
     }
 }

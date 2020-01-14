@@ -9,7 +9,7 @@ import model.animation.Sprite;
  * Displacement is managing the displacement of the character on x,y,z
  */
 public class Displacement {
-    private Pane root;
+    private static final int COEF_OF_JUMP = 10;
     private static final long ONE_SECOND = 1000000000;
 
     private boolean leftA, rightA, jumpA;
@@ -34,10 +34,9 @@ public class Displacement {
      * @see Sprite, CharacterPosition
      */
 
-    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Pane root) {
+    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp) {
         this.firstCp = firstCp;
         this.secondCp = secondCp;
-        this.root = root;
 
         spriteA = new Sprite(firstCp.getPersonnage().getSkinManager(), "Character");
         spriteB = new Sprite(secondCp.getPersonnage().getSkinManager(), "Character");
@@ -143,7 +142,7 @@ public class Displacement {
                 cp.setTimeInitOfJump(l);
 
             } else {
-                cp.setPosY(-1 * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
+                cp.setPosY(-1 * COEF_OF_JUMP * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
 
             }
 

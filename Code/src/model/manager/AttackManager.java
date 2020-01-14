@@ -13,6 +13,7 @@ import model.hero.Character;
 public class AttackManager {
 
     public static final int MAX_RANGE_FIREBALL_VALUE = 600;
+    private static final long ONESECOND = 1000000000;
     private static final long ONE_MICRO_SECOND = 1000000;
     private Character characterOne, characterTwo, characterWhoAttacked;
     private Pane root;
@@ -20,6 +21,8 @@ public class AttackManager {
     private FireDisplacement fireDisplacement;
     private long timeDisplacementFireball;
     private double characterScale;
+    private long timeGlobal, timeLastAttackCharA, timeLastAttackCharB, timeSinceLastDisplacement;
+
 
 
     /**
@@ -45,26 +48,29 @@ public class AttackManager {
     void onAttackKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case E:
-                characterWhoAttacked = characterOne;
+                if (timeGlobal - timeLastAttackCharA > 0.75 * ONESECOND) {
+                    newAttack(characterOne, 1);
+                    timeLastAttackCharA = timeGlobal;
+                }
 
-                isFireballNull();
-                fireBall = new Fire(characterOne, root);
 
-                fireDisplacement = new FireDisplacement(fireBall);
-                characterScale= characterWhoAttacked.getSkin().getScaleX();
                 break;
             case NUMPAD0:
-                characterWhoAttacked = characterTwo;
+                if (timeGlobal - timeLastAttackCharB > 0.75 * ONESECOND) {
+                    newAttack(characterTwo, -1);
+                    timeLastAttackCharB = timeGlobal;
 
-                isFireballNull();
-
-                fireBall = new Fire(characterTwo, root);
-                fireDisplacement = new FireDisplacement(fireBall);
-                characterScale= characterWhoAttacked.getSkin().getScaleX();
+                }
 
                 break;
 
         }
+    }
+
+    private void newAttack(Character c, double scale) {
+        Fire fireBall = new Fire(root, c.getSkin().getX(), c.getSkin().getY());
+        fireBall.setDirection(c.getSkin().getScaleX() * scale);
+        c.AddFireBall(fireBall);
     }
 
     /**
@@ -73,35 +79,39 @@ public class AttackManager {
      * @throws NullPointerException is thrown if any fireBall is casted
      */
     public void hasAttacked(long time) {
-        try {
-            if (!(fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
 
-                    if (time - timeDisplacementFireball > ONE_MICRO_SECOND) {
-                        fireDisplacement.goForward(characterScale);
-                        timeDisplacementFireball = time;
-                    }
+        try {
+            this.timeGlobal = time;
+
+            if (time - timeSinceLastDisplacement > ONE_MICRO_SECOND) {
+                goForwards(characterOne);
+                goForwards(characterTwo);
+                timeSinceLastDisplacement = time;
+            }
+
+
+        } catch (NullPointerException ignored) {
+
+        }
+
+    }
+
+
+    private void goForwards(Character c) {
+        if (c.getListFireBall().size()>0) {
+            for (Fire fire : c.getListFireBall()) {
+                if (fire.getFireballPosition().getPosX() > root.getWidth() || fire.getFireballPosition().getPosX() < 0) {
+                    c.getListFireBall().remove(fire);
+                    System.out.println(c.getListFireBall().size());
+                    fire.destruction();
 
                 } else {
-                    fireBall.destruction();
-                    System.gc();
+                    fire.getFireDisplacement().goForward();
                 }
-
-        } catch (NullPointerException ignored) {
-
-        }
-    }
-
-    /***
-     *
-     */
-    private void isFireballNull() {
-        try {
-            if (fireBall != null) {
-                fireBall.destruction();
             }
-        } catch (NullPointerException ignored) {
         }
     }
+
 
     public Fire getFireBall() {
         return fireBall;

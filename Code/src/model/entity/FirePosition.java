@@ -20,7 +20,7 @@ public class FirePosition implements Positionable {
      * Initialize the position of the fireball at the spawn
      */
     private void spawnInitPosition() {
-        setPosXY(fireBall.getCharacter().getHero().getX() + CHARACTER_FIREBALL_SPAWN_RANGE, fireBall.getCharacter().getHero().getY() + FIREBALL_CHARACTER_DISTANCE);
+        setPosXY(fireBall.getPosinitx() + 40, fireBall.getPosinity() + FIREBALL_CHARACTER_DISTANCE);
     }
 
     //<editor-fold desc="POSITION SETTER X & Y and XY">
