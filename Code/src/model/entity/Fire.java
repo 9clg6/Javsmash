@@ -2,10 +2,11 @@ package model.entity;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import model.Interface.AttackEntity;
 import model.hero.Character;
 import model.manager.SkinManager;
 
-public class Fire {
+public class Fire implements AttackEntity {
     private static final int RADIUS = 15;
     private static final int OPACITY = 0;
     public static final double DAMAGE = 0.15;
@@ -27,7 +28,7 @@ public class Fire {
         this.root = root;
         this.character = character;
 
-        initializeFireball();
+        initialize();
 
         skin = new SkinManager("Fireball");
         fireSkinPosition = new FireSkinPosition(skin);
@@ -44,10 +45,12 @@ public class Fire {
         return DAMAGE;
     }
 
+
     /**
      * Initialization of the fireball's base : Base Type, colors, size, opacity.
      */
-    private void initializeFireball() {
+    @Override
+    public void initialize() {
         fireBallCircle = new Circle();
 
         fireBallCircle.setRadius(RADIUS);
@@ -62,6 +65,7 @@ public class Fire {
     /**
      * Destructs the current fireball
      */
+    @Override
     public void destruction() {
         root.getChildren().removeAll(fireBallCircle, skin.getSkinImage());
 
