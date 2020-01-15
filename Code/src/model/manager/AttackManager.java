@@ -52,8 +52,6 @@ public class AttackManager {
 
                 fireDisplacement = new FireDisplacement(fireBall);
 
-                characterScale= characterWhoAttacked.getSkin().getScaleX();
-
                 break;
             case NUMPAD0:
                 characterWhoAttacked = characterTwo;
@@ -61,8 +59,8 @@ public class AttackManager {
                 isFireballNull();
 
                 fireBall = new Fire(characterTwo, root);
+
                 fireDisplacement = new FireDisplacement(fireBall);
-                characterScale= characterWhoAttacked.getSkin().getScaleX();
 
                 break;
         }
