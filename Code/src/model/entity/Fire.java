@@ -8,9 +8,9 @@ import model.manager.SkinManager;
 public class Fire {
     private static final int RADIUS = 15;
     private static final int OPACITY = 0;
-    public static final double DAMAGE = 0.5;
+    public static final double DAMAGE = 0.15;
 
-
+    private Character character;
     private Pane root;
     private Circle fireBallCircle;
 
@@ -18,24 +18,20 @@ public class Fire {
 
     private SkinManager skin;
     private FireSkinPosition fireSkinPosition;
-    private double direction;
-    private double posinitx, posinity;
-    private FireDisplacement fireDisplacement;
 
     /**
+     * @param character Character who casts the fireball
      * @param root      Actual parent-group ~~~~~~
      */
-    public Fire(Pane root, double posinitx, double posinity) {
+    public Fire(Character character, Pane root) {
         this.root = root;
-        this.posinitx = posinitx;
-        this.posinity= posinity;
+        this.character = character;
 
         initializeFireball();
 
         skin = new SkinManager("Fireball");
         fireSkinPosition = new FireSkinPosition(skin);
         fireballPosition = new FirePosition(this);
-        fireDisplacement= new FireDisplacement(this);
 
         root.getChildren().addAll(fireBallCircle, skin.getSkinImage());
     }
@@ -75,7 +71,13 @@ public class Fire {
         skin = null;
     }
 
-
+    /***
+     * Getter of the character
+     * @return the character who cast the fireball
+     */
+    public Character getCharacter() {
+        return character;
+    }
 
     /***
      * @return the skin manager
@@ -97,27 +99,6 @@ public class Fire {
     public FirePosition getFireballPosition() {
         return fireballPosition;
     }
-
-    public double getDirection() {
-        return direction;
-    }
-
-    public void setDirection(double direction) {
-        this.direction = direction;
-    }
-
-    public double getPosinitx() {
-        return posinitx;
-    }
-
-    public double getPosinity() {
-        return posinity;
-    }
-
-    public FireDisplacement getFireDisplacement() {
-        return fireDisplacement;
-    }
-
 
     //</editor-fold>
 }

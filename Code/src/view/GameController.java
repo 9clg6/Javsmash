@@ -73,7 +73,7 @@ public class GameController {
         characterCollection.add(firstCharacter);
         characterCollection.add(secondCharacter);
 
-        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter), new CharacterPosition(secondCharacter));
+        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter), new CharacterPosition(secondCharacter), root);
         AttackManager attackManager = new AttackManager(firstCharacter, secondCharacter, root);
         KeyManager keyManager = new KeyManager(characterDisplacement, attackManager);
         //ItemManager itemmanager = new ItemManager(root);
@@ -92,7 +92,7 @@ public class GameController {
 
                 attackManager.hasAttacked(l);
 
-                collision.checkCollision();
+                collision.checkCollision(attackManager.getFireBall(), attackManager.getCharacterWhoAttacked());
 
                 healthActualization(firstCharacter, secondCharacter);
 

@@ -25,12 +25,12 @@ public class FireDisplacement {
     /***
      * Methods that permits to the firewall to go forward
      *
+     * @param characterScale the scale of the skin
      */
-    public void goForward() {
-
-        fire.getSkinManager().getSkinImage().setScaleX(fire.getDirection());
+    public void goForward(double characterScale) {
+        fire.getSkinManager().getSkinImage().setScaleX(characterScale);
         sprite.spriteAnimation("Forward");
-        fire.getFireballPosition().setPosXY(fire.getFireballPosition().getPosX() + FIREBALL_MOVEMENT_ITERATOR * fire.getDirection(), fire.getFireballPosition().getPosY());
+        fire.getFireballPosition().setPosXY(fire.getFireballPosition().getPosX() + FIREBALL_MOVEMENT_ITERATOR * characterScale, fire.getFireballPosition().getPosY());
     }
 
     /**
@@ -38,7 +38,7 @@ public class FireDisplacement {
      *
      * @throws NullPointerException is thrown if any fireBall is casted
      */
-  /* public void hasAttacked(long time) {
+    public void hasAttacked(long time) {
         try {
             if (fire != null) {
                 if (!(fire.getFireballPosition().getPosX() > fire.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
@@ -53,5 +53,5 @@ public class FireDisplacement {
             }
         } catch (NullPointerException ignored) {
         }
-    }*/
+    }
 }

@@ -3,9 +3,6 @@ package model.world;
 import javafx.scene.shape.Circle;
 import model.entity.Fire;
 import model.hero.Character;
-import model.hitbox.Hitbox;
-
-import java.util.ArrayList;
 
 public class Collision {
     private Character one, two;
@@ -13,38 +10,27 @@ public class Collision {
     public Collision(Character one, Character two) {
         this.one = one;
         this.two = two;
-
     }
 
-    public void checkCollision() {
-        checkingCollision(one,two);
-        checkingCollision(two,one);
-        checkingCollisionEntity(one,two);
-    }
+    public void checkCollision(Fire fireball, Character characterWhoAttack) {
 
-    private void checkingCollision(Character one,Character two){
-        if (one.getListFireBall() != null) {
-            for (Fire fireball : one.getListFireBall()) {
-                for (Circle circle : two.getHitbox().getCircleArrayList()) {
-                    if (circle.intersects(fireball.getFireBallCircle().getBoundsInLocal())) {
-                        two.setLife(-Fire.getDAMAGE());
+        for (Circle circleA : one.getHitbox().getCircleArrayList()) {
+            for (Circle circleB : two.getHitbox().getCircleArrayList()) {
+                try {
+                    if (characterWhoAttack == one) {
+                        if (circleB.intersects(fireball.getFireBallCircle().getBoundsInLocal())) {
+                            two.setLife(-Fire.getDAMAGE());
+                        }
+                    } else {
+                        if (characterWhoAttack == two) {
+                            if (circleA.intersects(fireball.getFireBallCircle().getBoundsInLocal())) {
+                                one.setLife(-Fire.getDAMAGE());
+                            }
+                        }
                     }
+                } catch (NullPointerException ignored) {
                 }
-            }
-        }
-    }
 
-    private void checkingCollisionEntity(Character one, Character two){
-        for(Fire fire1 : one.getListFireBall()){
-            for(Fire fire2 : two.getListFireBall()){
-                if(fire1.getFireBallCircle().intersects(fire2.getFireBallCircle().getBoundsInLocal())){
-
-                    one.getListFireBall().remove(fire1);
-                    fire1.destruction();
-
-                    two.getListFireBall().remove(fire2);
-                    fire2.destruction();
-                }
             }
         }
     }
