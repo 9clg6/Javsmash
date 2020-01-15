@@ -9,7 +9,7 @@ import model.manager.SkinManager;
  * Sprite is use to change the skin of the character while he is walking to do an walk-model.animation
  * This class is used by the class Displacement
  */
-public class Sprite<T> implements Spritable {
+public class Sprite implements Spritable {
     private static final int MAX_ITERATOR_CHARACTER = 14;
     private static final int MAX_ITERATOR_FIREBALL = 5;
     private static final int SWITCH_SKIN_SPEED = 5;

@@ -8,6 +8,7 @@ public class FireDisplacement {
     private static final long ONE_MICRO_SECOND = 1000000;
 
     private long timeDisplacementFireball;
+    private long time;
 
     private Fire fire;
     private Sprite sprite;
@@ -38,7 +39,7 @@ public class FireDisplacement {
      *
      * @throws NullPointerException is thrown if any fireBall is casted
      */
-    public void hasAttacked(long time) {
+    public void hasAttacked() {
         try {
             if (fire != null) {
                 if (!(fire.getFireballPosition().getPosX() > fire.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
@@ -47,11 +48,22 @@ public class FireDisplacement {
                         timeDisplacementFireball = time;
                     }
                 } else {
-                    fire.destruction();
+                    isFireballNull();
                     System.gc();
                 }
             }
         } catch (NullPointerException ignored) {
         }
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    private void isFireballNull() {
+        if (fire != null) {
+            fire.destruction();
+        }
+
     }
 }

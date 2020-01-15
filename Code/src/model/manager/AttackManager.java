@@ -51,7 +51,9 @@ public class AttackManager {
                 fireBall = new Fire(characterOne, root);
 
                 fireDisplacement = new FireDisplacement(fireBall);
+
                 characterScale= characterWhoAttacked.getSkin().getScaleX();
+
                 break;
             case NUMPAD0:
                 characterWhoAttacked = characterTwo;
@@ -63,37 +65,9 @@ public class AttackManager {
                 characterScale= characterWhoAttacked.getSkin().getScaleX();
 
                 break;
-
         }
     }
 
-    /**
-     * Check if an fireball is casted, if not throw new Fireball at the position of the character who attacked (ref {@link #characterWhoAttacked})
-     *
-     * @throws NullPointerException is thrown if any fireBall is casted
-     */
-    public void hasAttacked(long time) {
-        try {
-            if (!(fireBall.getFireballPosition().getPosX() > fireBall.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
-
-                    if (time - timeDisplacementFireball > ONE_MICRO_SECOND) {
-                        fireDisplacement.goForward(characterScale);
-                        timeDisplacementFireball = time;
-                    }
-
-                } else {
-                    fireBall.destruction();
-                    System.gc();
-                }
-
-        } catch (NullPointerException ignored) {
-
-        }
-    }
-
-    /***
-     *
-     */
     private void isFireballNull() {
         try {
             if (fireBall != null) {
@@ -105,6 +79,10 @@ public class AttackManager {
 
     public Fire getFireBall() {
         return fireBall;
+    }
+
+    public FireDisplacement getFireDisplacement() {
+        return fireDisplacement;
     }
 
     public Character getCharacterWhoAttacked() {

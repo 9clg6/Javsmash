@@ -90,7 +90,11 @@ public class GameController {
                 sc1.setOnKeyPressed(keyManager::separatorOnPress);
                 sc1.setOnKeyReleased(keyManager::separatorOnRelease);
 
-                attackManager.hasAttacked(l);
+                try {
+                    attackManager.getFireDisplacement().setTime(l);
+                    attackManager.getFireDisplacement().hasAttacked();
+                } catch (NullPointerException ignored) {
+                }
 
                 collision.checkCollision(attackManager.getFireBall(), attackManager.getCharacterWhoAttacked());
 

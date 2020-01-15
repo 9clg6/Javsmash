@@ -37,13 +37,6 @@ public class Fire implements AttackEntity {
         root.getChildren().addAll(fireBallCircle, skin.getSkinImage());
     }
 
-    /***
-     *
-     * @return damage of Fireball
-     */
-    public static double getDAMAGE() {
-        return DAMAGE;
-    }
 
 
     /**
@@ -55,11 +48,6 @@ public class Fire implements AttackEntity {
 
         fireBallCircle.setRadius(RADIUS);
         fireBallCircle.setOpacity(OPACITY);
-    }
-
-    //<editor-fold desc="Getter of Character, fireSkinPosition & FireBall">
-    FireSkinPosition getFireSkinPosition() {
-        return fireSkinPosition;
     }
 
     /**
@@ -76,12 +64,26 @@ public class Fire implements AttackEntity {
     }
 
     /***
+     *
+     * @return damage of Fireball
+     */
+    public static double getDAMAGE() {
+        return DAMAGE;
+    }
+
+    /***
      * Getter of the character
      * @return the character who cast the fireball
      */
     public Character getCharacter() {
         return character;
     }
+
+    //<editor-fold desc="Getter of Character, fireSkinPosition & FireBall">
+    FireSkinPosition getFireSkinPosition() {
+        return fireSkinPosition;
+    }
+
 
     /***
      * @return the skin manager
