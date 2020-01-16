@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.entity.Fire;
 import model.hero.Character;
 import model.hero.CharacterPosition;
 import model.hero.Displacement;
@@ -34,6 +36,9 @@ public class GameController {
     @FXML
     private Rectangle healthBarPlayerB;
 
+    @FXML
+    private Text textDamage;
+
     /**
      * @param heroSelectionStage Stage of the window
      *                           Initialize the window
@@ -55,6 +60,7 @@ public class GameController {
 
     @FXML
     private void initialize() {
+        textDamage.setText(String.valueOf(Fire.getDamage()));
         initializeWindow();
     }
 
@@ -99,6 +105,8 @@ public class GameController {
                 collision.checkCollision(attackManager.getFireBall(), attackManager.getCharacterWhoAttacked());
 
                 healthActualization(firstCharacter, secondCharacter);
+
+                //System.out.println(Fire.getDamage());
 
                 //System.out.println(Math.random()*1000%500);
 

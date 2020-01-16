@@ -36,7 +36,7 @@
                    <Button onAction="#handlePlayButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0"
                            prefWidth="145.0" text="Jouer" GridPane.columnIndex="1" GridPane.halignment="CENTER"
                            GridPane.rowIndex="1" GridPane.valignment="TOP"/>
-                  <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" text="Paramètres" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                   <Button fx:id="ConfigButton" onAction="#handleConfigButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" text="Paramètres" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                    <Button fx:id="ExitButton" onAction="#handleExitButton" minWidth="-Infinity" mnemonicParsing="false"
                            prefHeight="26.0" prefWidth="145.0" text="Quitter" GridPane.columnIndex="1"
                            GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP"/>

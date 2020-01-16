@@ -1,5 +1,7 @@
 package model.entity;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import model.Interface.AttackEntity;
@@ -9,7 +11,7 @@ import model.manager.SkinManager;
 public class Fire implements AttackEntity {
     private static final int RADIUS = 15;
     private static final int OPACITY = 0;
-    public static final double DAMAGE = 0.15;
+    //public static final double DAMAGE = 0.15;
 
     private Character character;
     private Pane root;
@@ -19,6 +21,11 @@ public class Fire implements AttackEntity {
 
     private SkinManager skin;
     private FireSkinPosition fireSkinPosition;
+
+    private static DoubleProperty damage = new SimpleDoubleProperty();
+    public static double getDamage(){ return  Fire.damage.get();}
+    public static void setDamage(double damage){ Fire.damage.set(damage);}
+    public static DoubleProperty damageProperty(){return damage;}
 
     /**
      * @param character Character who casts the fireball
@@ -67,9 +74,9 @@ public class Fire implements AttackEntity {
      *
      * @return damage of Fireball
      */
-    public static double getDAMAGE() {
+    /*public static double getDAMAGE() {
         return DAMAGE;
-    }
+    }*/
 
     /***
      * Getter of the character

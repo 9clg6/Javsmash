@@ -19,12 +19,12 @@ public class Collision {
                 try {
                     if (characterWhoAttack == one) {
                         if (circleB.intersects(fireball.getFireBallCircle().getBoundsInLocal())) {
-                            two.setLife(-Fire.getDAMAGE());
+                            two.setLife(-Fire.getDamage());
                         }
                     } else {
                         if (characterWhoAttack == two) {
                             if (circleA.intersects(fireball.getFireBallCircle().getBoundsInLocal())) {
-                                one.setLife(-Fire.getDAMAGE());
+                                one.setLife(-Fire.getDamage());
                             }
                         }
                     }
