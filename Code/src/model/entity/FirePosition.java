@@ -2,6 +2,10 @@ package model.entity;
 
 import model.Interface.Positionable;
 
+/***
+ * @author Clement GUYON
+ * This class allows to manipulate the different positions of the fireball
+ */
 public class FirePosition implements Positionable {
     private static final int FIREBALL_CHARACTER_DISTANCE = 20;
     public static final int CHARACTER_FIREBALL_SPAWN_RANGE = 80;

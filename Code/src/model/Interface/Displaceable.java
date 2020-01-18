@@ -1,10 +1,12 @@
 package model.Interface;
 
+import model.hero.CharacterPosition;
+
 public interface Displaceable {
 
-    boolean movingLR();
+    boolean movingLR(CharacterPosition positionable, boolean isMovingL, boolean isMovingR, long TimeSinceLastDisplacement);
 
-    boolean moving(long l);
+    void moving(long l);
 
-    void swapScale();
+    void swapScale(CharacterPosition characterPosition);
 }

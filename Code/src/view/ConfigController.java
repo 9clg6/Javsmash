@@ -1,27 +1,26 @@
 package view;
 
-;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
+import model.entity.Fire;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import javafx.util.converter.NumberStringConverter;
-import model.entity.Fire;
-
-
+/***
+ * Controller of the configuration page
+ * @author Maxime DACISAC
+ */
 public class ConfigController implements Initializable {
 
     @FXML

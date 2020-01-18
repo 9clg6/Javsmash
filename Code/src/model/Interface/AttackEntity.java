@@ -5,6 +5,7 @@ import model.hero.Character;
 import model.manager.SkinManager;
 
 /***
+ * @author Clement GUYON
  * Entity for range attack
  */
 public interface AttackEntity {
@@ -12,7 +13,13 @@ public interface AttackEntity {
     Character character = null;
     Pane root = null;
 
+    /***
+     * Initialize the entity
+     */
     void initialize();
 
+    /***
+     * Destroy the entity
+     */
     void destruction();
 }

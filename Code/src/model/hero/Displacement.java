@@ -2,13 +2,14 @@ package model.hero;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import model.Interface.Displaceable;
 import model.animation.Sprite;
 
 /**
- * @author Clement GUYON and Maxime DACISAC
+ * @author Maxime DACISAC & Clement GUYON
  * Displacement is managing the displacement of the character on x,y,z
  */
-public class Displacement {
+public class Displacement implements Displaceable {
     private Pane root;
     private static final long ONE_SECOND = 1000000000;
 
@@ -33,7 +34,6 @@ public class Displacement {
      *                 Instantiates the Sprite Class
      * @see Sprite, CharacterPosition
      */
-
     public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Pane root) {
         this.firstCp = firstCp;
         this.secondCp = secondCp;
@@ -48,7 +48,8 @@ public class Displacement {
      *
      * @param characterPosition defines the position of the character
      */
-    private void swapScale(CharacterPosition characterPosition) {
+    @Override
+    public void swapScale(CharacterPosition characterPosition) {
         if (characterPosition.getPersonnage().getSkin().getScaleX() == 1 && leftA || rightB) {
             setScale(characterPosition, -1);
 
@@ -67,6 +68,32 @@ public class Displacement {
     private void setScale(CharacterPosition characterPosition, double orientation) {
         characterPosition.getPersonnage().getSkin().setScaleX(orientation);
         characterPosition.getPersonnage().getHero().setScaleX(orientation);
+    }
+
+    /**
+     * Move the character to the right or to the left in function of the time
+     *
+     * @param cp                        characterPosition
+     * @param isMovingL                 if the character wants to move to the left
+     * @param isMovingR                 is the character wants to move to the right
+     * @param TimeSinceLastDisplacement time since the last displacement of the player had been effectuated
+     * @return true when the character is moving or false when he is not moving
+     */
+    @Override
+    public boolean movingLR(CharacterPosition cp, boolean isMovingL, boolean isMovingR, long TimeSinceLastDisplacement) {
+        double dx = 3;
+
+        if (isMovingL)
+            dx = dx * -1;
+
+        if (isMovingL || isMovingR) {
+
+            if (TimeSinceLastDisplacement > ONE_SECOND / 100) {
+                cp.setPosX(dx);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -93,30 +120,6 @@ public class Displacement {
 
     }
 
-    /**
-     * Move the character to the right or to the left in function of the time
-     *
-     * @param cp                        characterPosition
-     * @param isMovingL                 if the character wants to move to the left
-     * @param isMovingR                 is the character wants to move to the right
-     * @param TimeSinceLastDisplacement time since the last displacement of the player had been effectuated
-     * @return true when the character is moving or false when he is not moving
-     */
-    private boolean movingLR(CharacterPosition cp, boolean isMovingL, boolean isMovingR, long TimeSinceLastDisplacement) {
-        double dx = 3;
-
-        if (isMovingL)
-            dx = dx * -1;
-
-        if (isMovingL || isMovingR) {
-
-            if (TimeSinceLastDisplacement > ONE_SECOND / 100) {
-                cp.setPosX(dx);
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * Do the jump of the character

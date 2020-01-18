@@ -12,6 +12,10 @@ import model.entity.Fire;
 
 import java.io.IOException;
 
+/***
+ * Controller of the main page / welcoming page
+ * @author Clément GUYON
+ */
 public class MenuController {
 
     @FXML
@@ -48,18 +52,22 @@ public class MenuController {
         exit();
     }
 
+    /***
+     * Event of Config button
+     * @author Maxime DACISAC
+     * @param e given event
+     */
     @FXML
-    private void handleConfigButton(ActionEvent e){
+    private void handleConfigButton(ActionEvent e) {
         e.consume();
-        try{
+        try {
             startConfig();
-        }catch(Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
 
     /**
-     * @author Clément GUYON
      * This event is consumed by the button 'Exit'. Permitt user to leave properly the application
      */
     private void exit() {
@@ -91,7 +99,12 @@ public class MenuController {
         primaryStage.show();
     }
 
-    private void startConfig() throws  IOException {
+    /***
+     * Button to start the configuration button
+     * @throws IOException
+     * @author Maxime DACISAC
+     */
+    private void startConfig() throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.APPLICATION_MODAL);
 

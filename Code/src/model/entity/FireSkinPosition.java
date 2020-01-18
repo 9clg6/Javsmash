@@ -5,6 +5,10 @@ import model.Interface.Positionable;
 import model.Interface.SkinPositionable;
 import model.manager.SkinManager;
 
+/***
+ * @author Clement GUYON
+ * This class allows to manipulate the different positions of the fireball's skin
+ */
 public class FireSkinPosition implements Positionable, SkinPositionable {
     public static final int CHARACTER_FIREBALL_SHIFT_X = 50;
     public static final int CHARACTER_FIREBALL_SHIFT_Y = 20;
@@ -22,10 +26,19 @@ public class FireSkinPosition implements Positionable, SkinPositionable {
 
 
     //<editor-fold desc="POSITION X & Y UPDATER">
+
+    /***
+     * Update the position of the skin in X
+     * @param pos given position
+     */
     public void updatePosSkinX(double pos) {
         setPosX(pos - CHARACTER_FIREBALL_SHIFT_X);
     }
 
+    /***
+     * Update the position of the skin in Y
+     * @param pos given position
+     */
     public void updatePosSkinY(double pos) {
         setPosY(pos - CHARACTER_FIREBALL_SHIFT_Y);
     }

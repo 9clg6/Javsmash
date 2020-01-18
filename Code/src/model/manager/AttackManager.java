@@ -2,6 +2,7 @@ package model.manager;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import model.Interface.AttackEntity;
 import model.entity.Fire;
 import model.entity.FireDisplacement;
 import model.hero.Character;
@@ -12,15 +13,10 @@ import model.hero.Character;
  */
 public class AttackManager {
 
-    public static final int MAX_RANGE_FIREBALL_VALUE = 600;
-    private static final long ONE_MICRO_SECOND = 1000000;
     private Character characterOne, characterTwo, characterWhoAttacked;
     private Pane root;
-    private Fire fireBall;
+    private AttackEntity fireBall;
     private FireDisplacement fireDisplacement;
-    private long timeDisplacementFireball;
-    private double characterScale;
-
 
     /**
      * Constructor that defines two character and the actual parent-group
@@ -50,7 +46,7 @@ public class AttackManager {
                 isFireballNull();
                 fireBall = new Fire(characterOne, root);
 
-                fireDisplacement = new FireDisplacement(fireBall);
+                fireDisplacement = new FireDisplacement((Fire) fireBall);
 
                 break;
             case NUMPAD0:
@@ -60,7 +56,7 @@ public class AttackManager {
 
                 fireBall = new Fire(characterTwo, root);
 
-                fireDisplacement = new FireDisplacement(fireBall);
+                fireDisplacement = new FireDisplacement((Fire) fireBall);
 
                 break;
         }
@@ -75,7 +71,7 @@ public class AttackManager {
         }
     }
 
-    public Fire getFireBall() {
+    public AttackEntity getFireBall() {
         return fireBall;
     }
 

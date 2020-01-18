@@ -2,6 +2,10 @@ package model.entity;
 
 import model.animation.Sprite;
 
+/***
+ * @author Clement GUYON
+ * This class allows the fireball to move
+ */
 public class FireDisplacement {
     public static final int FIREBALL_MOVEMENT_ITERATOR = 10;
     public static final int MAX_RANGE_FIREBALL_VALUE = 600;
@@ -59,14 +63,21 @@ public class FireDisplacement {
         }
     }
 
-    public void setTime(long time) {
-        this.time = time;
-    }
-
+    /***
+     * Check if the fireball is null, if it is : destroy
+     */
     private void isFireballNull() {
         if (fire != null) {
             fire.destruction();
         }
-
     }
+
+    /***
+     * Setter of the time
+     * @param time time of the game loop
+     */
+    public void setTime(long time) {
+        this.time = time;
+    }
+
 }

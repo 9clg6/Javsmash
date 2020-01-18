@@ -18,6 +18,10 @@ import model.world.Collision;
 
 import java.util.ArrayList;
 
+/***
+ * Controller of the game
+ * @author Clément GUYON
+ */
 public class GameController {
 
     private static final int MAX_WIDTH = 1500;
@@ -42,7 +46,6 @@ public class GameController {
     /**
      * @param heroSelectionStage Stage of the window
      *                           Initialize the window
-     * @author Clement
      */
     GameController(String firstCharacter, String secondCharacter, Stage heroSelectionStage) {
         this.heroSelectionStage = heroSelectionStage;
@@ -50,14 +53,25 @@ public class GameController {
         this.secondCharacterSelected = secondCharacter;
     }
 
+    /***
+     * Getter of max width
+     * @return max width of the current stage
+     */
     public static int getMaxWidth() {
         return MAX_WIDTH;
     }
 
+    /***
+     * Getter of max height
+     * @return max height of the current stage
+     */
     public static double getMaxHeight() {
         return MAX_HEIGHT;
     }
 
+    /***
+     * @author Maxime DACISAC
+     */
     @FXML
     private void initialize() {
         textDamage.setText(String.valueOf(Fire.getDamage()));
@@ -65,7 +79,6 @@ public class GameController {
     }
 
     /**
-     * @author Clement
      * Initilize game-useful Objects, size of Window, character, key-event.
      */
     private void initializeWindow() {
@@ -102,14 +115,9 @@ public class GameController {
                 } catch (NullPointerException ignored) {
                 }
 
-                collision.checkCollision(attackManager.getFireBall(), attackManager.getCharacterWhoAttacked());
+                collision.checkCollision((Fire) attackManager.getFireBall(), attackManager.getCharacterWhoAttacked());
 
                 healthActualization(firstCharacter, secondCharacter);
-
-                //System.out.println(Fire.getDamage());
-
-                //System.out.println(Math.random()*1000%500);
-
 
                 //LIFE DOWNGRADING ACTUALISATION
                 //firstCharacter.setLife(firstCharacter.getLifeStatus().getHP()-1);
@@ -122,11 +130,21 @@ public class GameController {
         stageInitializer();
     }
 
+    /***
+     * Update health of each player
+     * @param firstCharacter given first character
+     * @param secondCharacter given second character
+     */
     private void healthActualization(Character firstCharacter, Character secondCharacter) {
         healthBarPlayerA.setWidth(firstCharacter.getLifeStatus().getHP());
         healthBarPlayerB.setWidth(secondCharacter.getLifeStatus().getHP());
     }
 
+    /***
+     * Add the hitbox of each character
+     * @param firstCharacter given first character
+     * @param secondCharacter given second character
+     */
     private void addToCurrentParentGroup(Character firstCharacter, Character secondCharacter) {
         for (Character character : characterCollection) {
             for (Circle circle : character.getHitbox().getCircleArrayList()) {
@@ -141,6 +159,9 @@ public class GameController {
         );
     }
 
+    /***
+     * Initialize stage
+     */
     private void stageInitializer() {
         heroSelectionStage.setTitle("JavSmash - GAME STARTED");
         heroSelectionStage.setFullScreen(false);
@@ -148,5 +169,6 @@ public class GameController {
         heroSelectionStage.setScene(sc1);
         heroSelectionStage.show();
     }
+
 
 }

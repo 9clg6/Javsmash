@@ -8,10 +8,13 @@ import model.Interface.AttackEntity;
 import model.hero.Character;
 import model.manager.SkinManager;
 
+/***
+ * @author Clement GUYON
+ * This class is used to cast Fireball specific key is pressed
+ */
 public class Fire implements AttackEntity {
     private static final int RADIUS = 15;
     private static final int OPACITY = 0;
-    //public static final double DAMAGE = 0.15;
 
     private Character character;
     private Pane root;
@@ -23,9 +26,7 @@ public class Fire implements AttackEntity {
     private FireSkinPosition fireSkinPosition;
 
     private static DoubleProperty damage = new SimpleDoubleProperty();
-    public static double getDamage(){ return  Fire.damage.get();}
-    public static void setDamage(double damage){ Fire.damage.set(damage);}
-    public static DoubleProperty damageProperty(){return damage;}
+
 
     /**
      * @param character Character who casts the fireball
@@ -43,8 +44,6 @@ public class Fire implements AttackEntity {
 
         root.getChildren().addAll(fireBallCircle, skin.getSkinImage());
     }
-
-
 
     /**
      * Initialization of the fireball's base : Base Type, colors, size, opacity.
@@ -70,13 +69,16 @@ public class Fire implements AttackEntity {
         skin = null;
     }
 
+
+    //<editor-fold desc="Getter of Character, fireSkinPosition & FireBall">
+
     /***
-     *
-     * @return damage of Fireball
+     * Damage property
+     * @return damage
      */
-    /*public static double getDAMAGE() {
-        return DAMAGE;
-    }*/
+    public static DoubleProperty damageProperty() {
+        return damage;
+    }
 
     /***
      * Getter of the character
@@ -86,13 +88,32 @@ public class Fire implements AttackEntity {
         return character;
     }
 
-    //<editor-fold desc="Getter of Character, fireSkinPosition & FireBall">
+    /***
+     * Getter of damage
+     * @return damage
+     */
+    public static double getDamage() {
+        return Fire.damage.get();
+    }
+
+    /***
+     * Setter of damage
+     * @param damage of the fireball
+     */
+    public static void setDamage(double damage) {
+        Fire.damage.set(damage);
+    }
+
+    /***
+     * Getter of the position of the fireball
+     * @return the position of fireball
+     */
     FireSkinPosition getFireSkinPosition() {
         return fireSkinPosition;
     }
 
-
     /***
+     * Getter of skin Manager
      * @return the skin manager
      */
     public SkinManager getSkinManager() {
@@ -100,6 +121,7 @@ public class Fire implements AttackEntity {
     }
 
     /***
+     * Getter of the base / shape of an fireball
      * @return the base-shape of fireball
      */
     public Circle getFireBallCircle() {
@@ -107,6 +129,7 @@ public class Fire implements AttackEntity {
     }
 
     /***
+     * Getter of the position of the fireball
      * @return the actual position of fireball
      */
     public FirePosition getFireballPosition() {

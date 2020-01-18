@@ -13,7 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/***
+ * Controller of the character selection page
+ * @author Clément GUYON
+ */
 public class HeroSelectionController implements Initializable {
     @FXML
     private Button Clement;
@@ -88,6 +91,9 @@ public class HeroSelectionController implements Initializable {
         loader.load();
     }
 
+    /***
+     * Initialize button
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Clement.setStyle("-fx-background-image: url('img/BombMan/Walk/1.png');-fx-background-repeat: no-repeat no-repeat");

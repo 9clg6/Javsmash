@@ -5,7 +5,6 @@ import javafx.scene.shape.Rectangle;
 import model.hitbox.Hitbox;
 import model.manager.SkinManager;
 
-
 /**
  * @author Clement GUYON
  * Character is the most used class because it defines the composition of an Character
@@ -33,7 +32,7 @@ public class Character {
     public Character(String characterSelected, boolean isFirstCharacterSelected) {
         this.hero = new Rectangle(HERO_WIDTH, HERO_HEIGHT);
         skin            = new SkinManager(characterSelected);
-        sp              = new CharacterSkinPosition(skin);
+        sp = new CharacterSkinPosition(skin);
         life = new HealPoints();
         hitbox = new Hitbox(hero);
 
@@ -43,18 +42,11 @@ public class Character {
         characterPos.spawnHeroPosition(isFirstCharacterSelected);
     }
 
+    /***
+     * Initialize an character
+     */
     private void initializeSpawn() {
         hero.setOpacity(OPACITY);
-    }
-
-    public void heroDestructor() {
-        hero = null;
-        skin = null;
-        sp = null;
-        hitbox = null;
-        life = null;
-
-        System.gc();
     }
 
     /**
@@ -66,6 +58,10 @@ public class Character {
         return hero;
     }
 
+    /***
+     * Getter of the hitbox
+     * @return the hitbox of an player
+     */
     public Hitbox getHitbox() {
         return hitbox;
     }
@@ -93,15 +89,22 @@ public class Character {
      *
      * @return sp type of skin position
      */
-
     CharacterSkinPosition getSp() {
         return sp;
     }
 
+    /***
+     * Getter of healpoints
+     * @return healpoints
+     */
     public HealPoints getLifeStatus() {
         return life;
     }
 
+    /***
+     * Setter of healpoints
+     * @param life given number to add or remove from heal points
+     */
     public void setLife(double life) {
         getLifeStatus().setHP(getLifeStatus().getHP() + life);
     }

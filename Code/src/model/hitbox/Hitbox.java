@@ -6,6 +6,10 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
+/**
+ * @author Clement GUYON
+ * It is the limit close to the character where he can be touched
+ */
 public class Hitbox {
 
     public static final int divisor = 2;
@@ -16,6 +20,10 @@ public class Hitbox {
     private ArrayList<Circle> circleArrayList;
     private Circle topRightHandCorner, topLeftHandCorner, bottomRightHandCorner, bottomLeftHandCorner, middleRight, middleLeft, middleTop, middleBottom;
 
+    /***
+     * Constructor of Hitbox
+     * @param hero given hero (character)
+     */
     public Hitbox(Rectangle hero) {
         this.hero = hero;
         initializeHitbox();
@@ -68,6 +76,9 @@ public class Hitbox {
 
     }
 
+    /***
+     * Initialize the hitbox of an character
+     */
     private void initializeHitbox() {
         circleArrayList = new ArrayList<>();
 
@@ -75,6 +86,9 @@ public class Hitbox {
         initializeArrayList();
     }
 
+    /***
+     * Initialize each circle of the hitbox
+     */
     private void initializeCircle() {
         topLeftHandCorner = new Circle(RADIUS, colorOfHitBox);
         topRightHandCorner = new Circle(RADIUS, colorOfHitBox);
@@ -86,6 +100,9 @@ public class Hitbox {
         middleBottom = new Circle(RADIUS, colorOfHitBox);
     }
 
+    /***
+     * Add circle to the hitbox-Collection
+     */
     private void initializeArrayList() {
         circleArrayList.add(topLeftHandCorner);
         circleArrayList.add(topRightHandCorner);
@@ -97,6 +114,10 @@ public class Hitbox {
         circleArrayList.add(middleTop);
     }
 
+    /***
+     * Getter of the list of circle
+     * @return the list of circle
+     */
     public ArrayList<Circle> getCircleArrayList() {
         return circleArrayList;
     }
