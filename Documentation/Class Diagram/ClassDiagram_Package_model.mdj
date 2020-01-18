@@ -1290,7 +1290,8 @@
 											"top": 333,
 											"width": 335.11181640625,
 											"height": 13,
-											"text": "+MAX_RANGE_FIREBALL_VALUE: int = 600 {readOnly}",
+											"underline": true,
+											"text": "-MAX_RANGE_FIREBALL_VALUE: int = 600 {readOnly}",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1307,6 +1308,7 @@
 											"top": 348,
 											"width": 335.11181640625,
 											"height": 13,
+											"underline": true,
 											"text": "-ONE_MICRO_SECOND = 1000000 {readOnly}",
 											"horizontalAlignment": 0
 										},
@@ -1324,7 +1326,7 @@
 											"top": 363,
 											"width": 335.11181640625,
 											"height": 13,
-											"text": "+Attribute4",
+											"text": "+timeDisplacementFireball: long",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1341,7 +1343,7 @@
 											"top": 378,
 											"width": 335.11181640625,
 											"height": 13,
-											"text": "+Attribute5",
+											"text": "+time: long",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1358,7 +1360,24 @@
 											"top": 393,
 											"width": 335.11181640625,
 											"height": 13,
-											"text": "+Attribute6",
+											"text": "+fire",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFvqx8RhBHtBUw=",
+											"_parent": {
+												"$ref": "AAAAAAFvqjQFvWlT+us="
+											},
+											"model": {
+												"$ref": "AAAAAAFvqx8Q/RHqEfY="
+											},
+											"font": "Arial;13;0",
+											"left": 1069,
+											"top": 408,
+											"width": 335.11181640625,
+											"height": 13,
+											"text": "+sprite",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1366,7 +1385,7 @@
 									"left": 1064,
 									"top": 313,
 									"width": 345.11181640625,
-									"height": 98
+									"height": 113
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1379,7 +1398,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1064,
-									"top": 411,
+									"top": 426,
 									"width": 345.11181640625,
 									"height": 10
 								},
@@ -2003,7 +2022,8 @@
 												"$ref": "AAAAAAFvqiixCGgwLCo="
 											},
 											"name": "SkinManager skinManager",
-											"visibility": "private"
+											"visibility": "private",
+											"type": ""
 										},
 										{
 											"_type": "UMLAttribute",
@@ -2012,7 +2032,8 @@
 												"$ref": "AAAAAAFvqiixCGgwLCo="
 											},
 											"name": "String typeOfObject",
-											"visibility": "private"
+											"visibility": "private",
+											"type": ""
 										}
 									],
 									"operations": [
@@ -2058,7 +2079,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFvqioebmidLaY="
 													},
-													"name": "SkinManger skinManager"
+													"name": "SkinManger skinManager",
+													"type": ""
 												},
 												{
 													"_type": "UMLParameter",
@@ -2066,7 +2088,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFvqioebmidLaY="
 													},
-													"name": "String typeOfObject"
+													"name": "String typeOfObject",
+													"type": ""
 												}
 											]
 										},
@@ -2278,6 +2301,8 @@
 												"$ref": "AAAAAAFvqjQFvGlL2Q8="
 											},
 											"name": "MAX_RANGE_FIREBALL_VALUE",
+											"visibility": "private",
+											"isStatic": true,
 											"type": "int",
 											"isReadOnly": true,
 											"defaultValue": "600"
@@ -2290,6 +2315,8 @@
 											},
 											"name": "ONE_MICRO_SECOND",
 											"visibility": "private",
+											"isStatic": true,
+											"type": "",
 											"isReadOnly": true,
 											"defaultValue": "1000000"
 										},
@@ -2299,8 +2326,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFvqjQFvGlL2Q8="
 											},
-											"name": "Attribute4",
-											"type": ""
+											"name": "timeDisplacementFireball",
+											"type": "long"
 										},
 										{
 											"_type": "UMLAttribute",
@@ -2308,8 +2335,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFvqjQFvGlL2Q8="
 											},
-											"name": "Attribute5",
-											"type": ""
+											"name": "time",
+											"type": "long"
 										},
 										{
 											"_type": "UMLAttribute",
@@ -2317,8 +2344,15 @@
 											"_parent": {
 												"$ref": "AAAAAAFvqjQFvGlL2Q8="
 											},
-											"name": "Attribute6",
-											"type": ""
+											"name": "fire"
+										},
+										{
+											"_type": "UMLAttribute",
+											"_id": "AAAAAAFvqx8Q/RHqEfY=",
+											"_parent": {
+												"$ref": "AAAAAAFvqjQFvGlL2Q8="
+											},
+											"name": "sprite"
 										}
 									]
 								},
