@@ -56,6 +56,8 @@ public class AttackManager {
 
                 fireBall = new Fire(characterTwo, root);
 
+
+
                 fireDisplacement = new FireDisplacement((Fire) fireBall);
 
                 break;

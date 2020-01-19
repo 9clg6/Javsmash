@@ -19,6 +19,7 @@ public class Fire implements AttackEntity {
     private Character character;
     private Pane root;
     private Circle fireBallCircle;
+    private double direction;
 
     private FirePosition fireballPosition;
 
@@ -35,6 +36,8 @@ public class Fire implements AttackEntity {
     public Fire(Character character, Pane root) {
         this.root = root;
         this.character = character;
+
+        this.direction=character.getSkin().getScaleX();
 
         initialize();
 
@@ -135,6 +138,15 @@ public class Fire implements AttackEntity {
     public FirePosition getFireballPosition() {
         return fireballPosition;
     }
+
+    /**
+     * Getter of the direction of the fireball
+     * @return the direction of the fireball
+     */
+    public double getDirection() {
+        return direction;
+    }
+
 
     //</editor-fold>
 }

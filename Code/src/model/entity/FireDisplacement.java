@@ -30,9 +30,10 @@ public class FireDisplacement {
     /***
      * Methods that permits to the firewall to go forward
      *
-     * @param characterScale the scale of the skin
+     *
      */
-    public void goForward(double characterScale) {
+    public void goForward() {
+         double characterScale = fire.getDirection();
         fire.getSkinManager().getSkinImage().setScaleX(characterScale);
         sprite.spriteAnimation("Forward");
 
@@ -51,7 +52,7 @@ public class FireDisplacement {
             if (fire != null) {
                 if (!(fire.getFireballPosition().getPosX() > fire.getCharacter().getHero().getX() + MAX_RANGE_FIREBALL_VALUE)) {
                     if (time - timeDisplacementFireball > ONE_MICRO_SECOND) {
-                        goForward(fire.getCharacter().getSkin().getScaleX());
+                        goForward();
                         timeDisplacementFireball = time;
                     }
                 } else {

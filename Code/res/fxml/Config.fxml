@@ -22,6 +22,7 @@
         <TextField fx:id="textFieldAvecBindingFXML" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <Label fx:id="labelAvecBindingFXML" text="${textFieldAvecBindingFXML.text}" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Button fx:id="PlayButton" onAction="#handlePlayButton" text="Jouer" alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Button fx:id="backButton" onAction="#handleBackButton" text="Retour" alignment="BOTTOM_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="3" />
     </children>
 
 

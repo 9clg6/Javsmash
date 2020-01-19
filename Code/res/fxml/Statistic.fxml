@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <Text text="Joueur 1            Joueur 2            Gagnant"/>
+    </top>
+    <left>
+        <ListView BorderPane.alignment="CENTER" fx:id="laListe">
+
+        </ListView>
+
+    </left>
+</BorderPane>

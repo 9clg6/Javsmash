@@ -12,6 +12,7 @@ import model.animation.Sprite;
 public class Displacement implements Displaceable {
     private Pane root;
     private static final long ONE_SECOND = 1000000000;
+    private static double coefficient = 10;
 
     private boolean leftA, rightA, jumpA;
     private boolean leftB, rightB, jumpB;
@@ -115,8 +116,13 @@ public class Displacement implements Displaceable {
         }
 
         jump(firstCp, jumpA, l);
-
         jump(secondCp, jumpB, l);
+
+        testJump(firstCp);
+        testJump(secondCp);
+
+        verifY(firstCp);
+        verifY(secondCp);
 
     }
 
@@ -146,7 +152,7 @@ public class Displacement implements Displaceable {
                 cp.setTimeInitOfJump(l);
 
             } else {
-                cp.setPosY(-1 * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
+                cp.setPosY(-coefficient * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
 
             }
 
@@ -160,6 +166,33 @@ public class Displacement implements Displaceable {
                 cp.setJumping(false);
                 cp.setNbJump(0);
             }
+        }
+    }
+
+    /**
+     * If (the first jump) is to hight, coefficient is divided by 10.
+     *
+     * @param cp CharacterPosition of the player
+     */
+    private void testJump(CharacterPosition cp){
+        if(cp.getHeroPosY()<0){
+            coefficient = coefficient/10;
+            cp.setPosY(CharacterPosition.getFirstcharacterPosYAtSpawn());
+            firstCp.setJumping(false);
+            firstCp.setNbJump(0);
+
+        }
+    }
+
+    /**
+     * If the player is no longer jumping and if his posY is to hight, the player go down
+     *
+     * @param cp CharacterPosition of the player
+     */
+    private void verifY(CharacterPosition cp){
+        double dy=5;
+        if (cp.getNbJump()==0 && cp.getHeroPosY() < CharacterPosition.getFirstcharacterPosYAtSpawn()) {
+            cp.setPosY(dy);
         }
     }
 

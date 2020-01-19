@@ -119,6 +119,7 @@ public class GameController {
 
                 healthActualization(firstCharacter, secondCharacter);
 
+
                 //LIFE DOWNGRADING ACTUALISATION
                 //firstCharacter.setLife(firstCharacter.getLifeStatus().getHP()-1);
                 //System.out.println(firstCharacter.getLifeStatus().getHP());

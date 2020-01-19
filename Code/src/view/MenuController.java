@@ -24,6 +24,9 @@ public class MenuController {
     private Button ConfigButton;
     @FXML
     private Button ExitButton;
+    @FXML
+    private Button StatisticButton;
+
 
     /**
      * Entry point for this project.
@@ -35,7 +38,10 @@ public class MenuController {
     private void handlePlayButton(ActionEvent e) {
         e.consume();
         try {
-            Fire.setDamage(0.1);
+            if(Fire.getDamage()==0){
+                Fire.setDamage(0.1);
+
+            }
             startPlaying();
         } catch (Exception var3) {
             var3.printStackTrace();
@@ -46,6 +52,7 @@ public class MenuController {
      * @author Clément GUYON
      * This event is call by the button 'Exit' in the main menu and call the function 'exit'
      */
+
     @FXML
     public void handleExitButton(ActionEvent e) {
         e.consume();
@@ -66,6 +73,18 @@ public class MenuController {
             exception.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleStatisticButton(ActionEvent e) {
+        e.consume();
+        try {
+            startStatistic();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+
 
     /**
      * This event is consumed by the button 'Exit'. Permitt user to leave properly the application
@@ -115,6 +134,22 @@ public class MenuController {
         Pane root = loader.load();
 
         Scene selectionScene = new Scene(root, 300.0, 300.0);
+
+        primaryStage.setScene(selectionScene);
+        primaryStage.show();
+    }
+
+    private void startStatistic() throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Statistic.fxml"));
+
+        loader.setController(new StatisticController());
+
+        Pane root = loader.load();
+
+        Scene selectionScene = new Scene(root, 250, 300);
 
         primaryStage.setScene(selectionScene);
         primaryStage.show();

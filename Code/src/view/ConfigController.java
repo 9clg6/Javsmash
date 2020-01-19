@@ -1,9 +1,12 @@
 package view;
 
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import model.entity.Fire;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +31,8 @@ public class ConfigController implements Initializable {
     private TextField textFieldAvecBindingFXML;
     @FXML
     private Button PlayButton;
+    @FXML
+    private Button backButton;
 
 
     @FXML
@@ -38,6 +44,20 @@ public class ConfigController implements Initializable {
             var3.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleBackButton(ActionEvent e) {
+        e.consume();
+        try {
+            final Node source = (Node) e.getSource();
+            close(source);
+        } catch (Exception var3) {
+            var3.printStackTrace();
+        }
+    }
+
+
+
 
     /**
      * @throws IOException throwable by loader.load()
@@ -65,6 +85,9 @@ public class ConfigController implements Initializable {
 
         textFieldAvecBindingFXML.textProperty().bindBidirectional(Fire.damageProperty(), new NumberStringConverter());
 
-
+    }
+    private void close(Node source){
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

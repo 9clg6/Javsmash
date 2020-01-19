@@ -32,7 +32,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" text="Statistiques" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                  <Button fx:id="StatisticButton" onAction="#handleStatisticButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" text="Statistiques" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                    <Button onAction="#handlePlayButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0"
                            prefWidth="145.0" text="Jouer" GridPane.columnIndex="1" GridPane.halignment="CENTER"
                            GridPane.rowIndex="1" GridPane.valignment="TOP"/>
