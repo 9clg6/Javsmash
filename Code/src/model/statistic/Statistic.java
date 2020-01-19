@@ -1,18 +1,22 @@
 package model.statistic;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Statistic {
+    private ObservableList<Resultat> statisticObs = FXCollections.observableArrayList();
+    private final ListProperty<Resultat> statistics = new SimpleListProperty<>(statisticObs);
+    public ObservableList<Resultat> getStatistic() {return statistics.get();}
+    public void setStatistic(ObservableList<Resultat> value) {statistics.set(value);}
+    public ListProperty<Resultat> statisticProperty() {return statistics;}
 
-    private final StringProperty statistic = new SimpleStringProperty();
-        public String getStatistic() {return statistic.get();}
-        public StringProperty statisticProperty() {return statistic;}
-        public void setStatistic(String statistic) {this.statistic.set(statistic);}
 
 
-    public Statistic(String statistic) {
-        this.statistic.set(statistic);
 
+    public void addStatistic(Resultat resultat) {
+        statisticObs.add(resultat);
     }
+
 }

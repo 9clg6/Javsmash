@@ -12,7 +12,7 @@ import model.animation.Sprite;
 public class Displacement implements Displaceable {
     private Pane root;
     private static final long ONE_SECOND = 1000000000;
-    private static double coefficient = 10;
+    private static double coefficientOfJump = 10;
 
     private boolean leftA, rightA, jumpA;
     private boolean leftB, rightB, jumpB;
@@ -152,7 +152,7 @@ public class Displacement implements Displaceable {
                 cp.setTimeInitOfJump(l);
 
             } else {
-                cp.setPosY(-coefficient * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
+                cp.setPosY(-coefficientOfJump * Math.cos(Math.PI * cp.getTimeOfTheJumpInstant_i_float()));
 
             }
 
@@ -176,7 +176,7 @@ public class Displacement implements Displaceable {
      */
     private void testJump(CharacterPosition cp){
         if(cp.getHeroPosY()<0){
-            coefficient = coefficient/10;
+            coefficientOfJump = coefficientOfJump /10;
             cp.setPosY(CharacterPosition.getFirstcharacterPosYAtSpawn());
             firstCp.setJumping(false);
             firstCp.setNbJump(0);

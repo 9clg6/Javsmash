@@ -9,13 +9,11 @@
 
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns:fx="http://javafx.com/fxml">
-    <top>
-        <Text text="Joueur 1            Joueur 2            Gagnant"/>
-    </top>
-    <left>
-        <ListView BorderPane.alignment="CENTER" fx:id="laListe">
 
-        </ListView>
+    <left>
+        <TableView BorderPane.alignment="CENTER" fx:id="laListe">
+
+        </TableView>
 
     </left>
 </BorderPane>
