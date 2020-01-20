@@ -1,7 +1,7 @@
-package Persistance;
+package stats;
 
-import model.statistic.Statistic;
 import model.statistic.Resultat;
+import model.statistic.Statistic;
 
 import java.time.LocalDate;
 import java.time.Month;

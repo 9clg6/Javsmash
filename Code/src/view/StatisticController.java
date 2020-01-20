@@ -1,14 +1,14 @@
 package view;
 
-import Persistance.Stub;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
-import model.statistic.Statistic;
 import model.statistic.Resultat;
+import model.statistic.Statistic;
+import stats.Stub;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

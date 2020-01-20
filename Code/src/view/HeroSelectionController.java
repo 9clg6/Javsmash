@@ -4,10 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.CharacterSelectionPopAlert;
+import utils.PopupError;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,13 +56,7 @@ public class HeroSelectionController implements Initializable {
                     }
 
                 } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("You can't chose the same character.");
-                    errorAlert.setHeaderText("Character Selection Error.");
-                    errorAlert.setContentText("The first player has taken :" + firstCharacterSelected);
-                    errorAlert.show();
-
-                    System.err.println("Same Character Selected");
+                    new PopupError(new CharacterSelectionPopAlert(firstCharacterSelected.getId()));
                 }
             }
         }
