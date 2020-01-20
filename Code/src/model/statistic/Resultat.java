@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
 
-public class Resultat {
+public class Resultat{
 
     private final StringProperty player1 = new SimpleStringProperty();
         public String getPlayer1() {return player1.get();}

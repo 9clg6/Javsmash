@@ -1,7 +1,6 @@
 package view;
 
 import Persistance.Stub;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,7 +13,7 @@ import model.statistic.Resultat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class StatisticController {
+public class StatisticController{
 
     @FXML
     private TableView<Resultat> laListe = new TableView<>();
@@ -58,7 +57,7 @@ public class StatisticController {
         player1Column.setCellValueFactory(new PropertyValueFactory<>("Joueur 1"));
         player1Column.setCellValueFactory(param -> {
             final Resultat res = param.getValue();
-            return new SimpleStringProperty(res.getPlayer2());
+            return new SimpleStringProperty(res.getPlayer1());
         });
 
         player2Column.setCellValueFactory(new PropertyValueFactory<>("Joueur 2"));
@@ -70,7 +69,7 @@ public class StatisticController {
         winnerColumn.setCellValueFactory(new PropertyValueFactory<>("Gagnant"));
         winnerColumn.setCellValueFactory(param -> {
             final Resultat res = param.getValue();
-            return new SimpleStringProperty(res.getPlayer2());
+            return new SimpleStringProperty(res.getWinner());
         });
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -82,5 +81,7 @@ public class StatisticController {
 
         laListe.getColumns().setAll(player1Column, player2Column, winnerColumn, dateColumn);
     }
+
+
 }
 
