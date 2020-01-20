@@ -150,7 +150,7 @@ public class MenuController {
 
         Pane root = loader.load();
 
-        Scene selectionScene = new Scene(root, 250, 300);
+        Scene selectionScene = new Scene(root, 290, 300);
         primaryStage.setTitle("Statistique");
 
         primaryStage.setScene(selectionScene);
