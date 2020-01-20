@@ -13,16 +13,14 @@ import model.statistic.Statistic;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class StatisticController{
-
-    @FXML
-    private TableView<Resultat> laListe = new TableView<>();
+public class StatisticController {
 
     private final TableColumn<Resultat, String> player1Column = new TableColumn<>("Joueur 1");
     private final TableColumn<Resultat, String> player2Column = new TableColumn<>("Joueur 2");
     private final TableColumn<Resultat, String> winnerColumn = new TableColumn<>("Gagnant");
     private final TableColumn<Resultat, String> dateColumn = new TableColumn<>("Date");
-
+    @FXML
+    private TableView<Resultat> laListe = new TableView<>();
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private StringConverter<LocalDate> converter = new StringConverter<>() {
         @Override
@@ -47,9 +45,7 @@ public class StatisticController{
 
     @FXML
     public void initialize() {
-
-
-        Statistic stats = StubDataLoader.chargerStatistic();
+        Statistic stats = StubDataLoader.loadResultat();
 
         laListe.itemsProperty().bind(stats.statisticProperty());
 

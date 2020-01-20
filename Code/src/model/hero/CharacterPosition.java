@@ -91,7 +91,7 @@ public class CharacterPosition implements Positionable {
     /**
      * Setter of the position XY at spawn
      */
-    void spawnHeroPosition(boolean isFirstCharacterSelected) {
+    public void spawnHeroPosition(boolean isFirstCharacterSelected) {
         if (isFirstCharacterSelected) {
             setPositionXY(FIRSTCHARACTER_POS_X_AT_SPAWN, FIRSTCHARACTER_POS_Y_AT_SPAWN);
         } else {

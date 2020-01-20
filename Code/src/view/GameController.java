@@ -89,7 +89,6 @@ public class GameController {
         characterCollection = new ArrayList<>();
         characterCollection.add(firstCharacter);
         characterCollection.add(secondCharacter);
-
     }
 
     /**
@@ -110,6 +109,7 @@ public class GameController {
 
             @Override
             public void handle(long l) {
+
 
                 characterDisplacement.moving(l);
 

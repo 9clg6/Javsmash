@@ -1,14 +1,15 @@
 package data.stub;
 
+import model.Interface.DataLoader;
 import model.statistic.Resultat;
 import model.statistic.Statistic;
 
 import java.time.LocalDate;
 import java.time.Month;
 
-public class StubDataLoader {
+public class StubDataLoader implements DataLoader {
 
-    public static Statistic chargerStatistic() {
+    public static Statistic loadResultat() {
         Statistic stats = new Statistic();
         stats.addStatistic(new Resultat("Adrien63", "Alain63", "Adrien63", LocalDate.of(2019, Month.DECEMBER, 25)));
         stats.addStatistic(new Resultat("Mario37", "Gamer27", "Mario37", LocalDate.of(2019, Month.JANUARY, 12)));
@@ -17,6 +18,4 @@ public class StubDataLoader {
 
         return stats;
     }
-
-
 }
