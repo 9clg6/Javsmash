@@ -36,12 +36,14 @@ public class GameController {
 
     @FXML
     private Rectangle healthBarPlayerA;
-
     @FXML
     private Rectangle healthBarPlayerB;
-
     @FXML
     private Text textDamage;
+
+
+    private Character firstCharacter;
+    private Character secondCharacter;
 
     /**
      * @param heroSelectionStage Stage of the window
@@ -75,7 +77,19 @@ public class GameController {
     @FXML
     private void initialize() {
         textDamage.setText(String.valueOf(Fire.getDamage()));
+        initializePlayers();
         initializeWindow();
+    }
+
+    private void initializePlayers() {
+
+        firstCharacter = new Character(firstCharacterSelected, true);
+        secondCharacter = new Character(secondCharacterSelected, false);
+
+        characterCollection = new ArrayList<>();
+        characterCollection.add(firstCharacter);
+        characterCollection.add(secondCharacter);
+
     }
 
     /**
@@ -85,17 +99,10 @@ public class GameController {
 
         sc1 = new Scene(root, MAX_WIDTH, MAX_HEIGHT);
         sc1.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
-        Character firstCharacter = new Character(firstCharacterSelected, true);
-        Character secondCharacter = new Character(secondCharacterSelected, false);
 
-        characterCollection = new ArrayList<>();
-        characterCollection.add(firstCharacter);
-        characterCollection.add(secondCharacter);
-
-        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter), new CharacterPosition(secondCharacter), root);
+        Displacement characterDisplacement = new Displacement(new CharacterPosition(firstCharacter), new CharacterPosition(secondCharacter));
         AttackManager attackManager = new AttackManager(firstCharacter, secondCharacter, root);
         KeyManager keyManager = new KeyManager(characterDisplacement, attackManager);
-        //ItemManager itemmanager = new ItemManager(root);
 
         Collision collision = new Collision(firstCharacter, secondCharacter);
 
@@ -105,6 +112,12 @@ public class GameController {
             public void handle(long l) {
 
                 characterDisplacement.moving(l);
+
+                System.out.println("First Character Hero Scale" + firstCharacter.getHero().getScaleX());
+                System.out.println("First Character Skin Scale" + firstCharacter.getSkin().getScaleX());
+
+                System.out.println("Second Character Hero Scale" + secondCharacter.getHero().getScaleX());
+                System.out.println("Second Character Skin Scale" + secondCharacter.getSkin().getScaleX());
 
                 sc1.setOnKeyPressed(keyManager::separatorOnPress);
                 sc1.setOnKeyReleased(keyManager::separatorOnRelease);

@@ -1,5 +1,6 @@
 package view;
 
+import data.stub.StubDataLoader;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -8,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
 import model.statistic.Resultat;
 import model.statistic.Statistic;
-import stats.Stub;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +49,7 @@ public class StatisticController{
     public void initialize() {
 
 
-        Statistic stats = Stub.chargerStatistic();
+        Statistic stats = StubDataLoader.chargerStatistic();
 
         laListe.itemsProperty().bind(stats.statisticProperty());
 

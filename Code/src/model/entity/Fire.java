@@ -37,7 +37,7 @@ public class Fire implements AttackEntity {
         this.root = root;
         this.character = character;
 
-        this.direction=character.getSkin().getScaleX();
+        this.direction = character.getHero().getScaleX();
 
         initialize();
 

@@ -33,11 +33,9 @@ public class FireDisplacement {
      *
      */
     public void goForward() {
-         double characterScale = fire.getDirection();
+        double characterScale = fire.getDirection();
         fire.getSkinManager().getSkinImage().setScaleX(characterScale);
         sprite.spriteAnimation("Forward");
-
-        System.out.println(characterScale);
 
         fire.getFireballPosition().setPosXY(fire.getFireballPosition().getPosX() + FIREBALL_MOVEMENT_ITERATOR * characterScale, fire.getFireballPosition().getPosY());
     }

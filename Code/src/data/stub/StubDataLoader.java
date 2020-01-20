@@ -1,4 +1,4 @@
-package stats;
+package data.stub;
 
 import model.statistic.Resultat;
 import model.statistic.Statistic;
@@ -6,7 +6,7 @@ import model.statistic.Statistic;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class Stub {
+public class StubDataLoader {
 
     public static Statistic chargerStatistic() {
         Statistic stats = new Statistic();

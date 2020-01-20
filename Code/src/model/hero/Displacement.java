@@ -1,7 +1,6 @@
 package model.hero;
 
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import model.Interface.Displaceable;
 import model.animation.Sprite;
 
@@ -10,7 +9,6 @@ import model.animation.Sprite;
  * Displacement is managing the displacement of the character on x,y,z
  */
 public class Displacement implements Displaceable {
-    private Pane root;
     private static final long ONE_SECOND = 1000000000;
     private static double coefficientOfJump = 10;
 
@@ -35,10 +33,9 @@ public class Displacement implements Displaceable {
      *                 Instantiates the Sprite Class
      * @see Sprite, CharacterPosition
      */
-    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp, Pane root) {
+    public Displacement(CharacterPosition firstCp, CharacterPosition secondCp) {
         this.firstCp = firstCp;
         this.secondCp = secondCp;
-        this.root = root;
 
         spriteA = new Sprite(firstCp.getPersonnage().getSkinManager(), "Character");
         spriteB = new Sprite(secondCp.getPersonnage().getSkinManager(), "Character");
@@ -53,7 +50,6 @@ public class Displacement implements Displaceable {
     public void swapScale(CharacterPosition characterPosition) {
         if (characterPosition.getPersonnage().getSkin().getScaleX() == 1 && leftA || rightB) {
             setScale(characterPosition, -1);
-
         } else {
             if (characterPosition.getPersonnage().getSkin().getScaleX() == -1 && rightA || leftB)
                 setScale(characterPosition, 1);
