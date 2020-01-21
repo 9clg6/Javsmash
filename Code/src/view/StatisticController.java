@@ -5,11 +5,15 @@ import data.xml.XMLDataLoader;
 import data.xml.XMLDataSaver;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.statistic.Resultat;
@@ -39,6 +43,10 @@ public class StatisticController {
     private Button SaverButton = new Button();
     @FXML
     private Button clearButton = new Button();
+    @FXML
+    private Button addButton = new Button();
+    @FXML
+    private Button deleteButton = new Button();
 
     private Statistic stats = StubDataLoader.loadResultat();
 
@@ -96,9 +104,6 @@ public class StatisticController {
 
                 stats.addStatistic(new Resultat(surrogateResultat.getPlayerOne(), surrogateResultat.getPlayerTwo(), surrogateResultat.getWinner(), surrogateResultat.getLocalDate()));
 
-
-                initializeCells();
-
             } catch (NullPointerException e) {
                 new PopupError(new FileNullPopAlert("Zero File Selected"));
             }
@@ -115,6 +120,37 @@ public class StatisticController {
         });
 
         clearButton.setOnAction(actionEvent -> clearCells());
+
+        addButton.setOnAction(actionEvent -> {
+            try {
+                Stage primaryStage = new Stage();
+                primaryStage.initModality(Modality.APPLICATION_MODAL);
+
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/AjoutResultat.fxml"));
+
+                loader.setController(new AjoutResultatController(stats));
+
+                Pane root = loader.load();
+
+                Scene selectionScene = new Scene(root, 400, 400);
+                primaryStage.setTitle("Ajout résultat");
+
+                primaryStage.setScene(selectionScene);
+                primaryStage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        deleteButton.setOnAction(actionEvent -> {
+            try {
+                Resultat res = laListe.getSelectionModel().getSelectedItem();
+                stats.removeResultat(res);
+            } catch (NullPointerException e) {
+                new PopupError(new FileNullPopAlert("No Resultat Selected"));
+            }
+        });
     }
 
     private void initializeCells() {
@@ -150,6 +186,7 @@ public class StatisticController {
     private void clearCells() {
         laListe.getItems().clear();
     }
+
 
 }
 

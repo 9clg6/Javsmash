@@ -26,4 +26,7 @@ public class Statistic {
         statisticObs.add(resultat);
     }
 
+    public void removeResultat(Resultat res) {
+        statisticObs.remove(res);
+    }
 }
