@@ -17,8 +17,12 @@ public class XMLDataLoader implements DataLoader {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             Object object = objectInputStream.readObject();
+
             objectInputStream.close();
+            fileInputStream.close();
+
             return object;
+
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

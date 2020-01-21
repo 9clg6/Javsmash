@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -20,7 +19,6 @@ import utils.DataPath;
 import utils.FileNullPopAlert;
 import utils.PopupError;
 
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -40,6 +38,8 @@ public class StatisticController {
     private Button LoadButton = new Button();
     @FXML
     private Button SaverButton = new Button();
+    @FXML
+    private Button clearButton = new Button();
 
     private Statistic stats = StubDataLoader.loadResultat();
 
@@ -90,10 +90,8 @@ public class StatisticController {
     private void initializeButtons() {
         LoadButton.setOnAction(actionEvent ->
         {
-            selectedFile = initializeFileChooser().showOpenDialog(new Stage());
-            if (selectedFile == null) {
-                new PopupError(new FileNullPopAlert("Zero File Selected"));
-            } else {
+            try {
+                selectedFile = initializeFileChooser().showOpenDialog(new Stage());
 
                 SurrogateResultat surrogateResultat = (SurrogateResultat) XMLDataLoader.loadResultat(selectedFile.getPath());
 
@@ -101,6 +99,9 @@ public class StatisticController {
 
 
                 initializeCells();
+
+            } catch (NullPointerException e) {
+                new PopupError(new FileNullPopAlert("Zero File Selected"));
             }
         });
 
@@ -113,6 +114,8 @@ public class StatisticController {
                 e.printStackTrace();
             }
         });
+
+        clearButton.setOnAction(actionEvent -> clearCells());
     }
 
     private void initializeCells() {
