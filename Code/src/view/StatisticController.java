@@ -15,6 +15,8 @@ import javafx.util.StringConverter;
 import model.statistic.Resultat;
 import model.statistic.Statistic;
 import utils.DataPath;
+import utils.FileNullPopAlert;
+import utils.PopupError;
 
 import java.io.File;
 import java.io.IOException;
@@ -84,8 +86,12 @@ public class StatisticController {
         LoadButton.setOnAction(actionEvent ->
         {
             selectedFile = initializeFileChooser().showOpenDialog(new Stage());
-            clearCells();
-            XMLDataLoader.loadResultat(selectedFile.getPath());
+            if (selectedFile == null) {
+                new PopupError(new FileNullPopAlert("Zero File Selected"));
+            } else {
+                clearCells();
+                XMLDataLoader.loadResultat(selectedFile.getPath());
+            }
         });
 
         SaverButton.setOnAction(actionEvent -> {

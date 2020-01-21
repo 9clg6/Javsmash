@@ -4,6 +4,7 @@ import model.Interface.DataSaver;
 import model.statistic.Resultat;
 import model.statistic.SurrogateResultat;
 import utils.DataPath;
+import utils.FileNameCreator;
 
 import java.io.*;
 
@@ -11,7 +12,7 @@ public class XMLDataSaver implements DataSaver {
 
     public static void serialize(Object object) throws IOException {
         File repositoryPathToCreate = new File(DataPath.STATS_PATH_DOCUMENT + "\\DataJavSmash");
-        File filePath = new File(repositoryPathToCreate.getPath() + "\\DataJavSmash.dat");
+        File filePath = new File(repositoryPathToCreate.getPath() + "\\" + FileNameCreator.resultatFileName(object) + ".dat");
 
         try {
             if (repositoryPathToCreate.exists()) {
@@ -31,5 +32,6 @@ public class XMLDataSaver implements DataSaver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println(filePath);
     }
 }
