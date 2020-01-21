@@ -1,6 +1,7 @@
 package view;
 
 import data.stub.StubDataLoader;
+import data.xml.SurrogateResultat;
 import data.xml.XMLDataLoader;
 import data.xml.XMLDataSaver;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.statistic.Resultat;
 import model.statistic.Statistic;
-import model.statistic.SurrogateResultat;
 import utils.DataPath;
 import utils.FileNullPopAlert;
 import utils.PopupError;
@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class StatisticController {
 
@@ -150,16 +149,6 @@ public class StatisticController {
 
     private void clearCells() {
         laListe.getItems().clear();
-    }
-
-    private ArrayList<Resultat> conversionSurrogateResultatToResultat(ArrayList<SurrogateResultat> listSurrogateResultat) {
-        ArrayList<Resultat> listResultat = new ArrayList<>();
-        for (SurrogateResultat surrogateResultat : listSurrogateResultat) {
-            listResultat.add(new Resultat(surrogateResultat.getPlayerOne(), surrogateResultat.getPlayerTwo(), surrogateResultat.getWinner(), surrogateResultat.getLocalDate()));
-
-        }
-
-        return listResultat;
     }
 
 }

@@ -1,10 +1,7 @@
 package model.Interface;
 
-import model.statistic.Statistic;
-
 public interface DataLoader {
-    static Statistic loadResultat() {
-
+    static Object loadResultat(String filePath) {
         return null;
     }
 }

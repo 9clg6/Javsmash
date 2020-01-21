@@ -12,6 +12,7 @@ import java.util.List;
 public class StubDataLoader implements DataLoader {
     private static List<Resultat> listOfTestResultat;
 
+
     public static Statistic loadResultat() {
         Statistic stats = new Statistic();
         listOfTestResultat = new ArrayList<>();

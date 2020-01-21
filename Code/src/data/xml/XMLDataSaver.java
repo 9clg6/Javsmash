@@ -2,7 +2,6 @@ package data.xml;
 
 import model.Interface.DataSaver;
 import model.statistic.Resultat;
-import model.statistic.SurrogateResultat;
 import utils.DataPath;
 import utils.FileNameCreator;
 
