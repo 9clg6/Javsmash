@@ -1,6 +1,4 @@
-package data.xml;
-
-import model.statistic.Resultat;
+package model.statistic;
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -7,10 +7,6 @@ import java.io.ObjectInputStream;
 
 public class XMLDataLoader implements DataLoader {
 
-    public XMLDataLoader() {
-
-    }
-
     public static Object loadResultat(String filePath) {
         try {
             FileInputStream fileInputStream = new FileInputStream(filePath);

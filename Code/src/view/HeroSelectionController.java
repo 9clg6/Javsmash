@@ -7,8 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utils.CharacterSelectionPopAlert;
-import utils.PopupError;
+import utils.alert.CharacterSelectionPopAlert;
+import utils.alert.PopupError;
 
 import java.io.IOException;
 import java.net.URL;

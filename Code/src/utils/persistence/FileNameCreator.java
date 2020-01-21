@@ -1,4 +1,4 @@
-package utils;
+package utils.persistence;
 
 import model.statistic.Resultat;
 

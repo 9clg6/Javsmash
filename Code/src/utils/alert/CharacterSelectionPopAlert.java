@@ -1,4 +1,4 @@
-package utils;
+package utils.alert;
 
 import javafx.scene.control.Alert;
 import model.Interface.Error;

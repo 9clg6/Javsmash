@@ -2,12 +2,14 @@ package data.xml;
 
 import model.Interface.DataSaver;
 import model.statistic.Resultat;
-import utils.DataPath;
-import utils.FileNameCreator;
+import model.statistic.SurrogateResultat;
+import utils.persistence.DataPath;
+import utils.persistence.FileNameCreator;
 
 import java.io.*;
 
 public class XMLDataSaver implements DataSaver {
+
 
     public static void serialize(Object object) throws IOException {
         File repositoryPathToCreate = new File(DataPath.STATS_PATH_DOCUMENT + "\\DataJavSmash");
@@ -33,4 +35,6 @@ public class XMLDataSaver implements DataSaver {
         }
         System.out.println(filePath);
     }
+
+
 }

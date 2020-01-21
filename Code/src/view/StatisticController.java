@@ -1,7 +1,6 @@
 package view;
 
 import data.stub.StubDataLoader;
-import data.xml.SurrogateResultat;
 import data.xml.XMLDataLoader;
 import data.xml.XMLDataSaver;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,9 +14,10 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.statistic.Resultat;
 import model.statistic.Statistic;
-import utils.DataPath;
-import utils.FileNullPopAlert;
-import utils.PopupError;
+import model.statistic.SurrogateResultat;
+import utils.alert.FileNullPopAlert;
+import utils.alert.PopupError;
+import utils.persistence.DataPath;
 
 import java.io.File;
 import java.io.IOException;
