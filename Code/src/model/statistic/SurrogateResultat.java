@@ -15,4 +15,20 @@ public class SurrogateResultat implements Serializable {
         winner = resultat.getWinner();
         localDate = resultat.getDate();
     }
+
+    public String getPlayerOne() {
+        return playerOne;
+    }
+
+    public String getPlayerTwo() {
+        return playerTwo;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
 }

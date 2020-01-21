@@ -9,19 +9,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.statistic.Resultat;
 import model.statistic.Statistic;
+import model.statistic.SurrogateResultat;
 import utils.DataPath;
 import utils.FileNullPopAlert;
 import utils.PopupError;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class StatisticController {
 
@@ -37,6 +41,7 @@ public class StatisticController {
     @FXML
     private Button SaverButton = new Button();
 
+    private Statistic stats = StubDataLoader.loadResultat();
 
     private File selectedFile;
 
@@ -65,7 +70,6 @@ public class StatisticController {
 
     @FXML
     public void initialize() {
-        Statistic stats = StubDataLoader.loadResultat();
 
         laListe.itemsProperty().bind(stats.statisticProperty());
 
@@ -82,6 +86,7 @@ public class StatisticController {
         return fileChooser;
     }
 
+
     private void initializeButtons() {
         LoadButton.setOnAction(actionEvent ->
         {
@@ -89,8 +94,13 @@ public class StatisticController {
             if (selectedFile == null) {
                 new PopupError(new FileNullPopAlert("Zero File Selected"));
             } else {
-                clearCells();
-                XMLDataLoader.loadResultat(selectedFile.getPath());
+
+                SurrogateResultat surrogateResultat = (SurrogateResultat) XMLDataLoader.loadResultat(selectedFile.getPath());
+
+                stats.addStatistic(new Resultat(surrogateResultat.getPlayerOne(), surrogateResultat.getPlayerTwo(), surrogateResultat.getWinner(), surrogateResultat.getLocalDate()));
+
+
+                initializeCells();
             }
         });
 
@@ -137,6 +147,16 @@ public class StatisticController {
 
     private void clearCells() {
         laListe.getItems().clear();
+    }
+
+    private ArrayList<Resultat> conversionSurrogateResultatToResultat(ArrayList<SurrogateResultat> listSurrogateResultat) {
+        ArrayList<Resultat> listResultat = new ArrayList<>();
+        for (SurrogateResultat surrogateResultat : listSurrogateResultat) {
+            listResultat.add(new Resultat(surrogateResultat.getPlayerOne(), surrogateResultat.getPlayerTwo(), surrogateResultat.getWinner(), surrogateResultat.getLocalDate()));
+
+        }
+
+        return listResultat;
     }
 
 }
