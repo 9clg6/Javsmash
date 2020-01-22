@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Hitbox {
 
-    public static final int divisor = 2;
+    private static final int divisor = 2;
     private static final int RADIUS = 10;
     private static final Color colorOfHitBox = Color.TRANSPARENT;
 

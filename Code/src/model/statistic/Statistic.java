@@ -5,28 +5,30 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/***
+ * @author Maxime DACISAC
+ */
 public class Statistic {
-    private ObservableList<Resultat> statisticObs = FXCollections.observableArrayList();
-    private final ListProperty<Resultat> statistics = new SimpleListProperty<>(statisticObs);
+    private ObservableList<Result> statisticObs = FXCollections.observableArrayList();
+    private final ListProperty<Result> statistics = new SimpleListProperty<>(statisticObs);
 
-    public ObservableList<Resultat> getStatistic() {
-        return statistics.get();
-    }
-
-    public void setStatistic(ObservableList<Resultat> value) {
-        statistics.set(value);
-    }
-
-    public ListProperty<Resultat> statisticProperty() {
+    public ListProperty<Result> statisticProperty() {
         return statistics;
     }
 
-
-    public void addStatistic(Resultat resultat) {
-        statisticObs.add(resultat);
+    /***
+     * method to add an Result into Statistics (result list)
+     * @param result given Result to add to list
+     */
+    public void addStatistic(Result result) {
+        statisticObs.add(result);
     }
 
-    public void removeResultat(Resultat res) {
+    /***
+     * method to remove an Result from Statistics (result list)
+     * @param res given Result to add to list
+     */
+    public void removeResultat(Result res) {
         statisticObs.remove(res);
     }
 }

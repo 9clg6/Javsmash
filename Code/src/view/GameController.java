@@ -81,6 +81,9 @@ public class GameController {
         initializeWindow();
     }
 
+    /***
+     * Character Initialisation
+     */
     private void initializePlayers() {
 
         firstCharacter = new Character(firstCharacterSelected, true);
@@ -92,7 +95,7 @@ public class GameController {
     }
 
     /**
-     * Initilize game-useful Objects, size of Window, character, key-event.
+     * Initialize game-useful Objects, size of Window, character, key-event.
      */
     private void initializeWindow() {
 

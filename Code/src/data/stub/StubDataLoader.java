@@ -1,7 +1,7 @@
 package data.stub;
 
 import model.Interface.DataLoader;
-import model.statistic.Resultat;
+import model.statistic.Result;
 import model.statistic.Statistic;
 
 import java.time.LocalDate;
@@ -9,26 +9,35 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * @author Maxime DACISAC
+ * Testing Data Loader
+ */
 public class StubDataLoader implements DataLoader {
-    private static List<Resultat> listOfTestResultat;
+    private static List<Result> listOfResult;
 
-
+    /***
+     * @return list of Resultat in Statistic Object
+     */
     public static Statistic loadResultat() {
         Statistic stats = new Statistic();
-        listOfTestResultat = new ArrayList<>();
+        listOfResult = new ArrayList<>();
 
         initializeList();
 
-        for (Resultat resultat : listOfTestResultat) {
-            stats.addStatistic(resultat);
+        for (Result result : listOfResult) {
+            stats.addStatistic(result);
         }
         return stats;
     }
 
+    /***
+     * Initializer of the list of Result
+     */
     private static void initializeList() {
-        listOfTestResultat.add(new Resultat("Adrien63", "Alain63", "Adrien63", LocalDate.of(2019, Month.DECEMBER, 25)));
-        listOfTestResultat.add(new Resultat("Mario37", "Gamer27", "Mario37", LocalDate.of(2019, Month.JANUARY, 12)));
-        listOfTestResultat.add(new Resultat("Luigi", "Wario", "Luigi", LocalDate.of(2019, Month.MARCH, 5)));
-        listOfTestResultat.add(new Resultat("Dragon25", "Gamer27", "Gamer27", LocalDate.of(2020, Month.JULY, 9)));
+        listOfResult.add(new Result("Adrien63", "Alain63", "Adrien63", LocalDate.of(2019, Month.DECEMBER, 25)));
+        listOfResult.add(new Result("Mario37", "Gamer27", "Mario37", LocalDate.of(2019, Month.JANUARY, 12)));
+        listOfResult.add(new Result("Luigi", "Wario", "Luigi", LocalDate.of(2019, Month.MARCH, 5)));
+        listOfResult.add(new Result("Dragon25", "Gamer27", "Gamer27", LocalDate.of(2020, Month.JULY, 9)));
     }
 }

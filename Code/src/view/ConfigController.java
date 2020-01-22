@@ -1,7 +1,5 @@
 package view;
 
-
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import model.entity.Fire;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,9 +53,6 @@ public class ConfigController implements Initializable {
         }
     }
 
-
-
-
     /**
      * @throws IOException throwable by loader.load()
      *                     This function is call by the button 'Play'. It creates new window for the HeroSelection
@@ -82,10 +76,9 @@ public class ConfigController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         textFieldAvecBindingFXML.textProperty().bindBidirectional(Fire.damageProperty(), new NumberStringConverter());
-
     }
+
     private void close(Node source){
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

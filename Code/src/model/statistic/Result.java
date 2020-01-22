@@ -7,15 +7,25 @@ import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
 
-public class Resultat {
+/***
+ * @author Maxime DACISAC
+ * One line of Statistics Tab
+ */
+public class Result {
 
     private final StringProperty player1 = new SimpleStringProperty();
     private final StringProperty player2 = new SimpleStringProperty();
     private final StringProperty winner = new SimpleStringProperty();
     private final ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
 
-
-    public Resultat(String player1, String player2, String winner, LocalDate date) {
+    /***
+     * Constructor of an Result
+     * @param player1 the player number one
+     * @param player2 the player number two
+     * @param winner the winner of the match
+     * @param date the date of the match
+     */
+    public Result(String player1, String player2, String winner, LocalDate date) {
         this.player1.set(player1);
         this.player2.set(player2);
         this.winner.set(winner);
@@ -23,51 +33,35 @@ public class Resultat {
 
     }
 
+    /***
+     * Getter of player one
+     * @return player number one
+     */
     public String getPlayer1() {
         return player1.get();
     }
 
-    public void setPlayer1(String player1) {
-        this.player1.set(player1);
-    }
-
-    public StringProperty player1Property() {
-        return player1;
-    }
-
+    /***
+     * Getter of player two
+     * @return player number two
+     */
     public String getPlayer2() {
         return player2.get();
     }
 
-    public void setPlayer2(String player2) {
-        this.player2.set(player2);
-    }
-
-    public StringProperty player2Property() {
-        return player2;
-    }
-
+    /***
+     * Getter of the Winner
+     * @return the winner of the match
+     */
     public String getWinner() {
         return winner.get();
     }
 
-    public void setWinner(String winner) {
-        this.winner.set(winner);
-    }
-
-    public StringProperty winnerProperty() {
-        return winner;
-    }
-
+    /***
+     * Getter of date
+     * @return the date of the match
+     */
     public LocalDate getDate() {
         return date.get();
-    }
-
-    public void setDate(LocalDate birthday) {
-        this.date.set(birthday);
-    }
-
-    public ObjectProperty<LocalDate> dateProperty() {
-        return date;
     }
 }

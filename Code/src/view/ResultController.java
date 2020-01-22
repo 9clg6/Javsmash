@@ -4,18 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.statistic.Resultat;
+import model.statistic.Result;
 import model.statistic.Statistic;
 import utils.alert.FileNullPopAlert;
 import utils.alert.PopupError;
 
-import java.awt.*;
 import java.time.LocalDate;
 
-public class AjoutResultatController {
+/***
+ * @author Maxime DACISAC
+ */
+public class ResultController {
 
     @FXML
     private TextField PlayerOneF = new TextField();
@@ -32,10 +34,13 @@ public class AjoutResultatController {
 
     private Statistic stats;
 
-    public AjoutResultatController(Statistic stats) {
+    /***
+     * Constructor
+     * @param stats given Statistics (result list)
+     */
+    public ResultController(Statistic stats) {
         this.stats = stats;
     }
-
 
     @FXML
     private void initialize() {
@@ -60,14 +65,23 @@ public class AjoutResultatController {
             }
         });
         backButton.setOnAction(this::close);
-
     }
 
+    /***
+     * Add result into TableView
+     * @param playerOne given player one
+     * @param playerTwo given player two
+     * @param winner given winner
+     */
     private void addResultat(String playerOne, String playerTwo, String winner) {
-        Resultat resultat = new Resultat(playerOne, playerTwo, winner, LocalDate.now());
-        stats.addStatistic(resultat);
+        Result result = new Result(playerOne, playerTwo, winner, LocalDate.now());
+        stats.addStatistic(result);
     }
 
+    /***
+     * Close actual window
+     * @param actionEvent click event
+     */
     private void close(ActionEvent actionEvent) {
         final Node source = (Node) actionEvent.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();

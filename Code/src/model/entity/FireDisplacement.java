@@ -29,8 +29,6 @@ public class FireDisplacement {
 
     /***
      * Methods that permits to the firewall to go forward
-     *
-     *
      */
     public void goForward() {
         double characterScale = fire.getDirection();

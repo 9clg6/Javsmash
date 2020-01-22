@@ -119,7 +119,7 @@ public class MenuController {
     }
 
     /***
-     * Button to start the configuration button
+     * Button to start the configuration
      * @throws IOException
      * @author Maxime DACISAC
      */
@@ -140,6 +140,11 @@ public class MenuController {
         primaryStage.show();
     }
 
+    /***
+     * Button to start the Statistics
+     * @author Maxime DACISAC
+     * @throws IOException
+     */
     private void startStatistic() throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.APPLICATION_MODAL);

@@ -10,7 +10,6 @@ import model.manager.SkinManager;
  * Character is the most used class because it defines the composition of an Character
  */
 public class Character {
-
     private static final int HERO_WIDTH = 50;
     private static final int HERO_HEIGHT = 50;
     private static final int OPACITY = 0;
@@ -19,10 +18,8 @@ public class Character {
     private HealPoints life;
     private Hitbox hitbox;
 
-    //SKINABLE
     private SkinManager skin;
     private CharacterSkinPosition sp;
-
 
     /**
      * Constructor which defines the circle which represents the Character, his skin and his position, his position at the spawn,

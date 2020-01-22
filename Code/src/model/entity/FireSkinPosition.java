@@ -10,8 +10,8 @@ import model.manager.SkinManager;
  * This class allows to manipulate the different positions of the fireball's skin
  */
 public class FireSkinPosition implements Positionable, SkinPositionable {
-    public static final int CHARACTER_FIREBALL_SHIFT_X = 50;
-    public static final int CHARACTER_FIREBALL_SHIFT_Y = 20;
+    private static final int CHARACTER_FIREBALL_SHIFT_X = 50;
+    private static final int CHARACTER_FIREBALL_SHIFT_Y = 20;
     private ImageView skin;
 
     /***

@@ -57,13 +57,15 @@ public class AttackManager {
                 fireBall = new Fire(characterTwo, root);
 
 
-
                 fireDisplacement = new FireDisplacement((Fire) fireBall);
 
                 break;
         }
     }
 
+    /***
+     * Check if an fireball is already living
+     */
     private void isFireballNull() {
         try {
             if (fireBall != null) {
@@ -73,14 +75,26 @@ public class AttackManager {
         }
     }
 
+    /***
+     * Getter of fireball
+     * @return attackEntity
+     */
     public AttackEntity getFireBall() {
         return fireBall;
     }
 
+    /***
+     * Getter of FireDisplacement
+     * @return fireDisplacement of the FireBall
+     */
     public FireDisplacement getFireDisplacement() {
         return fireDisplacement;
     }
 
+    /***
+     * Getter of Character
+     * @return the character who throw the fireball
+     */
     public Character getCharacterWhoAttacked() {
         return characterWhoAttacked;
     }

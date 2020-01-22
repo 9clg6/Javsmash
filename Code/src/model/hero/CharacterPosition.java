@@ -100,6 +100,10 @@ public class CharacterPosition implements Positionable {
         p.getHitbox().updateXY();
     }
 
+    /***
+     * Getter of the position in Y of the first Character
+     * @return the Y position
+     */
     public static double getFirstcharacterPosYAtSpawn() {
         return FIRSTCHARACTER_POS_Y_AT_SPAWN;
     }

@@ -13,13 +13,11 @@ import java.util.Map;
 public class SkinManager {
     private Map<String, Repertory> skinCollection;
 
-
     private ImageView skinImage;
     private String repertory;
 
     /**
      * Constructor of the function which defines which skin to defines at the character
-     *
      * @param entity types on int defines which character is selected
      */
     public SkinManager(String entity) {
@@ -51,19 +49,35 @@ public class SkinManager {
         skinCollection.put("Apple", new Repertory(new ImageView(new Image("img/Items/apple.png")), "img/Items/"));
     }
 
+    /***
+     * Internal class to set the repertory path and the Image of an skin
+     */
     private static class Repertory {
         private ImageView imageView;
         private String path;
 
+        /***
+         * Constructor of Repertory
+         * @param imageView Image given for the skin
+         * @param path the path of an image
+         */
         public Repertory(ImageView imageView, String path) {
             this.imageView = imageView;
             this.path = path;
         }
 
+        /***
+         * Getter of imageView
+         * @return imageView
+         */
         public ImageView getImageView() {
             return imageView;
         }
 
+        /***
+         * Getter of Path
+         * @return path of Image into ImageView
+         */
         public String getPath() {
             return path;
         }
