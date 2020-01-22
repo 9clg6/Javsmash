@@ -1197,7 +1197,7 @@
 											"top": 775,
 											"width": 214.96337890625,
 											"height": 13,
-											"text": "SurrogateResultat"
+											"text": "SurrogateResult"
 										},
 										{
 											"_type": "LabelView",
@@ -2162,7 +2162,7 @@
 											"top": 775,
 											"width": 408.63037109375,
 											"height": 13,
-											"text": "Resultat"
+											"text": "Result"
 										},
 										{
 											"_type": "LabelView",
@@ -2963,7 +2963,8 @@
 													"_parent": {
 														"$ref": "AAAAAAFvybLs8JUz/AE="
 													},
-													"name": "String filePath"
+													"name": "String filePath",
+													"type": ""
 												},
 												{
 													"_type": "UMLParameter",
@@ -3146,7 +3147,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFvybOx45WG7WI="
 											},
-											"name": "String filePath"
+											"name": "String filePath",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
@@ -3207,7 +3209,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFvycikLJdm9t0="
 							},
-							"name": "SurrogateResultat",
+							"name": "SurrogateResult",
 							"ownedElements": [
 								{
 									"_type": "UMLDependency",
@@ -3289,7 +3291,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFvycikLJdm9t0="
 							},
-							"name": "Resultat",
+							"name": "Result",
 							"attributes": [
 								{
 									"_type": "UMLAttribute",
