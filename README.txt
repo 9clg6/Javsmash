@@ -1,4 +1,3 @@
-Developer Team : Clément GUYON (Group 8 2A) & Maxime DACISAC (Group 7 2A)
 
 Pour une utilisation et une manipulation optimale des dossiers / fichiers / données du projet voici quelques conseils et recommandations :
 
